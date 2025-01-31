@@ -128,6 +128,30 @@ f4_MPU9250.elf/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\f4_MPU9250.elf.dir\build.make CMakeFiles/f4_MPU9250.elf.dir/build
 .PHONY : f4_MPU9250.elf/fast
 
+Core/Src/MPU9250.obj: Core/Src/MPU9250.c.obj
+.PHONY : Core/Src/MPU9250.obj
+
+# target to build an object file
+Core/Src/MPU9250.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f4_MPU9250.elf.dir\build.make CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj
+.PHONY : Core/Src/MPU9250.c.obj
+
+Core/Src/MPU9250.i: Core/Src/MPU9250.c.i
+.PHONY : Core/Src/MPU9250.i
+
+# target to preprocess a source file
+Core/Src/MPU9250.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f4_MPU9250.elf.dir\build.make CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.i
+.PHONY : Core/Src/MPU9250.c.i
+
+Core/Src/MPU9250.s: Core/Src/MPU9250.c.s
+.PHONY : Core/Src/MPU9250.s
+
+# target to generate assembly for a file
+Core/Src/MPU9250.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f4_MPU9250.elf.dir\build.make CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.s
+.PHONY : Core/Src/MPU9250.c.s
+
 Core/Src/main.obj: Core/Src/main.c.obj
 .PHONY : Core/Src/main.obj
 
@@ -745,6 +769,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... f4_MPU9250.elf
+	@echo ... Core/Src/MPU9250.obj
+	@echo ... Core/Src/MPU9250.i
+	@echo ... Core/Src/MPU9250.s
 	@echo ... Core/Src/main.obj
 	@echo ... Core/Src/main.i
 	@echo ... Core/Src/main.s

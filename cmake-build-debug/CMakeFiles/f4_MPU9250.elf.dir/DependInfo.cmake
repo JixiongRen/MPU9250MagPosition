@@ -30,6 +30,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/MPU9250.c" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj" "gcc" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj.d"
   "C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/main.c" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj" "gcc" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj.d"
   "C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_hal_msp.c" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj" "gcc" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj.d"
   "C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_it.c" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj" "gcc" "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj.d"

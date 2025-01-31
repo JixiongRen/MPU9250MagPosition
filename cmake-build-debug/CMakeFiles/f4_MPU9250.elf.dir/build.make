@@ -68,10 +68,24 @@ include CMakeFiles/f4_MPU9250.elf.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/f4_MPU9250.elf.dir/flags.make
 
+CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
+CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/MPU9250.c
+CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj"
+	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\MPU9250.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\MPU9250.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\MPU9250.c
+
+CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.i"
+	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\MPU9250.c > CMakeFiles\f4_MPU9250.elf.dir\Core\Src\MPU9250.c.i
+
+CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.s"
+	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\MPU9250.c -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\MPU9250.c.s
+
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/main.c
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\main.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\main.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\main.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.i: cmake_force
@@ -85,7 +99,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.s: cmake_force
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_hal_msp.c
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\stm32f4xx_hal_msp.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\stm32f4xx_hal_msp.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\stm32f4xx_hal_msp.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.i: cmake_force
@@ -99,7 +113,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.s: cmake_force
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_it.c
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\stm32f4xx_it.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\stm32f4xx_it.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\stm32f4xx_it.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.i: cmake_force
@@ -113,7 +127,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.s: cmake_force
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/syscalls.c
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\syscalls.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\syscalls.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\syscalls.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.i: cmake_force
@@ -127,7 +141,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/syscalls.c.s: cmake_force
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/sysmem.c
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\sysmem.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\sysmem.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\sysmem.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.i: cmake_force
@@ -141,7 +155,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/sysmem.c.s: cmake_force
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/system_stm32f4xx.c
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Core\Src\system_stm32f4xx.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Core\Src\system_stm32f4xx.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Src\system_stm32f4xx.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.i: cmake_force
@@ -154,7 +168,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/system_stm32f4xx.c.s: cmake_force
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Startup/startup_stm32f407zgtx.s.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Core/Startup/startup_stm32f407zgtx.s.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Startup/startup_stm32f407zgtx.s
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building ASM object CMakeFiles/f4_MPU9250.elf.dir/Core/Startup/startup_stm32f407zgtx.s.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building ASM object CMakeFiles/f4_MPU9250.elf.dir/Core/Startup/startup_stm32f407zgtx.s.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles\f4_MPU9250.elf.dir\Core\Startup\startup_stm32f407zgtx.s.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Core\Startup\startup_stm32f407zgtx.s
 
 CMakeFiles/f4_MPU9250.elf.dir/Core/Startup/startup_stm32f407zgtx.s.i: cmake_force
@@ -168,7 +182,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Startup/startup_stm32f407zgtx.s.s: cmake_forc
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.i: cmake_force
@@ -182,7 +196,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.s
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.i: cmake_force
@@ -196,7 +210,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cor
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.i: cmake_force
@@ -210,7 +224,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.i: cmake_force
@@ -224,7 +238,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.i: cmake_force
@@ -238,7 +252,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ext
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.i: cmake_force
@@ -252,7 +266,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_fla
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.i: cmake_force
@@ -266,7 +280,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_fla
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.i: cmake_force
@@ -280,7 +294,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_fla
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.i: cmake_force
@@ -294,7 +308,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpi
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.i: cmake_force
@@ -308,7 +322,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.i: cmake_force
@@ -322,7 +336,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.i: cmake_force
@@ -336,7 +350,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.i: cmake_force
@@ -350,7 +364,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.i: cmake_force
@@ -364,7 +378,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.i: cmake_force
@@ -378,7 +392,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.i: cmake_force
@@ -392,7 +406,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.i: cmake_force
@@ -406,7 +420,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.i: cmake_force
@@ -420,7 +434,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj: CMakeFiles/f4_MPU9250.elf.dir/flags.make
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj: CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj"
 	C:\ST\STM32CubeCLT_1.16.0\GNU-tools-for-STM32\bin\arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj -MF CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c.obj.d -o CMakeFiles\f4_MPU9250.elf.dir\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c.obj -c C:\Users\renji\CLionProjects\f4_mpu9250\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c
 
 CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.i: cmake_force
@@ -433,6 +447,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uar
 
 # Object files for target f4_MPU9250.elf
 f4_MPU9250_elf_OBJECTS = \
+"CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj" \
 "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj" \
 "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj" \
 "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj" \
@@ -463,6 +478,7 @@ f4_MPU9250_elf_OBJECTS = \
 # External object files for target f4_MPU9250.elf
 f4_MPU9250_elf_EXTERNAL_OBJECTS =
 
+f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj
 f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj
 f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj
 f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_it.c.obj
@@ -491,7 +507,7 @@ f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/s
 f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
 f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/build.make
 f4_MPU9250.elf: CMakeFiles/f4_MPU9250.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking C executable f4_MPU9250.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking C executable f4_MPU9250.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\f4_MPU9250.elf.dir\link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug/f4_MPU9250.hex"
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug/f4_MPU9250.bin"

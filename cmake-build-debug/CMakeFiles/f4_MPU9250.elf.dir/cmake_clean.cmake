@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj"
+  "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj.d"
   "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj"
   "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj.d"
   "CMakeFiles/f4_MPU9250.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj"
