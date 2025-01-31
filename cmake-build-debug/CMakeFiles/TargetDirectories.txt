@@ -1,0 +1,3 @@
+C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir
+C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug/CMakeFiles/rebuild_cache.dir
