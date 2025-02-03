@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="OCD f4_MPU9250" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="f4_MPU9250" TARGET_NAME="f4_MPU9250.elf" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="f4_MPU9250" RUN_TARGET_NAME="f4_MPU9250.elf">
-    <openocd version="1" gdb-port="3333" telnet-port="4444" board-config="C:\Users\renji\CLionProjects\STM32F407ZGT6_TEMPLATE\stm32f4discovery.cfg" reset-type="INIT" download-type="UPDATED_ONLY">
+    <openocd version="1" gdb-port="3337" telnet-port="4447" board-config="C:\Users\renji\CLionProjects\STM32F407ZGT6_TEMPLATE\stm32f4discovery.cfg" reset-type="RUN" download-type="ALWAYS">
       <debugger kind="GDB" isBundled="true" />
     </openocd>
     <method v="2">

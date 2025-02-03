@@ -75,14 +75,14 @@
 #define ACCEL_CONFIG         0x1C   // Accelerometer configuration
 #define ACCEL_CONFIG_2       0x1D   // Accelerometer configuration 2
 
-#define INT_PIN_CFG          0x37   //中断配置
+#define INT_PIN_CFG          0x37   // 中断配置
 #define USER_CTRL            0x6a
 #define I2C_MST_CTRL         0x24
 #define I2C_MST_DELAY_CTRL   0x67
 
 //------------------------SPI CS-------------------------------//
-#define MPU_9250_DISENABLE() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET)
-#define MPU_9250_ENABLE()    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET)
+#define MPU_9250_DISENABLE() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET)
+#define MPU_9250_ENABLE()    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_RESET)
 
 
 uint8_t MPU9250_Write_Reg(uint8_t reg, uint8_t value, SPI_HandleTypeDef hspix);

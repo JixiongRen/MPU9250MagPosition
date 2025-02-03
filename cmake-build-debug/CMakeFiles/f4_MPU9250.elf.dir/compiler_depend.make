@@ -58,6 +58,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: C:/Users/renji/CLionProjects/
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_default_types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/ieeefp.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/newlib.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdint.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/string.h \
@@ -74,6 +75,7 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: C:/Users/renji/CLionProjects/
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/string.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stddef.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdint.h \
+  C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/MPU9250.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/main.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/stm32f4xx_hal_conf.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \

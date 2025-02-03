@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <string.h>
+#include "MPU9250.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,7 +109,19 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-
+  // 拉低片选信号
+  HAL_GPIO_WritePin(MPU9250_CHIP_SELECT_GPIO_Port, MPU9250_CHIP_SELECT_Pin, GPIO_PIN_RESET);
+  // 初始化 MPU9250
+  Init_MPU9250(hspi1);
+  // 如果初始化成功，向串口发送成功信息，反之发送失败信息并抛出异常
+  if (MPU9250_Read_Reg(WHO_AM_I, hspi1) == WHO_AM_I_ANS) {
+    char msg[] = "MPU9250 init success!\r\n";
+    HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), 1000);
+  } else {
+    char msg[] = "MPU9250 init failed!\r\n";
+    HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), 1000);
+    Error_Handler();
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -118,10 +131,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // test code
-    char msg[] = "test TEMPLATE:  hello, world!\r\n";
-    HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), 1000);
-    HAL_Delay(200);
+    // 读取磁力计数据
+    READ_MPU9250_MAG(hspi1);
+
+    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }

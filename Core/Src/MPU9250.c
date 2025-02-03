@@ -67,7 +67,7 @@ uint8_t MPU9250_Read_Reg(uint8_t reg, SPI_HandleTypeDef hspix)
  */
 static void i2c_Mag_write(uint8_t reg, uint8_t value, SPI_HandleTypeDef hspix)
 {
-    uint16_t j = 500;
+    uint16_t j = 10;
     MPU9250_Write_Reg(I2C_SLV0_ADDR, MPU9250_AK8963_ADDR, hspix);  // 设计从机，即 AK8963 的地址
     MPU9250_Write_Reg(I2C_SLV0_REG, reg, hspix);  // 设置从机寄存器地址
     MPU9250_Write_Reg(I2C_SLV0_DO, value, hspix);  // 写入数据
@@ -97,7 +97,11 @@ static uint8_t i2c_Mag_read(uint8_t reg, SPI_HandleTypeDef hspix)
 void Init_MPU9250(SPI_HandleTypeDef hspix)
 {
     // 解除 MPU9250 的睡眠模式
-    MPU9250_Write_Reg(PWR_MGMT_1, 0x00, hspix);
+    uint8_t ret_pwr_mgmt_1 = MPU9250_Write_Reg(PWR_MGMT_1, 0x00, hspix);
+    // 若返回值为 0x00，则表示解除睡眠成功
+    if (ret_pwr_mgmt_1 != 0x00) {
+        Error_Handler();
+    }
     // 低通滤波频率，设置典型值为 3600 Hz，该寄存器决定 Internal_Sample_Rate==8K
     MPU9250_Write_Reg(CONFIG, 0x07, hspix);
     /**********************Init SLV0 i2c**********************************/
