@@ -4,20 +4,34 @@
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/MPU9250.c \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/_ansi.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/_newlib_version.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/alloca.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_default_types.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_endian.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_types.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/endian.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/ieeefp.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/stdlib.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/newlib.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdint.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdlib.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_intsup.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_pthreadtypes.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_sigset.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_stdint.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_timespec.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_timeval.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/cdefs.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/config.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/features.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/lock.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/reent.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/sched.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/select.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/timespec.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stddef.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdint.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/MPU9250.h \
@@ -55,12 +69,16 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/MPU9250.c.obj: C:/Users/renji/CLionProjec
 CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/main.c \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/_ansi.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/_newlib_version.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/alloca.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_default_types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_types.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/ieeefp.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/stdlib.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/newlib.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdint.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdio.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdlib.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/string.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/strings.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_intsup.h \
@@ -72,11 +90,13 @@ CMakeFiles/f4_MPU9250.elf.dir/Core/Src/main.c.obj: C:/Users/renji/CLionProjects/
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/features.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/lock.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/reent.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/stdio.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/string.h \
+  C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdarg.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stddef.h \
   C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdint.h \
-  C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/MPU9250.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/main.h \
+  C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/MPU9250.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/stm32f4xx_hal_conf.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h \
   C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -1038,21 +1058,47 @@ CMakeFiles/f4_MPU9250.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uar
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/MPU9250.c:
 
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/select.h:
+
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/_ansi.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/_newlib_version.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/config.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/strings.h:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_types.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/alloca.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_default_types.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/ieeefp.h:
-
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_types.h:
 
-C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_hal_msp.c:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stddef.h:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/mpu_armv7.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_endian.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/endian.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_sigset.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdlib.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/ieeefp.h:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/system_stm32f4xx.c:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/stdlib.h:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/types.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/math.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h:
 
@@ -1066,15 +1112,17 @@ C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_intsup.h:
 
+C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/core_cm4.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_pthreadtypes.h:
+
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_stdint.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/alloca.h:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_timespec.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/config.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_types.h:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_timeval.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/cdefs.h:
 
@@ -1088,11 +1136,15 @@ C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/cmsis_version.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/reent.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_endian.h:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/sched.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stddef.h:
+C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 
-C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/mpu_armv7.h:
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/timespec.h:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/stm32f4xx_hal_conf.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/types.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdint.h:
 
@@ -1100,13 +1152,7 @@ C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/MPU9250.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/main.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/timespec.h:
-
-C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/stm32f4xx_hal_conf.h:
-
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:
-
-C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_it.c:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h:
 
@@ -1126,8 +1172,6 @@ C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/cmsis_compiler.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/cmsis_gcc.h:
 
-C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/CMSIS/Include/core_cm4.h:
-
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h:
@@ -1138,27 +1182,17 @@ C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h:
 
-C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h:
-
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/string.h:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h:
 
-C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/system_stm32f4xx.c:
-
-C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:
-
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
-
-C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/sched.h:
-
-C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
@@ -1166,7 +1200,17 @@ C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/main.c:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/string.h:
 
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/strings.h:
+
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_locale.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/stdio.h:
+
+C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdarg.h:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_hal_msp.c:
+
+C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/stm32f4xx_it.c:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Core/Inc/stm32f4xx_it.h:
 
@@ -1176,47 +1220,23 @@ C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/errno.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/_time.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/endian.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/stdlib.h:
-
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/time.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/machine/types.h:
-
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/signal.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/stdlib.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_pthreadtypes.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_sigset.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_timespec.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/_timeval.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/errno.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/select.h:
-
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/signal.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/stat.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/stdio.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/time.h:
 
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/times.h:
 
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/sys/types.h:
-
 C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/arm-none-eabi/include/time.h:
-
-C:/ST/STM32CubeCLT_1.16.0/GNU-tools-for-STM32/lib/gcc/arm-none-eabi/12.3.1/include/stdarg.h:
 
 C:/Users/renji/CLionProjects/f4_mpu9250/Core/Src/sysmem.c:
 

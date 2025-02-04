@@ -5,32 +5,46 @@
 #ifndef MPU9250_H
 #define MPU9250_H
 
-# include  <stdint.h>
-# include  <math.h>
-# include  "main.h"
+#include  <stdint.h>
+#include  <math.h>
+#include  "main.h"
+#include "stm32f4xx_hal_spi.h"
+#include <stdlib.h>
+
+//----------------------config register--------------------------/
+#define SMPLRT_DIV           0x19   // Sample rate divider
+#define CONFIG               0x1A   // Configuration
+#define GYRO_CONFIG          0x1B   // Gyroscope configuration
+#define ACCEL_CONFIG         0x1C   // Accelerometer configuration
+#define ACCEL_CONFIG_2       0x1D   // Accelerometer configuration 2
+
+#define INT_PIN_CFG          0x37
+#define USER_CTRL            0x6a
+#define I2C_MST_CTRL         0x24
+#define I2C_MST_DELAY_CTRL   0x67
 
 //--------------------------i2c slv0---------------------------------//
-# define I2C_SLV0_ADDR       0x25   // I2C slave 0 address
-# define I2C_SLV0_REG        0x26   // I2C slave 0 register
-# define I2C_SLV0_CTRL       0x27   // I2C slave 0 control
-# define I2C_SLV0_DO         0x63   // I2C slave 0 data out register
+#define I2C_SLV0_ADDR        0x25   // I2C slave 0 address
+#define I2C_SLV0_REG         0x26   // I2C slave 0 register
+#define I2C_SLV0_CTRL        0x27   // I2C slave 0 control
+#define I2C_SLV0_DO          0x63   // I2C slave 0 data out register
 
 //-----------------------AK8963 reg addr-----------------------------//
-# define MPU9250_AK8963_ADDR 0x0C   // AK8963 address
-# define AK8963_WHOAMI_REG   0x00   // Device ID, Should return 0x48
-# define AK8963_WHOAMI_ANS   0x48   // Device ID answer
-# define AK8963_ST1_REG      0x02   // Data Status 1
-# define AK8963_ST2_REG      0x09   // Data Status 2
-# define AK8963_ST1_DOR      0x00   // Data overflow
-#define AK8963_ST1_DRDY      0x01   // Data ready
-#define AK8963_ST2_BITM      0x08   // Bit M
-#define AK8963_ST2_HOFL      0x08   // Magnetic sensor overflow
-#define AK8963_CNTL1_REG     0x0A   // Control 1
-#define AK8963_CNTL2_REG     0x0B   // Control 2
-#define AK8963_CNTL2_SRST    0x01   // Soft reset
-#define AK8963_ASAX          0x10   // X-axis sensitivity adjustment value
-#define AK8963_ASAY          0x11   // Y-axis sensitivity adjustment value
-#define AK8963_ASAZ          0x12   // Z-axis sensitivity adjustment value
+#define AK8963_I2C_ADDR      0x0C  //AKM addr
+#define AK8963_WHOAMI_REG    0x00  //AKM ID addr
+#define AK8963_WHOAMI_ID     0x48  //ID
+#define AK8963_ST1_REG       0x02  //Data Status1
+#define AK8963_ST2_REG       0x09  //Data reading end register & check Magnetic sensor overflow occurred
+#define AK8963_ST1_DOR       0x02
+#define AK8963_ST1_DRDY      0x01  //Data Ready
+#define AK8963_ST2_BITM      0x10
+#define AK8963_ST2_HOFL      0x08  // Magnetic sensor overflow
+#define AK8963_CNTL1_REG     0x0A
+#define AK8963_CNTL2_REG     0x0B
+#define AK8963_CNTL2_SRST    0x01  //soft Reset
+#define AK8963_ASAX          0x10  //X-axis sensitivity adjustment value
+#define AK8963_ASAY          0x11  //Y-axis sensitivity adjustment value
+#define AK8963_ASAZ          0x12  //Z-axis sensitivity adjustment value
 
 //-----------------------9-axis reg addr-----------------------------//
 #define ACCEL_XOUT_H         0x3B   // Accelerometer X-axis high byte
@@ -69,29 +83,127 @@
 #define EXT_SENS_DATA_02     0x4B   // External sensor data 02
 #define EXT_SENS_DATA_03     0x4C   // External sensor data 03
 
-#define SMPLRT_DIV           0x19   // Sample rate divider
-#define CONFIG               0x1A   // Configuration
-#define GYRO_CONFIG          0x1B   // Gyroscope configuration
-#define ACCEL_CONFIG         0x1C   // Accelerometer configuration
-#define ACCEL_CONFIG_2       0x1D   // Accelerometer configuration 2
-
-#define INT_PIN_CFG          0x37   // 中断配置
-#define USER_CTRL            0x6a
-#define I2C_MST_CTRL         0x24
-#define I2C_MST_DELAY_CTRL   0x67
-
 //------------------------SPI CS-------------------------------//
-#define MPU_9250_DISENABLE() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET)
-#define MPU_9250_ENABLE()    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_RESET)
+// #define MPU_9250_DISENABLE() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET)
+// #define MPU_9250_ENABLE()    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_RESET)
 
+//-----------------------config Structure---------------------------//
+typedef enum __MPU9250_AccelRange {
+    MPU9250_Accel_Range_2G = 0x00,
+    MPU9250_Accel_Range_4G = 0x08,
+    MPU9250_Accel_Range_8G = 0x10,
+    MPU9250_Accel_Range_16G = 0x18
+/*
+ * 0b00000000 => 0x00 for +-2G
+ * 0b00001000 => 0x08 for +-4G
+ * 0b00010000 => 0x10 for +-8G
+ * 0b00011000 => 0x18 for +-16G
+ * */
+} MPU9250_AccelRange;
 
-uint8_t MPU9250_Write_Reg(uint8_t reg, uint8_t value, SPI_HandleTypeDef hspix);
-uint8_t MPU9250_Read_Reg(uint8_t reg, SPI_HandleTypeDef hspix);
-static void i2c_Mag_write(uint8_t reg, uint8_t value, SPI_HandleTypeDef hspix);
-static uint8_t i2c_Mag_read(uint8_t reg, SPI_HandleTypeDef hspix);
-void Init_MPU9250(SPI_HandleTypeDef hspix);
-void READ_MPU9250_ACCEL(SPI_HandleTypeDef hspix);
-void READ_MPU9250_GYRO(SPI_HandleTypeDef hspix);
-void READ_MPU9250_MAG(SPI_HandleTypeDef hspix);
+typedef enum __MPU9250_GyroRange {
+    MPU9250_Gyro_Range_250dps = 0x00,
+    MPU9250_Gyro_Range_500dps = 0x08,
+    MPU9250_Gyro_Range_1000dps = 0x10,
+    MPU9250_Gyro_Range_2000dps = 0x18
+/*
+ * 0b00000000 for 250dps
+ * 0b00001000 for 500dps
+ * 0b00010000 for 1000dps
+ * 0b00011000 for 2000dps
+ * */
+} MPU9250_GyroRange;
+
+typedef enum __MPU9250_Accel_DLPFBandwidth {
+    // set reg29 Bit[3] & Bit[2:0]
+    // Hz
+    MPU9250_Accel_DLPFBandwidth_460 = 0x00,    // delay 1.94ms
+    MPU9250_Accel_DLPFBandwidth_184,           // delay 5.80ms
+    MPU9250_Accel_DLPFBandwidth_92,            // delay 7.80ms
+    MPU9250_Accel_DLPFBandwidth_41,            // delay 11.80ms
+    MPU9250_Accel_DLPFBandwidth_20,            // delay 19.80ms
+    MPU9250_Accel_DLPFBandwidth_10,            // delay 35.70ms
+    MPU9250_Accel_DLPFBandwidth_5,             // delay 66.96ms
+    MPU9250_Accel_DLPFBandwidth_460_2,         // delay 1.94ms
+    MPU9250_Accel_DLPFBandwidth_1_13k = 0x08,  // delay 0.75ms
+} MPU9250_Accel_DLPFBandwidth;
+
+typedef enum __MPU9250_Accel_SampleRateDivider {
+    // check reg30, when use lower power mode
+    // Hz
+    // Bandwidth 1.1kHz, Delay 1ms
+    MPU9250_LP_ACCEL_ODR_0_24HZ = 0x00,
+    MPU9250_LP_ACCEL_ODR_0_49HZ,
+    MPU9250_LP_ACCEL_ODR_0_98HZ,
+    MPU9250_LP_ACCEL_ODR_1_95HZ,
+    MPU9250_LP_ACCEL_ODR_3_91HZ,
+    MPU9250_LP_ACCEL_ODR_7_81HZ,
+    MPU9250_LP_ACCEL_ODR_15_63HZ,
+    MPU9250_LP_ACCEL_ODR_31_25HZ,
+    MPU9250_LP_ACCEL_ODR_62_50HZ,
+    MPU9250_LP_ACCEL_ODR_125HZ,
+    MPU9250_LP_ACCEL_ODR_250HZ,
+    MPU9250_LP_ACCEL_ODR_500HZ
+} MPU9250_Accel_SampleRateDivider;
+
+typedef enum __MPU9250_Gyro_DLPFBandwidth {
+    // to use following 2 options, reg27 Bit[1:0](fchoice_b) must be set
+    // these to options are not related to reg26 Bit[2:0](DLPF_CFG), but reg27 Bit[1:0](fchoice_b)
+    // notice: this options can also affect temperature sensor
+    // Hz
+    MPU9250_Gyro_DLPFBandwidth_8800_x = 0x00,    // delay 0.064ms
+    MPU9250_Gyro_DLPFBandwidth_3600_x = 0x00,    // delay 0.11ms
+    // follow options can be set to reg26 Bit[2:0](DLPF_CFG) to set DLPFBandwidth
+    MPU9250_Gyro_DLPFBandwidth_250 = 0x00,     // delay 0.97ms
+    MPU9250_Gyro_DLPFBandwidth_184,            // delay 2.9ms
+    MPU9250_Gyro_DLPFBandwidth_92,             // delay 3.9ms
+    MPU9250_Gyro_DLPFBandwidth_41,             // delay 5.9ms
+    MPU9250_Gyro_DLPFBandwidth_20,             // delay 9.9ms
+    MPU9250_Gyro_DLPFBandwidth_10,             // delay 17.85ms
+    MPU9250_Gyro_DLPFBandwidth_5,              // delay 33.48ms
+    MPU9250_Gyro_DLPFBandwidth_3600,           // delay 0.17ms
+} MPU9250_Gyro_DLPFBandwidth;
+
+typedef struct __MPU9250_Value{
+    // row data
+    volatile int16_t Accel_row[3];
+    volatile int16_t Gyro_row[3];
+    volatile int16_t Mag_row[3];
+    float Accel[3]; // Accel X,Y,Z
+    float Gyro[3];  // Gyro X,Y,Z
+    float Mag[3];   // Mag X,Y,Z
+} MPU_Value;
+
+typedef struct __MPU9250_CFG {
+    SPI_HandleTypeDef hspix;    // 初始化 SPI 句柄
+    GPIO_TypeDef* CS_Port;      // 定义 GPIO 端口号
+    uint16_t CS_Pin;            // 定义 GPIO 引脚
+} MPU9250_CFG;
+
+typedef struct __MPU9250 {
+    MPU9250_CFG mpu9250_cfg;
+    MPU_Value mpu_value;
+} MPU9250;
+
+extern MPU_Value mpu_value;
+
+void MPU9250_ENABLE(MPU9250 mpu);
+void MPU9250_DISENABLE(MPU9250 mpu);
+void delay_10us(void);
+static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte);
+static void spi_w_bytes(uint8_t reg, MPU9250 mpu, uint8_t *bytes, uint16_t num);
+static void spi_r_bytes(uint8_t reg, MPU9250 mpu, uint8_t num);
+static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 mpu);
+static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu);
+static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 mpu);
+static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu);
+uint8_t mpu_r_ak8963_WhoAmI(MPU9250 mpu);
+uint8_t mpu_r_WhoAmI(MPU9250 mpu);
+static void MPU9250_Value_StructInit(MPU9250 mpu);
+uint8_t MPU9250_Init(MPU9250 mpu);
+MPU9250 MPU9250_ReadAccel(MPU9250 mpu);
+MPU9250 MPU9250_ReadGyro(MPU9250 mpu);
+MPU9250 MPU9250_ReadMag(MPU9250 mpu);
+MPU9250 MPU9250_ReadData(MPU9250 mpu);
 
 #endif //MPU9250_H

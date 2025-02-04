@@ -56,6 +56,8 @@ add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx)
 file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F407ZGTX_FLASH.ld)
+#        Core/Inc/mpu9250_6500.h
+#        Core/Src/mpu9250_6500.c)
 #        Core/Inc/MPU9250.h
 #        Core/Src/MPU9250.c)
 
