@@ -59,8 +59,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_SIGNAL_Pin GPIO_PIN_9
 #define LED_SIGNAL_GPIO_Port GPIOF
-#define MPU9250_CHIP_SELECT_Pin GPIO_PIN_11
-#define MPU9250_CHIP_SELECT_GPIO_Port GPIOA
+#define MPU9250_CHIP_SELECT1_Pin GPIO_PIN_11
+#define MPU9250_CHIP_SELECT1_GPIO_Port GPIOA
+#define MPU9250_CHIP_SELECT2_Pin GPIO_PIN_5
+#define MPU9250_CHIP_SELECT2_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 /* USER CODE END Private defines */

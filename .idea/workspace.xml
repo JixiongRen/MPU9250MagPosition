@@ -17,7 +17,7 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="f4_MPU9250" targetName="f4_MPU9250.elf" />
+      <config projectName="STM32F407ZGT6_TEMPLATE" targetName="STM32F407ZGT6_TEMPLATE.elf" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -26,25 +26,44 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="经过测试，可通过SPI正常识别设备ID">
-      <change afterPath="$PROJECT_DIR$/Core/Inc/mpu9250_6500.c.h.bak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Src/mpu9250_6500.c.bak" afterDir="false" />
+    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_f4_MPU9250.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/OCD_f4_MPU9250.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/MPU9250.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/MPU9250.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/MPU9250.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/MPU9250.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/compiler_depend.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/f4_MPU9250.elf.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.hex" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.hex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.hex" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f4_MPU9250.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/f4_MPU9250.ioc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +143,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake 应用程序.STM32F407ZGT6_TEMPLATE.elf.executor": "Run",
     "CMake 应用程序.f4_MPU9250.elf.executor": "Run",
     "OpenOCD 下载并运行.OCD STM32F407ZGT6_TEMPLATE.executor": "Run",
     "OpenOCD 下载并运行.OCD f4_MPU9250.executor": "Run",
@@ -147,13 +167,18 @@
   }
 }]]></component>
   <component name="RunManager" selected="OpenOCD 下载并运行.OCD f4_MPU9250">
-    <configuration name="f4_MPU9250.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="f4_MPU9250" TARGET_NAME="f4_MPU9250.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="f4_MPU9250" RUN_TARGET_NAME="f4_MPU9250.elf">
+    <configuration name="STM32F407ZGT6_TEMPLATE.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="STM32F407ZGT6_TEMPLATE" TARGET_NAME="STM32F407ZGT6_TEMPLATE.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="STM32F407ZGT6_TEMPLATE" RUN_TARGET_NAME="STM32F407ZGT6_TEMPLATE.elf">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake 应用程序.f4_MPU9250.elf" />
+      <item itemvalue="CMake 应用程序.STM32F407ZGT6_TEMPLATE.elf" />
       <item itemvalue="OpenOCD 下载并运行.OCD f4_MPU9250" />
     </list>
   </component>
@@ -175,7 +200,8 @@
       <workItem from="1738505267739" duration="3769000" />
       <workItem from="1738586271529" duration="11915000" />
       <workItem from="1738631916907" duration="17441000" />
-      <workItem from="1738656234971" duration="1965000" />
+      <workItem from="1738656234971" duration="9421000" />
+      <workItem from="1738670856154" duration="918000" />
     </task>
     <task id="LOCAL-00001" summary="基于模板创建使用MPU9250进行多模永磁体定位的工程项目">
       <option name="closed" value="true" />
@@ -209,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738588630668</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="读取单个MPU9250与单个AK8963">
+      <option name="closed" value="true" />
+      <created>1738658870081</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738658870081</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +259,8 @@
     <MESSAGE value="添加MPU9250驱动程序" />
     <MESSAGE value="修改CMakeList.txt" />
     <MESSAGE value="经过测试，可通过SPI正常识别设备ID" />
-    <option name="LAST_COMMIT_MESSAGE" value="经过测试，可通过SPI正常识别设备ID" />
+    <MESSAGE value="读取单个MPU9250与单个AK8963" />
+    <option name="LAST_COMMIT_MESSAGE" value="读取单个MPU9250与单个AK8963" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -235,9 +270,8 @@
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/main.c</url>
-          <line>614</line>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/Core/Src/MPU9250.c</url>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

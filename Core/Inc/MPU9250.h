@@ -187,23 +187,23 @@ typedef struct __MPU9250 {
 
 extern MPU_Value mpu_value;
 
-void MPU9250_ENABLE(MPU9250 mpu);
-void MPU9250_DISENABLE(MPU9250 mpu);
+void MPU9250_ENABLE(MPU9250 *mpu);
+void MPU9250_DISENABLE(MPU9250 *mpu);
 void delay_10us(void);
 static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte);
-static void spi_w_bytes(uint8_t reg, MPU9250 mpu, uint8_t *bytes, uint16_t num);
-static void spi_r_bytes(uint8_t reg, MPU9250 mpu, uint8_t num);
-static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 mpu);
-static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu);
-static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 mpu);
-static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu);
-uint8_t mpu_r_ak8963_WhoAmI(MPU9250 mpu);
-uint8_t mpu_r_WhoAmI(MPU9250 mpu);
-static void MPU9250_Value_StructInit(MPU9250 mpu);
-uint8_t MPU9250_Init(MPU9250 mpu);
-MPU9250 MPU9250_ReadAccel(MPU9250 mpu);
-MPU9250 MPU9250_ReadGyro(MPU9250 mpu);
-MPU9250 MPU9250_ReadMag(MPU9250 mpu);
-MPU9250 MPU9250_ReadData(MPU9250 mpu);
+static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num);
+static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num);
+static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
+static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
+static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
+static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
+uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu);
+uint8_t mpu_r_WhoAmI(MPU9250 *mpu);
+void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin);
+uint8_t MPU9250_Init(MPU9250 *mpu);
+void MPU9250_ReadAccel(MPU9250 *mpu);
+void MPU9250_ReadGyro(MPU9250 *mpu);
+void MPU9250_ReadMag(MPU9250 *mpu);
+void MPU9250_ReadData(MPU9250 *mpu);
 
 #endif //MPU9250_H

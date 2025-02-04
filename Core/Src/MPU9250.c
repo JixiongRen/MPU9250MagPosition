@@ -20,13 +20,13 @@ static uint8_t dataBuf[DATABUF_SIZE] = { 0 };  // Buffer that used to stored dat
 static uint16_t i = 0; // loop ctrl
 
 
-void MPU9250_ENABLE(MPU9250 mpu) {
-    HAL_GPIO_WritePin(mpu.mpu9250_cfg.CS_Port, mpu.mpu9250_cfg.CS_Pin, GPIO_PIN_RESET);
+void MPU9250_ENABLE(MPU9250 *mpu) {
+    HAL_GPIO_WritePin(mpu->mpu9250_cfg.CS_Port, mpu->mpu9250_cfg.CS_Pin, GPIO_PIN_RESET);
 }
 
 
-void MPU9250_DISENABLE(MPU9250 mpu) {
-    HAL_GPIO_WritePin(mpu.mpu9250_cfg.CS_Port, mpu.mpu9250_cfg.CS_Pin, GPIO_PIN_SET);
+void MPU9250_DISENABLE(MPU9250 *mpu) {
+    HAL_GPIO_WritePin(mpu->mpu9250_cfg.CS_Port, mpu->mpu9250_cfg.CS_Pin, GPIO_PIN_SET);
 }
 
 
@@ -51,10 +51,10 @@ static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte) {
 }
 
 
-static void spi_w_bytes(uint8_t reg, MPU9250 mpu, uint8_t *bytes, uint16_t num)
+static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
 {
     MPU9250_ENABLE(mpu);
-    SPI_HandleTypeDef hspix = mpu.mpu9250_cfg.hspix;
+    SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
     spi_w_byte(hspix, reg);
     for (i=0; i<num; i++) {
         spi_w_byte(hspix, bytes[i]);
@@ -63,9 +63,9 @@ static void spi_w_bytes(uint8_t reg, MPU9250 mpu, uint8_t *bytes, uint16_t num)
 }
 
 
-static void spi_r_bytes(uint8_t reg, MPU9250 mpu, uint8_t num)
+static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
 {
-    SPI_HandleTypeDef hspix = mpu.mpu9250_cfg.hspix;
+    SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
     reg |= 0x80;  // 读取寄存器时最高位为 1
     MPU9250_ENABLE(mpu);
 
@@ -75,22 +75,22 @@ static void spi_r_bytes(uint8_t reg, MPU9250 mpu, uint8_t num)
     MPU9250_DISENABLE(mpu);
 }
 
-static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 mpu) {
+static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     spi_w_bytes(reg, mpu, &byte, 1);
 }
 
-static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu) {
+static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     spi_r_bytes(reg, mpu, num);
 }
 
-static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 mpu) {
+static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, byte, mpu);
     mpu_w_reg(I2C_SLV0_CTRL, 0x81, mpu);
 }
 
-static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu) {
+static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR | 0x80, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, num | 0x80, mpu);
@@ -98,30 +98,34 @@ static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 mpu) {
     mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
 }
 
-uint8_t mpu_r_WhoAmI(MPU9250 mpu) {
+uint8_t mpu_r_WhoAmI(MPU9250 *mpu) {
     mpu_r_reg(WHO_AM_I, 1, mpu);
     return dataBuf[0];
 }
 
-uint8_t mpu_r_ak8963_WhoAmI(MPU9250 mpu) {
+uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu) {
     ak8963_r_reg(AK8963_WHOAMI_REG, 1, mpu);
     return dataBuf[0];
 }
 
-static void MPU9250_Value_StructInit(MPU9250 mpu) {
-    for (uint8_t i = 0; i < 3; i++) {
-        mpu.mpu_value.Accel[i] = 0;
-        mpu.mpu_value.Gyro[i] = 0;
-        mpu.mpu_value.Mag[i] = 0;
+void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin) {
+    mpu->mpu9250_cfg.hspix = hspix;
+    mpu->mpu9250_cfg.CS_Port = cs_port;
+    mpu->mpu9250_cfg.CS_Pin = cs_pin;
 
-        mpu.mpu_value.Accel_row[i] = 0;
-        mpu.mpu_value.Gyro_row[i] = 0;
-        mpu.mpu_value.Mag_row[i] = 0.0;
+    for (uint8_t i = 0; i < 3; i++) {
+        mpu->mpu_value.Accel[i] = 0;
+        mpu->mpu_value.Gyro[i] = 0;
+        mpu->mpu_value.Mag[i] = 0;
+
+        mpu->mpu_value.Accel_row[i] = 0;
+        mpu->mpu_value.Gyro_row[i] = 0;
+        mpu->mpu_value.Mag_row[i] = 0.0;
     }
 }
 
-uint8_t MPU9250_Init(MPU9250 mpu) {
-    MPU9250_Value_StructInit(mpu);
+uint8_t MPU9250_Init(MPU9250 *mpu) {
+    // MPU9250_Value_StructInit(mpu);
 
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x80, mpu); // reset MPU9250, reg107
     HAL_Delay(10);
@@ -157,41 +161,39 @@ uint8_t MPU9250_Init(MPU9250 mpu) {
     return 0x00;
 }
 
-MPU9250 MPU9250_ReadAccel(MPU9250 mpu) {
+void MPU9250_ReadAccel(MPU9250 *mpu) {
     // m/s
     mpu_r_reg(ACCEL_XOUT_H, 6, mpu);
     // calculate x axis
-    mpu.mpu_value.Accel_row[0] = ((int16_t)dataBuf[0] << 8) | dataBuf[1];
-    mpu.mpu_value.Accel[0] = (float) mpu.mpu_value.Accel_row[0] / 208.980;
+    mpu->mpu_value.Accel_row[0] = ((int16_t)dataBuf[0] << 8) | dataBuf[1];
+    mpu->mpu_value.Accel[0] = (float) mpu->mpu_value.Accel_row[0] / 208.980;
 
     // calculate y axis
-    mpu.mpu_value.Accel_row[1] = ((int16_t)dataBuf[2] << 8) | dataBuf[3];
-    mpu.mpu_value.Accel[1] = (float) mpu.mpu_value.Accel_row[1] / 208.980;
+    mpu->mpu_value.Accel_row[1] = ((int16_t)dataBuf[2] << 8) | dataBuf[3];
+    mpu->mpu_value.Accel[1] = (float) mpu->mpu_value.Accel_row[1] / 208.980;
 
     // calculate z axis
-    mpu.mpu_value.Accel_row[2] = ((int16_t)dataBuf[4] << 8) | dataBuf[5];
-    mpu.mpu_value.Accel[2] = (float) mpu.mpu_value.Accel_row[2] / 208.980;
-    return mpu;
+    mpu->mpu_value.Accel_row[2] = ((int16_t)dataBuf[4] << 8) | dataBuf[5];
+    mpu->mpu_value.Accel[2] = (float) mpu->mpu_value.Accel_row[2] / 208.980;
 }
 
-MPU9250 MPU9250_ReadGyro(MPU9250 mpu) {
+void MPU9250_ReadGyro(MPU9250 *mpu) {
     // d/s
     mpu_r_reg(GYRO_XOUT_H, 6, mpu);
     // calculate x axis
-    mpu.mpu_value.Gyro_row[0] = ((int16_t)dataBuf[0] << 8) | dataBuf[1];
-    mpu.mpu_value.Gyro[0] = mpu.mpu_value.Gyro_row[0] / 16.384;
+    mpu->mpu_value.Gyro_row[0] = ((int16_t)dataBuf[0] << 8) | dataBuf[1];
+    mpu->mpu_value.Gyro[0] = mpu->mpu_value.Gyro_row[0] / 16.384;
 
     // calculate y axis
-    mpu.mpu_value.Gyro_row[1] = ((int16_t)dataBuf[2] << 8) | dataBuf[3];
-    mpu.mpu_value.Gyro[1] = mpu.mpu_value.Gyro_row[1] / 16.384;
+    mpu->mpu_value.Gyro_row[1] = ((int16_t)dataBuf[2] << 8) | dataBuf[3];
+    mpu->mpu_value.Gyro[1] = mpu->mpu_value.Gyro_row[1] / 16.384;
 
     // calculate z axis
-    mpu.mpu_value.Gyro_row[2] = ((int16_t)dataBuf[4] << 8) | dataBuf[5];
-    mpu.mpu_value.Gyro[2] = mpu.mpu_value.Gyro_row[2] / 16.384;
-    return mpu;
+    mpu->mpu_value.Gyro_row[2] = ((int16_t)dataBuf[4] << 8) | dataBuf[5];
+    mpu->mpu_value.Gyro[2] = mpu->mpu_value.Gyro_row[2] / 16.384;
 }
 
-MPU9250 MPU9250_ReadMag(MPU9250 mpu) {
+void MPU9250_ReadMag(MPU9250 *mpu) {
     uint8_t mag_adjust[3] = { 0 };
     uint8_t mag_buffer[6] = { 0 };
 
@@ -225,30 +227,28 @@ MPU9250 MPU9250_ReadMag(MPU9250 mpu) {
     ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
 
 
-    mpu.mpu_value.Mag_row[0] = ((int16_t)mag_buffer[1] << 8) | mag_buffer[0];
-    mpu.mpu_value.Mag_row[1] = ((int16_t)mag_buffer[3] << 8) | mag_buffer[2];
-    mpu.mpu_value.Mag_row[2] = ((int16_t)mag_buffer[5] << 8) | mag_buffer[4];
+    mpu->mpu_value.Mag_row[0] = ((int16_t)mag_buffer[1] << 8) | mag_buffer[0];
+    mpu->mpu_value.Mag_row[1] = ((int16_t)mag_buffer[3] << 8) | mag_buffer[2];
+    mpu->mpu_value.Mag_row[2] = ((int16_t)mag_buffer[5] << 8) | mag_buffer[4];
 
     // calculate real value, check page53
-    mpu.mpu_value.Mag[0] = (float) mpu.mpu_value.Mag_row[0]
+    mpu->mpu_value.Mag[0] = (float) mpu->mpu_value.Mag_row[0]
             * (((mag_adjust[0] - 128) / 256.0) + 1);
-    mpu.mpu_value.Mag[0] = mpu.mpu_value.Mag_row[0] * 0.15;
+    mpu->mpu_value.Mag[0] = mpu->mpu_value.Mag_row[0] * 0.15;
 
-    mpu.mpu_value.Mag[1] = (float) mpu.mpu_value.Mag_row[1]
+    mpu->mpu_value.Mag[1] = (float) mpu->mpu_value.Mag_row[1]
             * (((mag_adjust[1] - 128) / 256.0) + 1);
-    mpu.mpu_value.Mag[1] = mpu.mpu_value.Mag_row[1] * 0.15;
+    mpu->mpu_value.Mag[1] = mpu->mpu_value.Mag_row[1] * 0.15;
 
-    mpu.mpu_value.Mag[2] = (float) mpu.mpu_value.Mag_row[2]
+    mpu->mpu_value.Mag[2] = (float) mpu->mpu_value.Mag_row[2]
             * (((mag_adjust[2] - 128) / 256.0) + 1);
-    mpu.mpu_value.Mag[2] = mpu.mpu_value.Mag_row[2] * 0.15;
-    return mpu;
+    mpu->mpu_value.Mag[2] = mpu->mpu_value.Mag_row[2] * 0.15;
 }
 
-MPU9250 MPU9250_ReadData(MPU9250 mpu) {
-    MPU9250 mpu1 = MPU9250_ReadAccel(mpu);
-    MPU9250 mpu2 = MPU9250_ReadGyro(mpu1);
-    MPU9250 mpu3 = MPU9250_ReadMag(mpu2);
-    return mpu3;
+void MPU9250_ReadData(MPU9250 *mpu) {
+    MPU9250_ReadAccel(mpu);
+    MPU9250_ReadGyro(mpu);
+    MPU9250_ReadMag(mpu);
 }
 
 

@@ -29,7 +29,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake"
   "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake"
   "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake"
-  "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeMinGWFindMake.cmake"
   "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake"
   "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake"
   "C:/Users/renji/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake"
@@ -128,5 +127,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/f4_MPU9250.elf.dir/DependInfo.cmake"
+  "CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/DependInfo.cmake"
   )
