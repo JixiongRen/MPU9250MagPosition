@@ -122,6 +122,7 @@ int main(void)
 
   // open interrupt
   HAL_TIM_Base_Start_IT(&htim1);
+  rtos_init_flag = 1;
   /* USER CODE END 2 */
 
   /* Init scheduler */
