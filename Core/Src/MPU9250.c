@@ -19,17 +19,25 @@
 static uint8_t dataBuf[DATABUF_SIZE] = { 0 };  // Buffer that used to stored data which has been read
 static uint16_t i = 0; // loop ctrl
 
-
+/**
+ * @brief 用于使能MPU9250
+ * @param mpu MPU9250 结构体指针
+ */
 void MPU9250_ENABLE(MPU9250 *mpu) {
     HAL_GPIO_WritePin(mpu->mpu9250_cfg.CS_Port, mpu->mpu9250_cfg.CS_Pin, GPIO_PIN_RESET);
 }
 
-
+/**
+ * @brief 取消使能MPU9250
+ * @param mpu MPU9250 结构体指针
+ */
 void MPU9250_DISENABLE(MPU9250 *mpu) {
     HAL_GPIO_WritePin(mpu->mpu9250_cfg.CS_Port, mpu->mpu9250_cfg.CS_Pin, GPIO_PIN_SET);
 }
 
-
+/**
+ * @brief 延时 10us
+ */
 void delay_10us(void) {
     volatile uint32_t i;
     // 根据实际测试调整循环次数
@@ -38,7 +46,12 @@ void delay_10us(void) {
     }
 }
 
-
+/**
+ * @brief 使用 SPI 发送一个字节
+ * @param hspix SPI 句柄
+ * @param byte 要发送的字节
+ * @return 返回接收到的字节
+ */
 static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte) {
     uint8_t feedback = 0;
     while (HAL_SPI_GetState(&hspix) == HAL_SPI_STATE_BUSY_TX_RX);
@@ -50,7 +63,13 @@ static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte) {
     return feedback;
 }
 
-
+/**
+ * @brief 使用SPI写入多个字节数据
+ * @param reg 待写入的目标寄存器地址
+ * @param mpu MPU9250 结构体指针
+ * @param bytes 待写入的多字节数据
+ * @param num 字节数
+ */
 static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
 {
     MPU9250_ENABLE(mpu);
@@ -62,7 +81,12 @@ static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
     MPU9250_DISENABLE(mpu);
 }
 
-
+/**
+ * @brief 使用SPI读取多个字节数据
+ * @param reg 待写入的目标寄存器地址
+ * @param mpu MPU9250 结构体指针
+ * @param num 要使用SPI读取的字节数
+ */
 static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
 {
     SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
@@ -75,14 +99,32 @@ static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
     MPU9250_DISENABLE(mpu);
 }
 
+/**
+ * @brief 向MPU9250的寄存器写入数据
+ * @param reg 目标寄存器地址
+ * @param byte 待写入的数据
+ * @param mpu MPU9250 结构体指针
+ */
 static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     spi_w_bytes(reg, mpu, &byte, 1);
 }
 
+/**
+ * @brief 从MPU9250的寄存器读取数据
+ * @param reg 目标寄存器地址
+ * @param num 要读取的字节数
+ * @param mpu MPU9250 结构体指针
+ */
 static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     spi_r_bytes(reg, mpu, num);
 }
 
+/**
+ * @brief 向AK8963的寄存器写入数据
+ * @param reg 目标寄存器地址
+ * @param byte 待写入的数据 
+ * @param mpu MPU9250 结构体指针 
+ */
 static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
@@ -90,6 +132,12 @@ static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_CTRL, 0x81, mpu);
 }
 
+/**
+ * @brief 从AK8963的寄存器读取数据
+ * @param reg 寄存器地址
+ * @param num 要读取的字节数
+ * @param mpu MPU9250 结构体指针
+ */
 static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR | 0x80, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
@@ -99,16 +147,33 @@ static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
 }
 
+/**
+ * @brief 确认MPU9250的设备ID
+ * @param mpu MPU9250 结构体指针
+ * @return uint8_t 返回 MPU9250 的 WHO_AM_I 寄存器的值
+ */
 uint8_t mpu_r_WhoAmI(MPU9250 *mpu) {
     mpu_r_reg(WHO_AM_I, 1, mpu);
     return dataBuf[0];
 }
 
+/**
+ * @brief 确认AK8963的设备ID
+ * @param mpu MPU9250 结构体指针
+ * @return uint8_t 返回 AK8963 的 WHO_AM_I 寄存器的值
+ */
 uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu) {
     ak8963_r_reg(AK8963_WHOAMI_REG, 1, mpu);
     return dataBuf[0];
 }
 
+/**
+ * @brief 初始化 MPU9250 结构体
+ * @param mpu MPU9250 结构体指针
+ * @param hspix SPI 句柄
+ * @param cs_port 连接MPU片选引脚的GPIO端口号
+ * @param cs_pin 连接MPU片选引脚的GPIO引脚号
+ */
 void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin) {
     mpu->mpu9250_cfg.hspix = hspix;
     mpu->mpu9250_cfg.CS_Port = cs_port;
@@ -125,6 +190,11 @@ void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_
     }
 }
 
+/**
+ * @brief 初始化 MPU9250
+ * @param mpu MPU9250 结构体指针
+ * @return uint8_t 返回 0x00 代表初始化成功
+ */
 uint8_t MPU9250_Init(MPU9250 *mpu) {
     // MPU9250_Value_StructInit(mpu);
 
@@ -168,6 +238,10 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     return 0x00;
 }
 
+/**
+ * @brief 读取 MPU9250 的加速度计数据
+ * @param mpu MPU9250 结构体指针
+ */
 void MPU9250_ReadAccel(MPU9250 *mpu) {
     // m/s
     mpu_r_reg(ACCEL_XOUT_H, 6, mpu);
@@ -184,6 +258,10 @@ void MPU9250_ReadAccel(MPU9250 *mpu) {
     mpu->mpu_value.Accel[2] = (float) mpu->mpu_value.Accel_row[2] / 208.980;
 }
 
+/**
+ * @brief 读取 MPU9250 的陀螺仪数据
+ * @param mpu MPU9250 结构体指针
+ */
 void MPU9250_ReadGyro(MPU9250 *mpu) {
     // d/s
     mpu_r_reg(GYRO_XOUT_H, 6, mpu);
@@ -200,6 +278,10 @@ void MPU9250_ReadGyro(MPU9250 *mpu) {
     mpu->mpu_value.Gyro[2] = mpu->mpu_value.Gyro_row[2] / 16.384;
 }
 
+/**
+ * @brief 读取 MPU9250 的磁力计数据
+ * @param mpu MPU9250 结构体指针
+ */
 void MPU9250_ReadMag(MPU9250 *mpu) {
     uint8_t mag_adjust[3] = { 0 };
     uint8_t mag_buffer[6] = { 0 };
@@ -252,6 +334,10 @@ void MPU9250_ReadMag(MPU9250 *mpu) {
     mpu->mpu_value.Mag[2] = mpu->mpu_value.Mag_row[2] * 0.15;
 }
 
+/**
+ * @brief 读取 MPU9250 的所有数据
+ * @param mpu MPU9250 结构体指针
+ */
 void MPU9250_ReadData(MPU9250 *mpu) {
     MPU9250_ReadAccel(mpu);
     MPU9250_ReadGyro(mpu);
