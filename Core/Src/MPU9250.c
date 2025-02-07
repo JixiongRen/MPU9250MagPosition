@@ -94,7 +94,8 @@ static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR | 0x80, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, num | 0x80, mpu);
-    HAL_Delay(1);
+    //HAL_Delay(1);
+    SYS_Delay(rtos_init_flag, 1);
     mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
 }
 
@@ -128,12 +129,14 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     // MPU9250_Value_StructInit(mpu);
 
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x80, mpu); // reset MPU9250, reg107
-    HAL_Delay(10);
+    //HAL_Delay(10);
+    SYS_Delay(rtos_init_flag, 10);
     mpu_w_reg(USER_CTRL, (uint8_t) 0x20, mpu); // enable I2C master mode, reg106
     mpu_w_reg(I2C_MST_CTRL, (uint8_t) 0x0D, mpu); // set I2C clock speed to 400kHz, reg36
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x00, mpu); // set AK8963 to power down
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x80, mpu); // reset MPU9250, Bit[7] will auto clear
-    HAL_Delay(10);
+    //HAL_Delay(10);
+    SYS_Delay(rtos_init_flag, 10);
     ak8963_w_reg(AK8963_CNTL2_REG, AK8963_CNTL2_SRST, mpu); // reset AK8963
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x01, mpu); // select clock source
     mpu_w_reg(PWR_MGMT_2, (uint8_t) 0x00, mpu); // enable accel and gyro
@@ -148,13 +151,17 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     mpu_w_reg(USER_CTRL, (uint8_t) 0x20, mpu); // enable I2C master mode
     mpu_w_reg(I2C_MST_CTRL, (uint8_t) 0x0D, mpu); // set I2C clock speed to 400kHz, reg36
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x00, mpu); // set AK8963 to power down
-    HAL_Delay(100);
+    //HAL_Delay(100);
+    SYS_Delay(rtos_init_flag, 100);
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x0f, mpu); // set AK8963 to Fuse ROM access mode
-    HAL_Delay(100);
+    //HAL_Delay(100);
+    SYS_Delay(rtos_init_flag, 100);
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x00, mpu); // set AK8963 to power down
-    HAL_Delay(100);
+    //HAL_Delay(100);
+    SYS_Delay(rtos_init_flag, 100);
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x16, mpu); // AK8963 working on Continuous measurement mode 2 & 16-bit output
-    HAL_Delay(100);
+    //HAL_Delay(100);
+    SYS_Delay(rtos_init_flag, 100);
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x01, mpu); // select clock source
     ak8963_r_reg(MAG_XOUT_L, 7, mpu);
 

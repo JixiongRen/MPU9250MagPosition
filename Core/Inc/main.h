@@ -31,11 +31,26 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <string.h>
+#include "MPU9250.h"
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
+#include "usart.h"
+#include "func_delay.h"
 
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+  extern uint8_t ak8963_WhoAmI;
+  extern uint8_t mpu9250_WhoAmI;
+
+  extern MPU9250 mpu_instance_1;
+  extern MPU9250 *mpu_1;
+
+  extern MPU9250 mpu_instance_2;
+  extern MPU9250 *mpu_2;
 
 /* USER CODE END ET */
 
