@@ -122,17 +122,17 @@ int main(void)
 
   // open interrupt
   HAL_TIM_Base_Start_IT(&htim1);
-  rtos_init_flag = 1;
+  //rtos_init_flag = 1;
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();
+  //osKernelInitialize();
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
+  //MX_FREERTOS_Init();
 
   /* Start scheduler */
-  osKernelStart();
+  //osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -155,11 +155,11 @@ int main(void)
     // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 
-    snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_1->mpu_value.Accel[0], mpu_1->mpu_value.Accel[1], mpu_1->mpu_value.Accel[2]);
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_1->mpu_value.Gyro[0], mpu_1->mpu_value.Gyro[1], mpu_1->mpu_value.Gyro[2]);
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_1->mpu_value.Accel[0], mpu_1->mpu_value.Accel[1], mpu_1->mpu_value.Accel[2]);
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_1->mpu_value.Gyro[0], mpu_1->mpu_value.Gyro[1], mpu_1->mpu_value.Gyro[2]);
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 
     snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_1->mpu_value.Mag[0], mpu_1->mpu_value.Mag[1], mpu_1->mpu_value.Mag[2]);
     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
@@ -173,19 +173,19 @@ int main(void)
     // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 
-    snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_2->mpu_value.Accel[0], mpu_2->mpu_value.Accel[1], mpu_2->mpu_value.Accel[2]);
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_2->mpu_value.Gyro[0], mpu_2->mpu_value.Gyro[1], mpu_2->mpu_value.Gyro[2]);
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_2->mpu_value.Accel[0], mpu_2->mpu_value.Accel[1], mpu_2->mpu_value.Accel[2]);
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_2->mpu_value.Gyro[0], mpu_2->mpu_value.Gyro[1], mpu_2->mpu_value.Gyro[2]);
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 
     snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_2->mpu_value.Mag[0], mpu_2->mpu_value.Mag[1], mpu_2->mpu_value.Mag[2]);
     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 
     snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-    //HAL_Delay(200);
-    SYS_Delay(rtos_init_flag, 200);
+    //HAL_Delay(8);
+    SYS_Delay(rtos_init_flag, 1);
   }
   /* USER CODE END 3 */
 }
@@ -236,50 +236,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-// void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-//   if (htim->Instance == TIM1) {
-//     MPU9250 *mpu_test;
-//     mpu_test = mpu_1;
-//     char buffer[50];
-//     snprintf(buffer, sizeof(buffer), "-----------------MPU 1-------------------\r\n");
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
-//     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_1->mpu_value.Accel[0], mpu_1->mpu_value.Accel[1], mpu_1->mpu_value.Accel[2]);
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_1->mpu_value.Gyro[0], mpu_1->mpu_value.Gyro[1], mpu_1->mpu_value.Gyro[2]);
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_1->mpu_value.Mag[0], mpu_1->mpu_value.Mag[1], mpu_1->mpu_value.Mag[2]);
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "-----------------MPU 1-------------------\r\n");
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
-//     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_2->mpu_value.Accel[0], mpu_2->mpu_value.Accel[1], mpu_2->mpu_value.Accel[2]);
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_2->mpu_value.Gyro[0], mpu_2->mpu_value.Gyro[1], mpu_2->mpu_value.Gyro[2]);
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_2->mpu_value.Mag[0], mpu_2->mpu_value.Mag[1], mpu_2->mpu_value.Mag[2]);
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//
-//     snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
-//     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-//   }
-//
-// }
-
 
 /* USER CODE END 4 */
 

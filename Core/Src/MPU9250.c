@@ -14,7 +14,7 @@
 // extern MPU9250 mpu;
 
 
-#define DATABUF_SIZE    16
+#define DATABUF_SIZE    64
 
 static uint8_t dataBuf[DATABUF_SIZE] = { 0 };  // Buffer that used to stored data which has been read
 static uint16_t i = 0; // loop ctrl
@@ -94,6 +94,7 @@ static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
     MPU9250_ENABLE(mpu);
 
     HAL_SPI_Transmit(&hspix, &reg, 1, 0x01f4);
+    // 这里返回的数据存入 dataBuf 中
     HAL_SPI_Receive(&hspix, dataBuf, num, 0x01f4);
 
     MPU9250_DISENABLE(mpu);
@@ -129,7 +130,8 @@ static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, byte, mpu);
-    mpu_w_reg(I2C_SLV0_CTRL, 0x81, mpu);
+    //mpu_w_reg(I2C_SLV0_CTRL, 0x81, mpu);
+    mpu_w_reg(I2C_SLV0_CTRL, 0x87, mpu);
 }
 
 /**
@@ -142,7 +144,8 @@ static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR | 0x80, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, num | 0x80, mpu);
-    //HAL_Delay(1);
+    // mpu_w_reg(I2C_SLV0_DO, num, mpu);
+    // HAL_Delay(1);
     SYS_Delay(rtos_init_flag, 1);
     mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
 }
@@ -233,7 +236,9 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     //HAL_Delay(100);
     SYS_Delay(rtos_init_flag, 100);
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x01, mpu); // select clock source
-    ak8963_r_reg(MAG_XOUT_L, 7, mpu);
+    ak8963_r_reg(MAG_XOUT_L, 1, mpu);
+    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
+    if (dataBuf[0] & AK8963_ST2_HOFL) { }
 
     return 0x00;
 }
@@ -291,30 +296,16 @@ void MPU9250_ReadMag(MPU9250 *mpu) {
     mag_adjust[1] = dataBuf[1];
     mag_adjust[2] = dataBuf[2];
 
-    // read AK8963_ST2_REG is necessary
-    // ST2 register has a role as data reading end register(on page 51)
+    // ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
+    // if (dataBuf[0] & AK8963_ST2_HOFL) { }
 
-    ak8963_r_reg(MAG_XOUT_L, 1, mpu);
-    mag_buffer[0] = dataBuf[0];
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu); // data read finish reg
-    ak8963_r_reg(MAG_XOUT_H, 1, mpu);
-    mag_buffer[1] = dataBuf[0];
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
+    // 一次性读取MAG_XOUT_L到MAG_ZOUT_H的数据以及ST2寄存器
+    ak8963_r_reg(MAG_XOUT_L, 7, mpu);  // 读取6个字节：MAG_XOUT_L, MAG_XOUT_H, MAG_YOUT_L, MAG_YOUT_H, MAG_ZOUT_L, MAG_ZOUT_H
+    for (int i = 0; i < 6; i++) {
+        mag_buffer[i] = dataBuf[i];
+    }
 
-    ak8963_r_reg(MAG_YOUT_L, 1, mpu);
-    mag_buffer[2] = dataBuf[0];
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
-    ak8963_r_reg(MAG_YOUT_H, 1, mpu);
-    mag_buffer[3] = dataBuf[0];
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
-
-    ak8963_r_reg(MAG_ZOUT_L, 1, mpu);
-    mag_buffer[4] = dataBuf[0];
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
-    ak8963_r_reg(MAG_ZOUT_H, 1, mpu);
-    mag_buffer[5] = dataBuf[0];
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
-
+    if (dataBuf[6] & AK8963_ST2_HOFL) { }
 
     mpu->mpu_value.Mag_row[0] = ((int16_t)mag_buffer[1] << 8) | mag_buffer[0];
     mpu->mpu_value.Mag_row[1] = ((int16_t)mag_buffer[3] << 8) | mag_buffer[2];

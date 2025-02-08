@@ -32,8 +32,15 @@ void StartGetGyroDataTask(void *argument) {
  * @param argument
  */
 void StartGetMagnDataTask(void *argument) {
+    uint32_t start_time, end_time, duration;
     for (;;) {
+        start_time = HAL_GetTick();
         MPU9250_ReadMag(mpu_1);
+        end_time = HAL_GetTick();
+        duration = end_time - start_time;
+        if (end_time < start_time) {
+            duration = (0xFFFFFFFF - start_time) + end_time;
+        }
         MPU9250_ReadMag(mpu_2);
         osDelay(1);
     }
@@ -45,6 +52,6 @@ void StartGetMagnDataTask(void *argument) {
  */
 void StartUsartTransTask(void *argument) {
     for (;;) {
-
+    //
     }
 }
