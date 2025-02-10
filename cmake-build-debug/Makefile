@@ -200,54 +200,6 @@ Core/Src/freertos.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/freertos.c.s
 .PHONY : Core/Src/freertos.c.s
 
-Core/Src/func_delay.obj: Core/Src/func_delay.c.obj
-.PHONY : Core/Src/func_delay.obj
-
-# target to build an object file
-Core/Src/func_delay.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/func_delay.c.obj
-.PHONY : Core/Src/func_delay.c.obj
-
-Core/Src/func_delay.i: Core/Src/func_delay.c.i
-.PHONY : Core/Src/func_delay.i
-
-# target to preprocess a source file
-Core/Src/func_delay.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/func_delay.c.i
-.PHONY : Core/Src/func_delay.c.i
-
-Core/Src/func_delay.s: Core/Src/func_delay.c.s
-.PHONY : Core/Src/func_delay.s
-
-# target to generate assembly for a file
-Core/Src/func_delay.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/func_delay.c.s
-.PHONY : Core/Src/func_delay.c.s
-
-Core/Src/func_task.obj: Core/Src/func_task.c.obj
-.PHONY : Core/Src/func_task.obj
-
-# target to build an object file
-Core/Src/func_task.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/func_task.c.obj
-.PHONY : Core/Src/func_task.c.obj
-
-Core/Src/func_task.i: Core/Src/func_task.c.i
-.PHONY : Core/Src/func_task.i
-
-# target to preprocess a source file
-Core/Src/func_task.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/func_task.c.i
-.PHONY : Core/Src/func_task.c.i
-
-Core/Src/func_task.s: Core/Src/func_task.c.s
-.PHONY : Core/Src/func_task.s
-
-# target to generate assembly for a file
-Core/Src/func_task.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/func_task.c.s
-.PHONY : Core/Src/func_task.c.s
-
 Core/Src/gpio.obj: Core/Src/gpio.c.obj
 .PHONY : Core/Src/gpio.obj
 
@@ -1258,12 +1210,6 @@ help:
 	@echo ... Core/Src/freertos.obj
 	@echo ... Core/Src/freertos.i
 	@echo ... Core/Src/freertos.s
-	@echo ... Core/Src/func_delay.obj
-	@echo ... Core/Src/func_delay.i
-	@echo ... Core/Src/func_delay.s
-	@echo ... Core/Src/func_task.obj
-	@echo ... Core/Src/func_task.i
-	@echo ... Core/Src/func_task.s
 	@echo ... Core/Src/gpio.obj
 	@echo ... Core/Src/gpio.i
 	@echo ... Core/Src/gpio.s

@@ -52,7 +52,7 @@ void delay_10us(void) {
  * @param byte 要发送的字节
  * @return 返回接收到的字节
  */
-static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte) {
+uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte) {
     uint8_t feedback = 0;
     while (HAL_SPI_GetState(&hspix) == HAL_SPI_STATE_BUSY_TX_RX);
 
@@ -70,7 +70,7 @@ static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte) {
  * @param bytes 待写入的多字节数据
  * @param num 字节数
  */
-static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
+void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
 {
     MPU9250_ENABLE(mpu);
     SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
@@ -87,7 +87,7 @@ static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
  * @param mpu MPU9250 结构体指针
  * @param num 要使用SPI读取的字节数
  */
-static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
+void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
 {
     SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
     reg |= 0x80;  // 读取寄存器时最高位为 1
@@ -106,7 +106,7 @@ static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
  * @param byte 待写入的数据
  * @param mpu MPU9250 结构体指针
  */
-static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
+void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     spi_w_bytes(reg, mpu, &byte, 1);
 }
 
@@ -116,7 +116,7 @@ static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
  * @param num 要读取的字节数
  * @param mpu MPU9250 结构体指针
  */
-static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
+void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     spi_r_bytes(reg, mpu, num);
 }
 
@@ -126,7 +126,7 @@ static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
  * @param byte 待写入的数据 
  * @param mpu MPU9250 结构体指针 
  */
-static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
+void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, byte, mpu);
@@ -140,13 +140,12 @@ static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
  * @param num 要读取的字节数
  * @param mpu MPU9250 结构体指针
  */
-static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
+void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR | 0x80, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, num | 0x80, mpu);
     // mpu_w_reg(I2C_SLV0_DO, num, mpu);
-    // HAL_Delay(1);
-    SYS_Delay(rtos_init_flag, 1);
+    HAL_Delay(1);
     mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
 }
 
@@ -202,17 +201,19 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     // MPU9250_Value_StructInit(mpu);
 
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x80, mpu); // reset MPU9250, reg107
-    //HAL_Delay(10);
-    SYS_Delay(rtos_init_flag, 10);
+    HAL_Delay(10);
+    //SYS_Delay(rtos_init_flag, 10);
     mpu_w_reg(USER_CTRL, (uint8_t) 0x20, mpu); // enable I2C master mode, reg106
     mpu_w_reg(I2C_MST_CTRL, (uint8_t) 0x0D, mpu); // set I2C clock speed to 400kHz, reg36
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x00, mpu); // set AK8963 to power down
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x80, mpu); // reset MPU9250, Bit[7] will auto clear
-    //HAL_Delay(10);
-    SYS_Delay(rtos_init_flag, 10);
+    HAL_Delay(10);
+    //SYS_Delay(rtos_init_flag, 10);
     ak8963_w_reg(AK8963_CNTL2_REG, AK8963_CNTL2_SRST, mpu); // reset AK8963
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x01, mpu); // select clock source
-    mpu_w_reg(PWR_MGMT_2, (uint8_t) 0x00, mpu); // enable accel and gyro
+    mpu_w_reg(PWR_MGMT_2, (uint8_t) 0x00, mpu); // enable accel and gyro// enable data ready interrupt
+    //mpu_w_reg(INT_PIN_CFG, (uint8_t) 0x02, mpu);
+    //mpu_w_reg(INT_ENABLE, (uint8_t) 0x01, mpu); // enable data ready interrupt
 
     /* init GYRO and ACCEL */
     mpu_w_reg(SMPLRT_DIV, (uint8_t) 0x00, mpu); // SAMPLE_RATE= Internal_Sample_Rate / (1 + SMPLRT_DIV), Internal_Sample_Rate==8K
@@ -224,17 +225,17 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     mpu_w_reg(USER_CTRL, (uint8_t) 0x20, mpu); // enable I2C master mode
     mpu_w_reg(I2C_MST_CTRL, (uint8_t) 0x0D, mpu); // set I2C clock speed to 400kHz, reg36
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x00, mpu); // set AK8963 to power down
-    //HAL_Delay(100);
-    SYS_Delay(rtos_init_flag, 100);
+    HAL_Delay(100);
+    //SYS_Delay(rtos_init_flag, 100);
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x0f, mpu); // set AK8963 to Fuse ROM access mode
-    //HAL_Delay(100);
-    SYS_Delay(rtos_init_flag, 100);
+    HAL_Delay(100);
+    //SYS_Delay(rtos_init_flag, 100);
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x00, mpu); // set AK8963 to power down
-    //HAL_Delay(100);
-    SYS_Delay(rtos_init_flag, 100);
+    HAL_Delay(100);
+    //SYS_Delay(rtos_init_flag, 100);
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x16, mpu); // AK8963 working on Continuous measurement mode 2 & 16-bit output
-    //HAL_Delay(100);
-    SYS_Delay(rtos_init_flag, 100);
+    HAL_Delay(100);
+    //SYS_Delay(rtos_init_flag, 100);
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x01, mpu); // select clock source
     ak8963_r_reg(MAG_XOUT_L, 1, mpu);
     ak8963_r_reg(AK8963_ST2_REG, 1, mpu);

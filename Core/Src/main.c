@@ -33,6 +33,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
+
+#include "semphr.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,6 +65,10 @@ MPU9250 *mpu_1 = &mpu_instance_1;
 
 MPU9250 mpu_instance_2;
 MPU9250 *mpu_2 = &mpu_instance_2;
+
+uint32_t start;
+uint32_t end;
+uint32_t us;
 
 /* USER CODE END PV */
 
@@ -119,20 +125,17 @@ int main(void)
   MPU9250_StructInit(mpu_2, hspi1, GPIOB, GPIO_PIN_5);
   MPU9250_Init(mpu_1);
   MPU9250_Init(mpu_2);
-
-  // open interrupt
   HAL_TIM_Base_Start_IT(&htim1);
-  //rtos_init_flag = 1;
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  //osKernelInitialize();
+  osKernelInitialize();
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
-  //MX_FREERTOS_Init();
+  MX_FREERTOS_Init();
 
   /* Start scheduler */
-  //osKernelStart();
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -143,6 +146,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    // start = __HAL_TIM_GET_COUNTER(&htim1);
+    // MPU9250_ReadMag(mpu_1); // 调用目标函数
+    // MPU9250_ReadMag(mpu_2);
+    // end = __HAL_TIM_GET_COUNTER(&htim1);
+    // us = end - start;
+
     ak8963_WhoAmI = mpu_r_ak8963_WhoAmI(mpu_1);
     mpu9250_WhoAmI = mpu_r_WhoAmI(mpu_1);
     MPU9250_ReadData(mpu_1);
@@ -184,8 +193,8 @@ int main(void)
 
     snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
     HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-    //HAL_Delay(8);
-    SYS_Delay(rtos_init_flag, 1);
+    HAL_Delay(8);
+    //SYS_Delay(rtos_init_flag, 1);
   }
   /* USER CODE END 3 */
 }
@@ -236,7 +245,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
 /* USER CODE END 4 */
 
 /**
@@ -247,18 +255,24 @@ void SystemClock_Config(void)
   * @param  htim : TIM handle
   * @retval None
   */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM6) {
-    HAL_IncTick();
-  }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
-}
+// void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+// {
+//   /* USER CODE BEGIN Callback 0 */
+//
+//   /* USER CODE END Callback 0 */
+//   if (htim->Instance == TIM6) {
+//     HAL_IncTick();
+//   }
+//   /* USER CODE BEGIN Callback 1 */
+//   if (htim->Instance == TIM1) {
+//     // 释放信号量
+//     Sempaphore_Given();
+//     // 反转LED
+//     // HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+//   }
+//
+//   /* USER CODE END Callback 1 */
+// }
 
 /**
   * @brief  This function is executed in case of error occurrence.

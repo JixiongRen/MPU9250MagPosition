@@ -37,7 +37,10 @@ extern "C" {
 #include <stdarg.h>
 #include <string.h>
 #include "usart.h"
-#include "func_delay.h"
+#include "cmsis_os2.h"
+#include "freertos_os2.h"
+
+
 
 /* USER CODE END Includes */
 
@@ -51,6 +54,8 @@ extern "C" {
 
   extern MPU9250 mpu_instance_2;
   extern MPU9250 *mpu_2;
+
+  extern osSemaphoreId_t sGetDataStartHandle;
 
 /* USER CODE END ET */
 

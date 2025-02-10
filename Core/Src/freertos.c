@@ -22,6 +22,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "semphr.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -29,7 +30,6 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -48,53 +48,31 @@ typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-/* Definitions for GetAccDataTas */
-osThreadId_t GetAccDataTasHandle;
-uint32_t GetAccelDataTaskBuffer[ 128 ];
-osStaticThreadDef_t GetAccelDataTaskControlBlock;
-const osThreadAttr_t GetAccDataTas_attributes = {
-  .name = "GetAccDataTas",
-  .cb_mem = &GetAccelDataTaskControlBlock,
-  .cb_size = sizeof(GetAccelDataTaskControlBlock),
-  .stack_mem = &GetAccelDataTaskBuffer[0],
-  .stack_size = sizeof(GetAccelDataTaskBuffer),
+/* Definitions for rSpi01MagTask */
+osThreadId_t rSpi01MagTaskHandle;
+const osThreadAttr_t rSpi01MagTask_attributes = {
+  .name = "rSpi01MagTask",
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for GetGyroDataTask */
-osThreadId_t GetGyroDataTaskHandle;
-uint32_t GetGyroDataTaskBuffer[ 128 ];
-osStaticThreadDef_t GetGyroDataTaskControlBlock;
-const osThreadAttr_t GetGyroDataTask_attributes = {
-  .name = "GetGyroDataTask",
-  .cb_mem = &GetGyroDataTaskControlBlock,
-  .cb_size = sizeof(GetGyroDataTaskControlBlock),
-  .stack_mem = &GetGyroDataTaskBuffer[0],
-  .stack_size = sizeof(GetGyroDataTaskBuffer),
+/* Definitions for rSpi02MagTask */
+osThreadId_t rSpi02MagTaskHandle;
+const osThreadAttr_t rSpi02MagTask_attributes = {
+  .name = "rSpi02MagTask",
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
-/* Definitions for GetMagnDataTask */
-osThreadId_t GetMagnDataTaskHandle;
-uint32_t GetMagnDataTaskBuffer[ 128 ];
-osStaticThreadDef_t GetMagnDataTaskControlBlock;
-const osThreadAttr_t GetMagnDataTask_attributes = {
-  .name = "GetMagnDataTask",
-  .cb_mem = &GetMagnDataTaskControlBlock,
-  .cb_size = sizeof(GetMagnDataTaskControlBlock),
-  .stack_mem = &GetMagnDataTaskBuffer[0],
-  .stack_size = sizeof(GetMagnDataTaskBuffer),
+/* Definitions for rSpi03MagTask */
+osThreadId_t rSpi03MagTaskHandle;
+const osThreadAttr_t rSpi03MagTask_attributes = {
+  .name = "rSpi03MagTask",
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
-/* Definitions for UsartTransTask */
-osThreadId_t UsartTransTaskHandle;
-uint32_t UsartTransTaskBuffer[ 128 ];
-osStaticThreadDef_t UsartTransTaskControlBlock;
-const osThreadAttr_t UsartTransTask_attributes = {
-  .name = "UsartTransTask",
-  .cb_mem = &UsartTransTaskControlBlock,
-  .cb_size = sizeof(UsartTransTaskControlBlock),
-  .stack_mem = &UsartTransTaskBuffer[0],
-  .stack_size = sizeof(UsartTransTaskBuffer),
-  .priority = (osPriority_t) osPriorityLow,
+/* Definitions for sGetDataStart */
+osSemaphoreId_t sGetDataStartHandle;
+const osSemaphoreAttr_t sGetDataStart_attributes = {
+  .name = "sGetDataStart"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -102,10 +80,9 @@ const osThreadAttr_t UsartTransTask_attributes = {
 
 /* USER CODE END FunctionPrototypes */
 
-void StartGetAccelDataTask(void *argument);
-void StartGetGyroDataTask(void *argument);
-void StartGetMagnDataTask(void *argument);
-void StartUsartTransTask(void *argument);
+void StartrSpi01MagTask(void *argument);
+void StartrSpi02MagTask(void *argument);
+void StartrSpi03MagTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -123,6 +100,10 @@ void MX_FREERTOS_Init(void) {
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
+  /* Create the semaphores(s) */
+  /* creation of sGetDataStart */
+  sGetDataStartHandle = osSemaphoreNew(1, 1, &sGetDataStart_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -136,17 +117,14 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of GetAccDataTas */
-  GetAccDataTasHandle = osThreadNew(StartGetAccelDataTask, NULL, &GetAccDataTas_attributes);
+  /* creation of rSpi01MagTask */
+  rSpi01MagTaskHandle = osThreadNew(StartrSpi01MagTask, NULL, &rSpi01MagTask_attributes);
 
-  /* creation of GetGyroDataTask */
-  GetGyroDataTaskHandle = osThreadNew(StartGetGyroDataTask, NULL, &GetGyroDataTask_attributes);
+  /* creation of rSpi02MagTask */
+  rSpi02MagTaskHandle = osThreadNew(StartrSpi02MagTask, NULL, &rSpi02MagTask_attributes);
 
-  /* creation of GetMagnDataTask */
-  GetMagnDataTaskHandle = osThreadNew(StartGetMagnDataTask, NULL, &GetMagnDataTask_attributes);
-
-  /* creation of UsartTransTask */
-  UsartTransTaskHandle = osThreadNew(StartUsartTransTask, NULL, &UsartTransTask_attributes);
+  /* creation of rSpi03MagTask */
+  rSpi03MagTaskHandle = osThreadNew(StartrSpi03MagTask, NULL, &rSpi03MagTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -158,80 +136,90 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_StartGetAccelDataTask */
+/* USER CODE BEGIN Header_StartrSpi01MagTask */
 /**
-  * @brief  Function implementing the GetAccelDataTas thread.
+  * @brief  Function implementing the rSpi01MagTask thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_StartGetAccelDataTask */
-__weak void StartGetAccelDataTask(void *argument)
+/* USER CODE END Header_StartrSpi01MagTask */
+__weak void StartrSpi01MagTask(void *argument)
 {
-  /* USER CODE BEGIN StartGetAccelDataTask */
+  /* USER CODE BEGIN StartrSpi01MagTask */
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
+      // Simulate the time required to complete the SPI transaction
+      HAL_Delay(9);
+    }
   }
-  /* USER CODE END StartGetAccelDataTask */
+  /* USER CODE END StartrSpi01MagTask */
 }
 
-/* USER CODE BEGIN Header_StartGetGyroDataTask */
+/* USER CODE BEGIN Header_StartrSpi02MagTask */
 /**
-* @brief Function implementing the GetGyroDataTask thread.
+* @brief Function implementing the rSpi02MagTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartGetGyroDataTask */
-__weak void StartGetGyroDataTask(void *argument)
+/* USER CODE END Header_StartrSpi02MagTask */
+__weak void StartrSpi02MagTask(void *argument)
 {
-  /* USER CODE BEGIN StartGetGyroDataTask */
+  /* USER CODE BEGIN StartrSpi02MagTask */
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
+      // Simulate the time required to complete the SPI transaction
+      HAL_Delay(9);
+    }
   }
-  /* USER CODE END StartGetGyroDataTask */
+  /* USER CODE END StartrSpi02MagTask */
 }
 
-/* USER CODE BEGIN Header_StartGetMagnDataTask */
+/* USER CODE BEGIN Header_StartrSpi03MagTask */
 /**
-* @brief Function implementing the GetMagnDataTask thread.
+* @brief Function implementing the rSpi03MagTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartGetMagnDataTask */
-__weak void StartGetMagnDataTask(void *argument)
+/* USER CODE END Header_StartrSpi03MagTask */
+__weak void StartrSpi03MagTask(void *argument)
 {
-  /* USER CODE BEGIN StartGetMagnDataTask */
+  /* USER CODE BEGIN StartrSpi03MagTask */
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
+      // Simulate the time required to complete the SPI transaction
+      HAL_Delay(9);
+    }
   }
-  /* USER CODE END StartGetMagnDataTask */
-}
-
-/* USER CODE BEGIN Header_StartUsartTransTask */
-/**
-* @brief Function implementing the UsartTransTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartUsartTransTask */
-__weak void StartUsartTransTask(void *argument)
-{
-  /* USER CODE BEGIN StartUsartTransTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END StartUsartTransTask */
+  /* USER CODE END StartrSpi03MagTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM6) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+  if (htim->Instance == TIM1) {
+    BaseType_t highTaskWoken = pdFALSE;
+    if (sGetDataStartHandle != NULL) {
+      xSemaphoreGiveFromISR(sGetDataStartHandle, &highTaskWoken);
+      portYIELD_FROM_ISR(highTaskWoken);
+    }
+  }
+
+  /* USER CODE END Callback 1 */
+}
 
 /* USER CODE END Application */
 

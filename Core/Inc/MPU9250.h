@@ -18,7 +18,9 @@
 #define ACCEL_CONFIG         0x1C   // Accelerometer configuration
 #define ACCEL_CONFIG_2       0x1D   // Accelerometer configuration 2
 
+#define INT_ENABLE           0x38   // Register: Interrupt Enable
 #define INT_PIN_CFG          0x37
+#define INT_STATUS           0x3A
 #define USER_CTRL            0x6a
 #define I2C_MST_CTRL         0x24
 #define I2C_MST_DELAY_CTRL   0x67
@@ -190,13 +192,14 @@ extern MPU_Value mpu_value;
 void MPU9250_ENABLE(MPU9250 *mpu);
 void MPU9250_DISENABLE(MPU9250 *mpu);
 void delay_10us(void);
-static uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte);
-static void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num);
-static void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num);
-static void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
-static void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
-static void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
-static void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
+// 以下7个均为static函数
+uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte);
+void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num);
+void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num);
+void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
+void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
+void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
+void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
 uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu);
 uint8_t mpu_r_WhoAmI(MPU9250 *mpu);
 void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin);
