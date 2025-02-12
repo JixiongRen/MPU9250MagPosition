@@ -13,6 +13,8 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
+  *NOTE: Write the variables that need to be called in other .c files into
+  *      "FreeRTOSVariables.h" and prefix them with the extern flag.
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -22,10 +24,11 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-#include "semphr.h"
+#include "FreeRTOSVariables.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "semphr.h"
 
 /* USER CODE END Includes */
 
@@ -151,7 +154,7 @@ __weak void StartrSpi01MagTask(void *argument)
   {
     if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
       // Simulate the time required to complete the SPI transaction
-      HAL_Delay(9);
+      SensorGroup_ReadMag(spi_sensorsgroup_1);
     }
   }
   /* USER CODE END StartrSpi01MagTask */
@@ -201,25 +204,6 @@ __weak void StartrSpi03MagTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM6) {
-    HAL_IncTick();
-  }
-  /* USER CODE BEGIN Callback 1 */
-  if (htim->Instance == TIM1) {
-    BaseType_t highTaskWoken = pdFALSE;
-    if (sGetDataStartHandle != NULL) {
-      xSemaphoreGiveFromISR(sGetDataStartHandle, &highTaskWoken);
-      portYIELD_FROM_ISR(highTaskWoken);
-    }
-  }
-
-  /* USER CODE END Callback 1 */
-}
 
 /* USER CODE END Application */
 

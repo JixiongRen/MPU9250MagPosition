@@ -55,7 +55,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LED_SIGNAL_GPIO_Port, LED_SIGNAL_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(MPU9250_CHIP_SELECT1_GPIO_Port, MPU9250_CHIP_SELECT1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, MPU9250_CHIP_SELECT3_Pin|MPU9250_CHIP_SELECT1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(MPU9250_CHIP_SELECT2_GPIO_Port, MPU9250_CHIP_SELECT2_Pin, GPIO_PIN_RESET);
@@ -67,12 +67,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_SIGNAL_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = MPU9250_CHIP_SELECT1_Pin;
+  /*Configure GPIO pins : PAPin PAPin */
+  GPIO_InitStruct.Pin = MPU9250_CHIP_SELECT3_Pin|MPU9250_CHIP_SELECT1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(MPU9250_CHIP_SELECT1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = MPU9250_CHIP_SELECT2_Pin;

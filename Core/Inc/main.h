@@ -39,6 +39,7 @@ extern "C" {
 #include "usart.h"
 #include "cmsis_os2.h"
 #include "freertos_os2.h"
+#include "FreeRTOSVariables.h"
 
 
 
@@ -55,7 +56,14 @@ extern "C" {
   extern MPU9250 mpu_instance_2;
   extern MPU9250 *mpu_2;
 
-  extern osSemaphoreId_t sGetDataStartHandle;
+  extern SPI_SensorsGroup spi_sensorsgroup_instance_1;
+  extern SPI_SensorsGroup *spi_sensorsgroup_1;
+
+  extern uint8_t sensorsnum;
+
+  extern SPI_HandleTypeDef *ghspix_1;
+  extern GPIO_TypeDef **gcs_port_1;
+  extern uint16_t *gcs_pin_1;
 
 /* USER CODE END ET */
 
@@ -79,6 +87,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_SIGNAL_Pin GPIO_PIN_9
 #define LED_SIGNAL_GPIO_Port GPIOF
+#define MPU9250_CHIP_SELECT3_Pin GPIO_PIN_8
+#define MPU9250_CHIP_SELECT3_GPIO_Port GPIOA
 #define MPU9250_CHIP_SELECT1_Pin GPIO_PIN_11
 #define MPU9250_CHIP_SELECT1_GPIO_Port GPIOA
 #define MPU9250_CHIP_SELECT2_Pin GPIO_PIN_5

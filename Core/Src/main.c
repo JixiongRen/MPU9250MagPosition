@@ -66,9 +66,18 @@ MPU9250 *mpu_1 = &mpu_instance_1;
 MPU9250 mpu_instance_2;
 MPU9250 *mpu_2 = &mpu_instance_2;
 
-uint32_t start;
-uint32_t end;
-uint32_t us;
+SPI_SensorsGroup spi_sensorsgroup_instance_1;
+SPI_SensorsGroup *spi_sensorsgroup_1 = &spi_sensorsgroup_instance_1;
+
+uint8_t sensorsnum = 3;
+
+SPI_HandleTypeDef ghspix_arr_1[3];
+GPIO_TypeDef *gcs_port_arr_1[3];
+uint16_t gcs_pin_arr_1[3];
+
+SPI_HandleTypeDef *ghspix_1 = ghspix_arr_1;
+GPIO_TypeDef **gcs_port_1 = gcs_port_arr_1;
+uint16_t *gcs_pin_1 = gcs_pin_arr_1;
 
 /* USER CODE END PV */
 
@@ -120,11 +129,36 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM1_Init();
+  MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
-  MPU9250_StructInit(mpu_1, hspi1, GPIOA, GPIO_PIN_11);
-  MPU9250_StructInit(mpu_2, hspi1, GPIOB, GPIO_PIN_5);
-  MPU9250_Init(mpu_1);
-  MPU9250_Init(mpu_2);
+  // MPU9250_StructInit(mpu_1, hspi1, GPIOA, GPIO_PIN_11);
+  // MPU9250_StructInit(mpu_2, hspi1, GPIOB, GPIO_PIN_5);
+  // MPU9250_Init(mpu_1);
+  // MPU9250_Init(mpu_2);
+
+  for (uint8_t index=0;index<sensorsnum;index++) {
+    switch (index) {
+      case 0:
+        ghspix_arr_1[index] = hspi1;
+        gcs_port_arr_1[index] = GPIOA;
+        gcs_pin_arr_1[index] = GPIO_PIN_11;
+        break;
+      case 1:
+        ghspix_arr_1[index] = hspi1;
+        gcs_port_arr_1[index] = GPIOB;
+        gcs_pin_arr_1[index] = GPIO_PIN_5;
+        break;
+      case 2:
+        ghspix_arr_1[index] = hspi1;
+        gcs_port_arr_1[index] = GPIOA;
+        gcs_pin_arr_1[index] = GPIO_PIN_8;
+        break;
+    }
+  }
+
+  SensorGroup_StructInit(spi_sensorsgroup_1, sensorsnum, ghspix_1, gcs_port_1, gcs_pin_1);
+  SensorGroup_Init(spi_sensorsgroup_1);
+
   HAL_TIM_Base_Start_IT(&htim1);
   /* USER CODE END 2 */
 
@@ -146,55 +180,55 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // start = __HAL_TIM_GET_COUNTER(&htim1);
-    // MPU9250_ReadMag(mpu_1); // 调用目标函数
-    // MPU9250_ReadMag(mpu_2);
-    // end = __HAL_TIM_GET_COUNTER(&htim1);
-    // us = end - start;
-
-    ak8963_WhoAmI = mpu_r_ak8963_WhoAmI(mpu_1);
-    mpu9250_WhoAmI = mpu_r_WhoAmI(mpu_1);
-    MPU9250_ReadData(mpu_1);
-    MPU9250_ReadData(mpu_2);
-
-    char buffer[50];
-    snprintf(buffer, sizeof(buffer), "-----------------MPU 1-------------------\r\n");
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_1->mpu_value.Accel[0], mpu_1->mpu_value.Accel[1], mpu_1->mpu_value.Accel[2]);
+    // // start = __HAL_TIM_GET_COUNTER(&htim1);
+    // // MPU9250_ReadMag(mpu_1); // 调用目标函数
+    // // MPU9250_ReadMag(mpu_2);
+    // // end = __HAL_TIM_GET_COUNTER(&htim1);
+    // // us = end - start;
+    //
+    // ak8963_WhoAmI = mpu_r_ak8963_WhoAmI(mpu_1);
+    // mpu9250_WhoAmI = mpu_r_WhoAmI(mpu_1);
+    // MPU9250_ReadData(mpu_1);
+    // MPU9250_ReadData(mpu_2);
+    //
+    // char buffer[50];
+    // snprintf(buffer, sizeof(buffer), "-----------------MPU 1-------------------\r\n");
     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
     //
-    // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_1->mpu_value.Gyro[0], mpu_1->mpu_value.Gyro[1], mpu_1->mpu_value.Gyro[2]);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_1->mpu_value.Mag[0], mpu_1->mpu_value.Mag[1], mpu_1->mpu_value.Mag[2]);
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "-----------------MPU 1-------------------\r\n");
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_2->mpu_value.Accel[0], mpu_2->mpu_value.Accel[1], mpu_2->mpu_value.Accel[2]);
+    // // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
+    // // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_1->mpu_value.Accel[0], mpu_1->mpu_value.Accel[1], mpu_1->mpu_value.Accel[2]);
+    // // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    // //
+    // // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_1->mpu_value.Gyro[0], mpu_1->mpu_value.Gyro[1], mpu_1->mpu_value.Gyro[2]);
+    // // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_1->mpu_value.Mag[0], mpu_1->mpu_value.Mag[1], mpu_1->mpu_value.Mag[2]);
     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
     //
-    // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_2->mpu_value.Gyro[0], mpu_2->mpu_value.Gyro[1], mpu_2->mpu_value.Gyro[2]);
+    // snprintf(buffer, sizeof(buffer), "-----------------MPU 1-------------------\r\n");
     // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_2->mpu_value.Mag[0], mpu_2->mpu_value.Mag[1], mpu_2->mpu_value.Mag[2]);
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
-    HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-    HAL_Delay(8);
-    //SYS_Delay(rtos_init_flag, 1);
+    //
+    // snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
+    // // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_2->mpu_value.Accel[0], mpu_2->mpu_value.Accel[1], mpu_2->mpu_value.Accel[2]);
+    // // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    // //
+    // // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_2->mpu_value.Gyro[0], mpu_2->mpu_value.Gyro[1], mpu_2->mpu_value.Gyro[2]);
+    // // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_2->mpu_value.Mag[0], mpu_2->mpu_value.Mag[1], mpu_2->mpu_value.Mag[2]);
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    //
+    // snprintf(buffer, sizeof(buffer), "-----------------MPU 2-------------------\r\n");
+    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+    // HAL_Delay(8);
+    // //SYS_Delay(rtos_init_flag, 1);
   }
   /* USER CODE END 3 */
 }
@@ -245,7 +279,9 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
 /* USER CODE END 4 */
+
 
 /**
   * @brief  Period elapsed callback in non blocking mode
@@ -255,24 +291,24 @@ void SystemClock_Config(void)
   * @param  htim : TIM handle
   * @retval None
   */
-// void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-// {
-//   /* USER CODE BEGIN Callback 0 */
-//
-//   /* USER CODE END Callback 0 */
-//   if (htim->Instance == TIM6) {
-//     HAL_IncTick();
-//   }
-//   /* USER CODE BEGIN Callback 1 */
-//   if (htim->Instance == TIM1) {
-//     // 释放信号量
-//     Sempaphore_Given();
-//     // 反转LED
-//     // HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-//   }
-//
-//   /* USER CODE END Callback 1 */
-// }
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM6) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+  if (htim->Instance == TIM1) {
+    BaseType_t highTaskWoken = pdFALSE;
+    if (sGetDataStartHandle != NULL) {
+      xSemaphoreGiveFromISR(sGetDataStartHandle, &highTaskWoken);
+      portYIELD_FROM_ISR(highTaskWoken);
+    }
+  }
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

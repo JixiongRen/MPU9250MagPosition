@@ -187,7 +187,15 @@ typedef struct __MPU9250 {
     MPU_Value mpu_value;
 } MPU9250;
 
-extern MPU_Value mpu_value;
+typedef struct __SPI_SensorsGroup {
+    uint8_t mpuSensorNum;
+    MPU9250 mpuSensor1;
+    MPU9250 mpuSensor2;
+    MPU9250 mpuSensor3;
+    MPU9250 mpuSensor4;
+} SPI_SensorsGroup;
+
+//extern MPU_Value mpu_value;
 
 void MPU9250_ENABLE(MPU9250 *mpu);
 void MPU9250_DISENABLE(MPU9250 *mpu);
@@ -203,10 +211,13 @@ void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
 uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu);
 uint8_t mpu_r_WhoAmI(MPU9250 *mpu);
 void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin);
+void SensorGroup_StructInit(SPI_SensorsGroup* spi_sensorsgroup, uint8_t sensornum, SPI_HandleTypeDef ghspix[], GPIO_TypeDef *gcs_port[], uint16_t gcs_pin[]);
 uint8_t MPU9250_Init(MPU9250 *mpu);
+uint8_t SensorGroup_Init(SPI_SensorsGroup* spi_sensorsgroup);
 void MPU9250_ReadAccel(MPU9250 *mpu);
 void MPU9250_ReadGyro(MPU9250 *mpu);
 void MPU9250_ReadMag(MPU9250 *mpu);
+void SensorGroup_ReadMag(SPI_SensorsGroup* spi_sensorsgroup);
 void MPU9250_ReadData(MPU9250 *mpu);
 
 #endif //MPU9250_H
