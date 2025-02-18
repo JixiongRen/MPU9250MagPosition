@@ -22,6 +22,6 @@ CMAKE_CXX_COMPILER= C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Minimal optimization, debug info included
--- Configuring done (4.2s)
--- Generating done (0.2s)
+-- Configuring done (5.1s)
+-- Generating done (0.3s)
 -- Build files have been written to: C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug

@@ -50,36 +50,53 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOG_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_SIGNAL_GPIO_Port, LED_SIGNAL_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, MPU9250_CHIP_G3S3_Pin|MPU9250_CHIP_G3S4_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, MPU9250_CHIP_SELECT3_Pin|MPU9250_CHIP_SELECT1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, MPU9250_CHIP_G2S3_Pin|MPU9250_CHIP_G2S4_Pin|MPU9250_CHIP_G3S1_Pin|MPU9250_CHIP_G3S2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(MPU9250_CHIP_SELECT2_GPIO_Port, MPU9250_CHIP_SELECT2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, MPU9250_CHIP_G1S1_Pin|MPU9250_CHIP_G1S2_Pin|MPU9250_CHIP_G1S3_Pin|MPU9250_CHIP_G1S4_Pin
+                          |MPU9250_CHIP_G2S1_Pin|MPU9250_CHIP_G2S2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = LED_SIGNAL_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_SIGNAL_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOG, S_SPI_SS_GPIO_Pin|S_SPI_SCK_GPIO_Pin|S_SPI_MOSI_GPIO_Pin|S_SPI_MISO_GPIO_Pin
+                          |LCD_RES_Pin|LCD_DC_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PAPin PAPin */
-  GPIO_InitStruct.Pin = MPU9250_CHIP_SELECT3_Pin|MPU9250_CHIP_SELECT1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = MPU9250_CHIP_SELECT2_Pin;
+  /*Configure GPIO pins : PFPin PFPin */
+  GPIO_InitStruct.Pin = MPU9250_CHIP_G3S3_Pin|MPU9250_CHIP_G3S4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(MPU9250_CHIP_SELECT2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PCPin PCPin PCPin PCPin */
+  GPIO_InitStruct.Pin = MPU9250_CHIP_G2S3_Pin|MPU9250_CHIP_G2S4_Pin|MPU9250_CHIP_G3S1_Pin|MPU9250_CHIP_G3S2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PBPin PBPin PBPin PBPin
+                           PBPin PBPin */
+  GPIO_InitStruct.Pin = MPU9250_CHIP_G1S1_Pin|MPU9250_CHIP_G1S2_Pin|MPU9250_CHIP_G1S3_Pin|MPU9250_CHIP_G1S4_Pin
+                          |MPU9250_CHIP_G2S1_Pin|MPU9250_CHIP_G2S2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PGPin PGPin PGPin PGPin
+                           PGPin PGPin */
+  GPIO_InitStruct.Pin = S_SPI_SS_GPIO_Pin|S_SPI_SCK_GPIO_Pin|S_SPI_MOSI_GPIO_Pin|S_SPI_MISO_GPIO_Pin
+                          |LCD_RES_Pin|LCD_DC_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
 }
 

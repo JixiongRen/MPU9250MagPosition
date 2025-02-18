@@ -152,6 +152,54 @@ Core/Src/MPU9250.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/MPU9250.c.s
 .PHONY : Core/Src/MPU9250.c.s
 
+Core/Src/ST7735S_driver.obj: Core/Src/ST7735S_driver.c.obj
+.PHONY : Core/Src/ST7735S_driver.obj
+
+# target to build an object file
+Core/Src/ST7735S_driver.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/ST7735S_driver.c.obj
+.PHONY : Core/Src/ST7735S_driver.c.obj
+
+Core/Src/ST7735S_driver.i: Core/Src/ST7735S_driver.c.i
+.PHONY : Core/Src/ST7735S_driver.i
+
+# target to preprocess a source file
+Core/Src/ST7735S_driver.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/ST7735S_driver.c.i
+.PHONY : Core/Src/ST7735S_driver.c.i
+
+Core/Src/ST7735S_driver.s: Core/Src/ST7735S_driver.c.s
+.PHONY : Core/Src/ST7735S_driver.s
+
+# target to generate assembly for a file
+Core/Src/ST7735S_driver.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/ST7735S_driver.c.s
+.PHONY : Core/Src/ST7735S_driver.c.s
+
+Core/Src/S_SPI_driver.obj: Core/Src/S_SPI_driver.c.obj
+.PHONY : Core/Src/S_SPI_driver.obj
+
+# target to build an object file
+Core/Src/S_SPI_driver.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/S_SPI_driver.c.obj
+.PHONY : Core/Src/S_SPI_driver.c.obj
+
+Core/Src/S_SPI_driver.i: Core/Src/S_SPI_driver.c.i
+.PHONY : Core/Src/S_SPI_driver.i
+
+# target to preprocess a source file
+Core/Src/S_SPI_driver.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/S_SPI_driver.c.i
+.PHONY : Core/Src/S_SPI_driver.c.i
+
+Core/Src/S_SPI_driver.s: Core/Src/S_SPI_driver.c.s
+.PHONY : Core/Src/S_SPI_driver.s
+
+# target to generate assembly for a file
+Core/Src/S_SPI_driver.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/S_SPI_driver.c.s
+.PHONY : Core/Src/S_SPI_driver.c.s
+
 Core/Src/dma.obj: Core/Src/dma.c.obj
 .PHONY : Core/Src/dma.obj
 
@@ -1204,6 +1252,12 @@ help:
 	@echo ... Core/Src/MPU9250.obj
 	@echo ... Core/Src/MPU9250.i
 	@echo ... Core/Src/MPU9250.s
+	@echo ... Core/Src/ST7735S_driver.obj
+	@echo ... Core/Src/ST7735S_driver.i
+	@echo ... Core/Src/ST7735S_driver.s
+	@echo ... Core/Src/S_SPI_driver.obj
+	@echo ... Core/Src/S_SPI_driver.i
+	@echo ... Core/Src/S_SPI_driver.s
 	@echo ... Core/Src/dma.obj
 	@echo ... Core/Src/dma.i
 	@echo ... Core/Src/dma.s

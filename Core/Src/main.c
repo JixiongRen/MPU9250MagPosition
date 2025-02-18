@@ -130,6 +130,7 @@ int main(void)
   MX_SPI2_Init();
   MX_TIM1_Init();
   MX_SPI3_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   // MPU9250_StructInit(mpu_1, hspi1, GPIOA, GPIO_PIN_11);
   // MPU9250_StructInit(mpu_2, hspi1, GPIOB, GPIO_PIN_5);
@@ -140,18 +141,18 @@ int main(void)
     switch (index) {
       case 0:
         ghspix_arr_1[index] = hspi1;
-        gcs_port_arr_1[index] = GPIOA;
-        gcs_pin_arr_1[index] = GPIO_PIN_11;
+        gcs_port_arr_1[index] = MPU9250_CHIP_G1S1_GPIO_Port;
+        gcs_pin_arr_1[index] = MPU9250_CHIP_G1S1_Pin;
         break;
       case 1:
         ghspix_arr_1[index] = hspi1;
-        gcs_port_arr_1[index] = GPIOB;
-        gcs_pin_arr_1[index] = GPIO_PIN_5;
+        gcs_port_arr_1[index] = MPU9250_CHIP_G1S2_GPIO_Port;
+        gcs_pin_arr_1[index] = MPU9250_CHIP_G1S2_Pin;
         break;
       case 2:
         ghspix_arr_1[index] = hspi1;
-        gcs_port_arr_1[index] = GPIOA;
-        gcs_pin_arr_1[index] = GPIO_PIN_8;
+        gcs_port_arr_1[index] = MPU9250_CHIP_G1S3_GPIO_Port;
+        gcs_pin_arr_1[index] = MPU9250_CHIP_G1S3_Pin;
         break;
     }
   }
@@ -281,7 +282,6 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
-
 
 /**
   * @brief  Period elapsed callback in non blocking mode
