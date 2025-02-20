@@ -7,7 +7,6 @@
 #include <sys/types.h>
 #include "stm32f4xx_hal.h"  // Modify according to your specific STM32 series
 
-
 #define DATABUF_SIZE    64
 
 static uint8_t dataBuf[DATABUF_SIZE] = { 0 };  // Buffer that stores data which has been read

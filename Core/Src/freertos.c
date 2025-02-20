@@ -62,19 +62,29 @@ osThreadId_t rSpi02MagTaskHandle;
 const osThreadAttr_t rSpi02MagTask_attributes = {
   .name = "rSpi02MagTask",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for rSpi03MagTask */
 osThreadId_t rSpi03MagTaskHandle;
 const osThreadAttr_t rSpi03MagTask_attributes = {
   .name = "rSpi03MagTask",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for sGetDataStart */
-osSemaphoreId_t sGetDataStartHandle;
-const osSemaphoreAttr_t sGetDataStart_attributes = {
-  .name = "sGetDataStart"
+/* Definitions for samplingStartTask01 */
+osSemaphoreId_t samplingStartTask01Handle;
+const osSemaphoreAttr_t samplingStartTask01_attributes = {
+  .name = "samplingStartTask01"
+};
+/* Definitions for samplingStartTask02 */
+osSemaphoreId_t samplingStartTask02Handle;
+const osSemaphoreAttr_t samplingStartTask02_attributes = {
+  .name = "samplingStartTask02"
+};
+/* Definitions for samplingStartTask03 */
+osSemaphoreId_t samplingStartTask03Handle;
+const osSemaphoreAttr_t samplingStartTask03_attributes = {
+  .name = "samplingStartTask03"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,6 +97,23 @@ void StartrSpi02MagTask(void *argument);
 void StartrSpi03MagTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+
+/* Hook prototypes */
+void configureTimerForRunTimeStats(void);
+unsigned long getRunTimeCounterValue(void);
+
+/* USER CODE BEGIN 1 */
+/* Functions needed when configGENERATE_RUN_TIME_STATS is on */
+__weak void configureTimerForRunTimeStats(void)
+{
+
+}
+
+__weak unsigned long getRunTimeCounterValue(void)
+{
+return 0;
+}
+/* USER CODE END 1 */
 
 /**
   * @brief  FreeRTOS initialization
@@ -103,8 +130,14 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_MUTEX */
 
   /* Create the semaphores(s) */
-  /* creation of sGetDataStart */
-  sGetDataStartHandle = osSemaphoreNew(1, 1, &sGetDataStart_attributes);
+  /* creation of samplingStartTask01 */
+  samplingStartTask01Handle = osSemaphoreNew(1, 1, &samplingStartTask01_attributes);
+
+  /* creation of samplingStartTask02 */
+  samplingStartTask02Handle = osSemaphoreNew(1, 1, &samplingStartTask02_attributes);
+
+  /* creation of samplingStartTask03 */
+  samplingStartTask03Handle = osSemaphoreNew(1, 1, &samplingStartTask03_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -151,10 +184,6 @@ __weak void StartrSpi01MagTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
-      // Simulate the time required to complete the SPI transaction
-      SensorGroup_ReadMag(spi_sensorsgroup_1);
-    }
   }
   /* USER CODE END StartrSpi01MagTask */
 }
@@ -172,10 +201,6 @@ __weak void StartrSpi02MagTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
-      // Simulate the time required to complete the SPI transaction
-      HAL_Delay(9);
-    }
   }
   /* USER CODE END StartrSpi02MagTask */
 }
@@ -193,10 +218,6 @@ __weak void StartrSpi03MagTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    if (xSemaphoreTake(sGetDataStartHandle, portMAX_DELAY) == pdTRUE) {
-      // Simulate the time required to complete the SPI transaction
-      HAL_Delay(9);
-    }
   }
   /* USER CODE END StartrSpi03MagTask */
 }

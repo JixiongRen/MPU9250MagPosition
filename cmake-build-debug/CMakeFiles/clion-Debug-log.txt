@@ -1,12 +1,4 @@
 C:\Users\renji\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/MinGW/bin/mingw32-make.exe "-DCMAKE_C_COMPILER=C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/arm-none-eabi-gcc.exe" "-DCMAKE_CXX_COMPILER=C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/arm-none-eabi-g++.exe" -G "MinGW Makefiles" -S C:\Users\renji\CLionProjects\f4_mpu9250 -B C:\Users\renji\CLionProjects\f4_mpu9250\cmake-build-debug
--- Minimal optimization, debug info included
--- Configuring done (0.1s)
-You have changed variables that require your cache to be deleted.
-Configure will be re-run and you may have to reset some variables.
-The following variables have changed:
-CMAKE_C_COMPILER= C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/arm-none-eabi-gcc.exe
-CMAKE_CXX_COMPILER= C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/arm-none-eabi-g++.exe
-
 -- The C compiler identification is GNU 12.3.1
 -- The CXX compiler identification is GNU 12.3.1
 -- The ASM compiler identification is GNU
@@ -22,6 +14,6 @@ CMAKE_CXX_COMPILER= C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Minimal optimization, debug info included
--- Configuring done (5.1s)
--- Generating done (0.3s)
+-- Configuring done (6.2s)
+-- Generating done (0.2s)
 -- Build files have been written to: C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug

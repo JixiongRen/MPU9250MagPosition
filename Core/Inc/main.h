@@ -59,11 +59,25 @@ extern "C" {
   extern SPI_SensorsGroup spi_sensorsgroup_instance_1;
   extern SPI_SensorsGroup *spi_sensorsgroup_1;
 
+  extern SPI_SensorsGroup spi_sensorsgroup_instance_2;
+  extern SPI_SensorsGroup *spi_sensorsgroup_2;
+
+  extern SPI_SensorsGroup spi_sensorsgroup_instance_3;
+  extern SPI_SensorsGroup *spi_sensorsgroup_3;
+
   extern uint8_t sensorsnum;
 
   extern SPI_HandleTypeDef *ghspix_1;
   extern GPIO_TypeDef **gcs_port_1;
   extern uint16_t *gcs_pin_1;
+
+  extern SPI_HandleTypeDef *ghspix_2;
+  extern GPIO_TypeDef **gcs_port_2;
+  extern uint16_t *gcs_pin_2;
+
+  extern SPI_HandleTypeDef *ghspix_3;
+  extern GPIO_TypeDef **gcs_port_3;
+  extern uint16_t *gcs_pin_3;
 
 /* USER CODE END ET */
 

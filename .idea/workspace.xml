@@ -26,20 +26,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="主要引入了新函数 SPI_SensorsGroup*()">
-      <change afterPath="$PROJECT_DIR$/Core/Inc/ST7735S_driver.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Inc/S_SPI_driver.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Inc/font.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Src/ST7735S_driver.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Src/S_SPI_driver.c" afterDir="false" />
+    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="加入TFT LCD驱动代码，采用软件SPI驱动">
+      <change afterPath="$PROJECT_DIR$/Core/Src/freertosTasks.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/FreeRTOSConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/FreeRTOSConfig.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/FreeRTOSVariables.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/FreeRTOSVariables.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/usart.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/usart.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/MPU9250.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/MPU9250.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/freertos.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/freertos.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/usart.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/usart.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODOList.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODOList.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
@@ -52,6 +52,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.hex" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f4_MPU9250.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/f4_MPU9250.ioc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,23 +162,6 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -206,7 +190,6 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
@@ -216,7 +199,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.配色方案字体",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -282,7 +265,9 @@
       <workItem from="1739325917163" duration="2870000" />
       <workItem from="1739359092213" duration="9668000" />
       <workItem from="1739583948406" duration="5174000" />
-      <workItem from="1739673818275" duration="22499000" />
+      <workItem from="1739673818275" duration="23799000" />
+      <workItem from="1740018990937" duration="7718000" />
+      <workItem from="1740033685250" duration="7638000" />
     </task>
     <task id="LOCAL-00001" summary="基于模板创建使用MPU9250进行多模永磁体定位的工程项目">
       <option name="closed" value="true" />
@@ -388,7 +373,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739369562431</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="加入TFT LCD驱动代码，采用软件SPI驱动">
+      <option name="closed" value="true" />
+      <created>1739883606899</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1739883606900</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,24 +405,21 @@
     <MESSAGE value="明确磁力计采样率-连续模式2-100Hz; 寄存器连续读取" />
     <MESSAGE value="引入FreeRTOS, 在定时器中断（中断频率100Hz）中释放信号量，用于统一传感器读取步调" />
     <MESSAGE value="主要引入了新函数 SPI_SensorsGroup*()" />
-    <option name="LAST_COMMIT_MESSAGE" value="主要引入了新函数 SPI_SensorsGroup*()" />
+    <MESSAGE value="加入TFT LCD驱动代码，采用软件SPI驱动" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入TFT LCD驱动代码，采用软件SPI驱动" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/main.c</url>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Core/Inc/main.h</url>
           <line>29</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/freertos.c</url>
-          <line>155</line>
-          <option name="timeStamp" value="31" />
+          <url>file://$PROJECT_DIR$/Core/Src/main.c</url>
+          <line>19</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

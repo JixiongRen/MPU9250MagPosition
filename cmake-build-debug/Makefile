@@ -248,6 +248,30 @@ Core/Src/freertos.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/freertos.c.s
 .PHONY : Core/Src/freertos.c.s
 
+Core/Src/freertosTasks.obj: Core/Src/freertosTasks.c.obj
+.PHONY : Core/Src/freertosTasks.obj
+
+# target to build an object file
+Core/Src/freertosTasks.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/freertosTasks.c.obj
+.PHONY : Core/Src/freertosTasks.c.obj
+
+Core/Src/freertosTasks.i: Core/Src/freertosTasks.c.i
+.PHONY : Core/Src/freertosTasks.i
+
+# target to preprocess a source file
+Core/Src/freertosTasks.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/freertosTasks.c.i
+.PHONY : Core/Src/freertosTasks.c.i
+
+Core/Src/freertosTasks.s: Core/Src/freertosTasks.c.s
+.PHONY : Core/Src/freertosTasks.s
+
+# target to generate assembly for a file
+Core/Src/freertosTasks.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/freertosTasks.c.s
+.PHONY : Core/Src/freertosTasks.c.s
+
 Core/Src/gpio.obj: Core/Src/gpio.c.obj
 .PHONY : Core/Src/gpio.obj
 
@@ -1264,6 +1288,9 @@ help:
 	@echo ... Core/Src/freertos.obj
 	@echo ... Core/Src/freertos.i
 	@echo ... Core/Src/freertos.s
+	@echo ... Core/Src/freertosTasks.obj
+	@echo ... Core/Src/freertosTasks.i
+	@echo ... Core/Src/freertosTasks.s
 	@echo ... Core/Src/gpio.obj
 	@echo ... Core/Src/gpio.i
 	@echo ... Core/Src/gpio.s

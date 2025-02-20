@@ -69,15 +69,37 @@ MPU9250 *mpu_2 = &mpu_instance_2;
 SPI_SensorsGroup spi_sensorsgroup_instance_1;
 SPI_SensorsGroup *spi_sensorsgroup_1 = &spi_sensorsgroup_instance_1;
 
+SPI_SensorsGroup spi_sensorsgroup_instance_2;
+SPI_SensorsGroup *spi_sensorsgroup_2 = &spi_sensorsgroup_instance_2;
+
+SPI_SensorsGroup spi_sensorsgroup_instance_3;
+SPI_SensorsGroup *spi_sensorsgroup_3 = &spi_sensorsgroup_instance_3;
+
 uint8_t sensorsnum = 3;
 
 SPI_HandleTypeDef ghspix_arr_1[3];
 GPIO_TypeDef *gcs_port_arr_1[3];
 uint16_t gcs_pin_arr_1[3];
 
+SPI_HandleTypeDef ghspix_arr_2[3];
+GPIO_TypeDef *gcs_port_arr_2[3];
+uint16_t gcs_pin_arr_2[3];
+
+SPI_HandleTypeDef ghspix_arr_3[3];
+GPIO_TypeDef *gcs_port_arr_3[3];
+uint16_t gcs_pin_arr_3[3];
+
 SPI_HandleTypeDef *ghspix_1 = ghspix_arr_1;
 GPIO_TypeDef **gcs_port_1 = gcs_port_arr_1;
 uint16_t *gcs_pin_1 = gcs_pin_arr_1;
+
+SPI_HandleTypeDef *ghspix_2 = ghspix_arr_2;
+GPIO_TypeDef **gcs_port_2 = gcs_port_arr_2;
+uint16_t *gcs_pin_2 = gcs_pin_arr_2;
+
+SPI_HandleTypeDef *ghspix_3 = ghspix_arr_3;
+GPIO_TypeDef **gcs_port_3 = gcs_port_arr_3;
+uint16_t *gcs_pin_3 = gcs_pin_arr_3;
 
 /* USER CODE END PV */
 
@@ -132,33 +154,69 @@ int main(void)
   MX_SPI3_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  // MPU9250_StructInit(mpu_1, hspi1, GPIOA, GPIO_PIN_11);
-  // MPU9250_StructInit(mpu_2, hspi1, GPIOB, GPIO_PIN_5);
-  // MPU9250_Init(mpu_1);
-  // MPU9250_Init(mpu_2);
-
   for (uint8_t index=0;index<sensorsnum;index++) {
     switch (index) {
       case 0:
         ghspix_arr_1[index] = hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S1_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S1_Pin;
+
+        ghspix_arr_2[index] = hspi2;
+        gcs_port_arr_2[index] = MPU9250_CHIP_G2S1_GPIO_Port;
+        gcs_pin_arr_2[index] = MPU9250_CHIP_G2S1_Pin;
+
+        ghspix_arr_3[index] = hspi3;
+        gcs_port_arr_3[index] = MPU9250_CHIP_G3S1_GPIO_Port;
+        gcs_pin_arr_3[index] = MPU9250_CHIP_G3S1_Pin;
         break;
       case 1:
         ghspix_arr_1[index] = hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S2_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S2_Pin;
+
+        ghspix_arr_2[index] = hspi2;
+        gcs_port_arr_2[index] = MPU9250_CHIP_G2S2_GPIO_Port;
+        gcs_pin_arr_2[index] = MPU9250_CHIP_G2S2_Pin;
+
+        ghspix_arr_3[index] = hspi3;
+        gcs_port_arr_3[index] = MPU9250_CHIP_G3S2_GPIO_Port;
+        gcs_pin_arr_3[index] = MPU9250_CHIP_G3S2_Pin;
         break;
       case 2:
         ghspix_arr_1[index] = hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S3_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S3_Pin;
+
+        ghspix_arr_2[index] = hspi2;
+        gcs_port_arr_2[index] = MPU9250_CHIP_G2S3_GPIO_Port;
+        gcs_pin_arr_2[index] = MPU9250_CHIP_G2S3_Pin;
+
+        ghspix_arr_3[index] = hspi3;
+        gcs_port_arr_3[index] = MPU9250_CHIP_G3S3_GPIO_Port;
+        gcs_pin_arr_3[index] = MPU9250_CHIP_G3S3_Pin;
+        break;
+      case 3:
+        ghspix_arr_1[index] = hspi1;
+        gcs_port_arr_1[index] = MPU9250_CHIP_G1S4_GPIO_Port;
+        gcs_pin_arr_1[index] = MPU9250_CHIP_G1S4_Pin;
+
+        ghspix_arr_2[index] = hspi2;
+        gcs_port_arr_2[index] = MPU9250_CHIP_G2S4_GPIO_Port;
+        gcs_pin_arr_2[index] = MPU9250_CHIP_G2S4_Pin;
+
+        ghspix_arr_3[index] = hspi3;
+        gcs_port_arr_3[index] = MPU9250_CHIP_G3S4_GPIO_Port;
+        gcs_pin_arr_3[index] = MPU9250_CHIP_G3S4_Pin;
         break;
     }
   }
 
   SensorGroup_StructInit(spi_sensorsgroup_1, sensorsnum, ghspix_1, gcs_port_1, gcs_pin_1);
+  SensorGroup_StructInit(spi_sensorsgroup_2, sensorsnum, ghspix_2, gcs_port_2, gcs_pin_2);
+  SensorGroup_StructInit(spi_sensorsgroup_3, sensorsnum, ghspix_3, gcs_port_3, gcs_pin_3);
   SensorGroup_Init(spi_sensorsgroup_1);
+  SensorGroup_Init(spi_sensorsgroup_2);
+  SensorGroup_Init(spi_sensorsgroup_3);
 
   HAL_TIM_Base_Start_IT(&htim1);
   /* USER CODE END 2 */
@@ -181,6 +239,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    printf("hello world 11111111 \r\n");
+    HAL_Delay(1000);
+    static float test = 3.14154;
+    printf("%.2f \r\n",test);
+
     // // start = __HAL_TIM_GET_COUNTER(&htim1);
     // // MPU9250_ReadMag(mpu_1); // 调用目标函数
     // // MPU9250_ReadMag(mpu_2);
@@ -302,8 +365,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 1 */
   if (htim->Instance == TIM1) {
     BaseType_t highTaskWoken = pdFALSE;
-    if (sGetDataStartHandle != NULL) {
-      xSemaphoreGiveFromISR(sGetDataStartHandle, &highTaskWoken);
+    if (samplingStartTask01Handle != NULL) {
+      xSemaphoreGiveFromISR(samplingStartTask01Handle, &highTaskWoken);
+      portYIELD_FROM_ISR(highTaskWoken);
+    }
+    if (samplingStartTask02Handle != NULL) {
+      xSemaphoreGiveFromISR(samplingStartTask02Handle, &highTaskWoken);
+      portYIELD_FROM_ISR(highTaskWoken);
+    }
+    if (samplingStartTask03Handle != NULL) {
+      xSemaphoreGiveFromISR(samplingStartTask03Handle, &highTaskWoken);
       portYIELD_FROM_ISR(highTaskWoken);
     }
   }
