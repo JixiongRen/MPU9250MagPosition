@@ -218,6 +218,8 @@ void MPU9250_ReadAccel(MPU9250 *mpu);
 void MPU9250_ReadGyro(MPU9250 *mpu);
 void MPU9250_ReadMag(MPU9250 *mpu);
 void SensorGroup_ReadMag(SPI_SensorsGroup* spi_sensorsgroup);
+void SensorGroup_ReadAccel(SPI_SensorsGroup* spi_sensorsgroup);
+void SensorGroup_ReadGyro(SPI_SensorsGroup* spi_sensorsgroup);
 void MPU9250_ReadData(MPU9250 *mpu);
 
 #endif //MPU9250_H

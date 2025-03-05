@@ -14,6 +14,6 @@ C:\Users\renji\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCM
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Minimal optimization, debug info included
--- Configuring done (6.2s)
+-- Configuring done (6.8s)
 -- Generating done (0.2s)
 -- Build files have been written to: C:/Users/renji/CLionProjects/f4_mpu9250/cmake-build-debug

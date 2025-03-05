@@ -48,7 +48,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+EventGroupHandle_t xSensorEventGroup;
 /* USER CODE END Variables */
 /* Definitions for rSpi01MagTask */
 osThreadId_t rSpi01MagTaskHandle;
@@ -71,6 +71,28 @@ const osThreadAttr_t rSpi03MagTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for UsartTransTask */
+osThreadId_t UsartTransTaskHandle;
+const osThreadAttr_t UsartTransTask_attributes = {
+  .name = "UsartTransTask",
+  .stack_size = 2048 * 4,
+  .priority = (osPriority_t) osPriorityAboveNormal,
+};
+/* Definitions for sensorGroupQueue01 */
+osMessageQueueId_t sensorGroupQueue01Handle;
+const osMessageQueueAttr_t sensorGroupQueue01_attributes = {
+  .name = "sensorGroupQueue01"
+};
+/* Definitions for sensorGroupQueue02 */
+osMessageQueueId_t sensorGroupQueue02Handle;
+const osMessageQueueAttr_t sensorGroupQueue02_attributes = {
+  .name = "sensorGroupQueue02"
+};
+/* Definitions for sensorGroupQueue03 */
+osMessageQueueId_t sensorGroupQueue03Handle;
+const osMessageQueueAttr_t sensorGroupQueue03_attributes = {
+  .name = "sensorGroupQueue03"
+};
 /* Definitions for samplingStartTask01 */
 osSemaphoreId_t samplingStartTask01Handle;
 const osSemaphoreAttr_t samplingStartTask01_attributes = {
@@ -86,6 +108,11 @@ osSemaphoreId_t samplingStartTask03Handle;
 const osSemaphoreAttr_t samplingStartTask03_attributes = {
   .name = "samplingStartTask03"
 };
+/* Definitions for sensorSampleEvent */
+osEventFlagsId_t sensorSampleEventHandle;
+const osEventFlagsAttr_t sensorSampleEvent_attributes = {
+  .name = "sensorSampleEvent"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -95,6 +122,7 @@ const osSemaphoreAttr_t samplingStartTask03_attributes = {
 void StartrSpi01MagTask(void *argument);
 void StartrSpi02MagTask(void *argument);
 void StartrSpi03MagTask(void *argument);
+void StartUsartTransTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -147,6 +175,16 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of sensorGroupQueue01 */
+  sensorGroupQueue01Handle = osMessageQueueNew (1, sizeof(SPI_SensorsGroup*), &sensorGroupQueue01_attributes);
+
+  /* creation of sensorGroupQueue02 */
+  sensorGroupQueue02Handle = osMessageQueueNew (1, sizeof(SPI_SensorsGroup*), &sensorGroupQueue02_attributes);
+
+  /* creation of sensorGroupQueue03 */
+  sensorGroupQueue03Handle = osMessageQueueNew (1, sizeof(SPI_SensorsGroup*), &sensorGroupQueue03_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -161,11 +199,19 @@ void MX_FREERTOS_Init(void) {
   /* creation of rSpi03MagTask */
   rSpi03MagTaskHandle = osThreadNew(StartrSpi03MagTask, NULL, &rSpi03MagTask_attributes);
 
+  /* creation of UsartTransTask */
+  UsartTransTaskHandle = osThreadNew(StartUsartTransTask, NULL, &UsartTransTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
+  /* Create the event(s) */
+  /* creation of sensorSampleEvent */
+  sensorSampleEventHandle = osEventFlagsNew(&sensorSampleEvent_attributes);
+
   /* USER CODE BEGIN RTOS_EVENTS */
+  xSensorEventGroup = xEventGroupCreate();
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
 
@@ -220,6 +266,24 @@ __weak void StartrSpi03MagTask(void *argument)
   {
   }
   /* USER CODE END StartrSpi03MagTask */
+}
+
+/* USER CODE BEGIN Header_StartUsartTransTask */
+/**
+* @brief Function implementing the UsartTransTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartUsartTransTask */
+__weak void StartUsartTransTask(void *argument)
+{
+  /* USER CODE BEGIN StartUsartTransTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartUsartTransTask */
 }
 
 /* Private application code --------------------------------------------------*/

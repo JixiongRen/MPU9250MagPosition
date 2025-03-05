@@ -135,6 +135,8 @@ void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     mpu_w_reg(I2C_SLV0_DO, num | 0x80, mpu);
     // mpu_w_reg(I2C_SLV0_DO, num, mpu);
     HAL_Delay(1);
+    //vTaskDelay(pdMS_TO_TICKS(1));
+    //vTaskDelay(pdMS_TO_TICKS(1));
     mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
 }
 
@@ -332,7 +334,6 @@ void MPU9250_ReadGyro(MPU9250 *mpu) {
     mpu->mpu_value.Gyro[2] = mpu->mpu_value.Gyro_row[2] / 16.384;
 }
 
-
 /**
  * @brief Read magnetometer data from MPU9250
  * @param mpu Pointer to MPU9250 structure
@@ -372,7 +373,6 @@ void MPU9250_ReadMag(MPU9250 *mpu) {
     mpu->mpu_value.Mag[2] = mpu->mpu_value.Mag_row[2] * 0.15;
 }
 
-
 /**
  * @brief Read magnetometer data from all MPU9250 sensors in the SPI_SensorsGroup
  * @param spi_sensorsgroup Pointer to SPI_SensorsGroup structure
@@ -401,6 +401,61 @@ void SensorGroup_ReadMag(SPI_SensorsGroup* spi_sensorsgroup) {
     }
 }
 
+/**
+ * @brief Read accelerate data from all MPU9250 sensors in the SPI_SensorsGroup
+ * @param spi_sensorsgroup Pointer to SPI_SensorsGroup structure
+ */
+void SensorGroup_ReadAccel(SPI_SensorsGroup* spi_sensorsgroup) {
+    uint8_t sensorNum = spi_sensorsgroup->mpuSensorNum;
+    for (uint8_t i = 0; i < sensorNum; i++) {
+        MPU9250 *mpu;
+        switch (i) {
+            case 0:
+                mpu = &(spi_sensorsgroup->mpuSensor1);
+            break;
+            case 1:
+                mpu = &(spi_sensorsgroup->mpuSensor2);
+            break;
+            case 2:
+                mpu = &(spi_sensorsgroup->mpuSensor3);
+            break;
+            case 3:
+                mpu = &(spi_sensorsgroup->mpuSensor4);
+            break;
+            default:
+                    continue;
+        }
+        MPU9250_ReadAccel(mpu);
+    }
+}
+
+/**
+ * @brief Read gyroscope data from all MPU9250 sensors in the SPI_SensorsGroup
+ * @param spi_sensorsgroup
+ */
+void SenorGroup_ReadGyro(SPI_SensorsGroup* spi_sensorsgroup) {
+    uint8_t sensorNum = spi_sensorsgroup->mpuSensorNum;
+    for (uint8_t i = 0; i < sensorNum; i++) {
+        MPU9250 *mpu;
+        switch (i) {
+            case 0:
+                mpu = &(spi_sensorsgroup->mpuSensor1);
+            break;
+            case 1:
+                mpu = &(spi_sensorsgroup->mpuSensor2);
+            break;
+            case 2:
+                mpu = &(spi_sensorsgroup->mpuSensor3);
+            break;
+            case 3:
+                mpu = &(spi_sensorsgroup->mpuSensor4);
+            break;
+            default:
+                    continue;
+        }
+        MPU9250_ReadGyro(mpu);
+    }
+}
 
 /**
  * @brief Read all data from MPU9250
@@ -410,4 +465,28 @@ void MPU9250_ReadData(MPU9250 *mpu) {
     MPU9250_ReadAccel(mpu);
     MPU9250_ReadGyro(mpu);
     MPU9250_ReadMag(mpu);
+}
+
+void SensorsGroup_ReadData(SPI_SensorsGroup* spi_sensorsgroup) {
+    uint8_t sensorNum = spi_sensorsgroup->mpuSensorNum;
+    for (uint8_t i = 0; i < sensorNum; i++) {
+        MPU9250 *mpu;
+        switch (i) {
+            case 0:
+                mpu = &(spi_sensorsgroup->mpuSensor1);
+            break;
+            case 1:
+                mpu = &(spi_sensorsgroup->mpuSensor2);
+            break;
+            case 2:
+                mpu = &(spi_sensorsgroup->mpuSensor3);
+            break;
+            case 3:
+                mpu = &(spi_sensorsgroup->mpuSensor4);
+            break;
+            default:
+                    continue;
+        }
+        MPU9250_ReadData(mpu);
+    }
 }

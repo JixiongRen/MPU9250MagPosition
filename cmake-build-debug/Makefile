@@ -344,6 +344,30 @@ Core/Src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/main.c.s
 .PHONY : Core/Src/main.c.s
 
+Core/Src/ringbuffer.obj: Core/Src/ringbuffer.c.obj
+.PHONY : Core/Src/ringbuffer.obj
+
+# target to build an object file
+Core/Src/ringbuffer.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/ringbuffer.c.obj
+.PHONY : Core/Src/ringbuffer.c.obj
+
+Core/Src/ringbuffer.i: Core/Src/ringbuffer.c.i
+.PHONY : Core/Src/ringbuffer.i
+
+# target to preprocess a source file
+Core/Src/ringbuffer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/ringbuffer.c.i
+.PHONY : Core/Src/ringbuffer.c.i
+
+Core/Src/ringbuffer.s: Core/Src/ringbuffer.c.s
+.PHONY : Core/Src/ringbuffer.s
+
+# target to generate assembly for a file
+Core/Src/ringbuffer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/ringbuffer.c.s
+.PHONY : Core/Src/ringbuffer.c.s
+
 Core/Src/spi.obj: Core/Src/spi.c.obj
 .PHONY : Core/Src/spi.obj
 
@@ -535,6 +559,30 @@ Core/Src/tim.s: Core/Src/tim.c.s
 Core/Src/tim.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/tim.c.s
 .PHONY : Core/Src/tim.c.s
+
+Core/Src/uartDMA.obj: Core/Src/uartDMA.c.obj
+.PHONY : Core/Src/uartDMA.obj
+
+# target to build an object file
+Core/Src/uartDMA.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/uartDMA.c.obj
+.PHONY : Core/Src/uartDMA.c.obj
+
+Core/Src/uartDMA.i: Core/Src/uartDMA.c.i
+.PHONY : Core/Src/uartDMA.i
+
+# target to preprocess a source file
+Core/Src/uartDMA.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/uartDMA.c.i
+.PHONY : Core/Src/uartDMA.c.i
+
+Core/Src/uartDMA.s: Core/Src/uartDMA.c.s
+.PHONY : Core/Src/uartDMA.s
+
+# target to generate assembly for a file
+Core/Src/uartDMA.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32F407ZGT6_TEMPLATE.elf.dir\build.make CMakeFiles/STM32F407ZGT6_TEMPLATE.elf.dir/Core/Src/uartDMA.c.s
+.PHONY : Core/Src/uartDMA.c.s
 
 Core/Src/usart.obj: Core/Src/usart.c.obj
 .PHONY : Core/Src/usart.obj
@@ -1300,6 +1348,9 @@ help:
 	@echo ... Core/Src/main.obj
 	@echo ... Core/Src/main.i
 	@echo ... Core/Src/main.s
+	@echo ... Core/Src/ringbuffer.obj
+	@echo ... Core/Src/ringbuffer.i
+	@echo ... Core/Src/ringbuffer.s
 	@echo ... Core/Src/spi.obj
 	@echo ... Core/Src/spi.i
 	@echo ... Core/Src/spi.s
@@ -1324,6 +1375,9 @@ help:
 	@echo ... Core/Src/tim.obj
 	@echo ... Core/Src/tim.i
 	@echo ... Core/Src/tim.s
+	@echo ... Core/Src/uartDMA.obj
+	@echo ... Core/Src/uartDMA.i
+	@echo ... Core/Src/uartDMA.s
 	@echo ... Core/Src/usart.obj
 	@echo ... Core/Src/usart.i
 	@echo ... Core/Src/usart.s
