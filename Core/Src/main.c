@@ -247,31 +247,6 @@ int main(void)
     SensorGroup_ReadMag(spi_sensorsgroup_3);
     HAL_Delay(100);
 
-    // 耗时测量
-    // start = __HAL_TIM_GET_COUNTER(&htim1);
-    // MPU9250_ReadMag(mpu_1); // 调用目标函数
-    // MPU9250_ReadMag(mpu_2);
-    // end = __HAL_TIM_GET_COUNTER(&htim1);
-    // us = end - start;
-    //
-    // ak8963_WhoAmI = mpu_r_ak8963_WhoAmI(mpu_1);
-    // mpu9250_WhoAmI = mpu_r_WhoAmI(mpu_1);
-    // MPU9250_ReadData(mpu_1);
-    // MPU9250_ReadData(mpu_2);
-    //
-    // char buffer[50];
-    //
-    // snprintf(buffer, sizeof(buffer), "AK8963: 0x%x  MPU9250: 0x%x\r\n", ak8963_WhoAmI, mpu9250_WhoAmI);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-    // snprintf(buffer, sizeof(buffer), "AX:%.3f \tAY:%.3f\t AZ:%.3f\r\n", mpu_1->mpu_value.Accel[0], mpu_1->mpu_value.Accel[1], mpu_1->mpu_value.Accel[2]);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-    //
-    // snprintf(buffer, sizeof(buffer), "GX:%.3f \tGY:%.3f\t GZ:%.3f\r\n", mpu_1->mpu_value.Gyro[0], mpu_1->mpu_value.Gyro[1], mpu_1->mpu_value.Gyro[2]);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-    //
-    // snprintf(buffer, sizeof(buffer), "MX:%.3f \tMY:%.3f\t MZ:%.3f\r\n", mpu_1->mpu_value.Mag[0], mpu_1->mpu_value.Mag[1], mpu_1->mpu_value.Mag[2]);
-    // HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
   }
   /* USER CODE END 3 */
 }

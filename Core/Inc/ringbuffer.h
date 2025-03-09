@@ -11,22 +11,25 @@
 #include "task.h"
 #include "semphr.h"
 
+/**
+ * @brief Structure representing a ring buffer.
+ */
 typedef struct {
-    uint8_t *buffer;                    // 缓冲区首地址
-    size_t head;                        // 头指针
-    size_t tail;                        // 尾指针
-    size_t maxLen;                      // 缓冲区长度
-    SemaphoreHandle_t dataSemaphore;    // 用于通知数据可用
-    BaseType_t useSemaphore;            // 是否使用信号量
+    uint8_t *buffer;                    /**< Pointer to the buffer memory. */
+    size_t head;                        /**< Index of the head pointer. */
+    size_t tail;                        /**< Index of the tail pointer. */
+    size_t maxLen;                      /**< Maximum length of the buffer. */
+    SemaphoreHandle_t dataSemaphore;    /**< Semaphore for data availability notification. */
+    BaseType_t useSemaphore;            /**< Flag indicating whether to use semaphore. */
 } RingBuffer;
 
-RingBuffer* bsp_createRingBuffer(size_t size, BaseType_t useSemaphore);
-void bsp_destroyRingBuffer(RingBuffer *rb);
-int16_t bsp_writeRingBuffer(RingBuffer *rb, const uint8_t *data, uint16_t len);
-BaseType_t bsp_writeRingBufferFromISR(RingBuffer *rb, const uint8_t *data, uint16_t len, BaseType_t *pxHigherPriorityTaskWoken);
-int16_t bsp_readRingBuffer(RingBuffer *rb, uint8_t *data, uint16_t len);
-uint16_t bsp_availableRingBuffer(RingBuffer *rb);
-uint8_t* bsp_getRingBufferWritePointer(RingBuffer *rb);
-BaseType_t bsp_incWritePtrFromISR(RingBuffer *rb, size_t len, BaseType_t *pxHigherPriorityTaskWoken);
+RingBuffer* createRingBuffer(size_t size, BaseType_t useSemaphore);
+void destroyRingBuffer(RingBuffer *rb);
+int16_t writeRingBuffer(RingBuffer *rb, const uint8_t *data, uint16_t len);
+BaseType_t writeRingBufferFromISR(RingBuffer *rb, const uint8_t *data, uint16_t len, BaseType_t *pxHigherPriorityTaskWoken);
+int16_t readRingBuffer(RingBuffer *rb, uint8_t *data, uint16_t len);
+uint16_t availableRingBuffer(RingBuffer *rb);
+uint8_t* getRingBufferWritePointer(RingBuffer *rb);
+BaseType_t incWritePtrFromISR(RingBuffer *rb, size_t len, BaseType_t *pxHigherPriorityTaskWoken);
 
 #endif // !__BSP_RINGBUFFER_H

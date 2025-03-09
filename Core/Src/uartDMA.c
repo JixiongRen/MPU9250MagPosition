@@ -5,117 +5,107 @@
 #include "usart.h"
 
 /**
- * @brief               初始化DMA
+ * @brief  Initialize the DMA send buffer
  *
- * @param uartdma       dma发送结构体指针
- * @param huart         发送所使用的UART句柄
- * @param buffer        指向发送缓冲区的指针
- * @param bufferSize    发送缓冲区大小
+ * @param uartdma DMA send buffer structure pointer
+ * @param huart  UART handle used for sending
+ * @param buffer  Data buffer
+ * @param bufferSize Buffer size
  */
 
-void bsp_uartdma_tx_init(UartDmaTxBuffer *uartdma, UART_HandleTypeDef *huart, uint8_t *buffer, uint16_t bufferSize) {
-    uartdma->data = buffer;             // 指向数据缓冲区的指针
-    uartdma->length = 0;                // 当前缓冲区的数据长度
-    uartdma->isSending = false;         // 是否正在进行 DMA 发送的标志
-    uartdma->huart = huart;             // 发送所使用的 UART 句柄
-    uartdma->bufferSize = bufferSize;   // 发送缓冲区大小
+void uartdma_tx_init(UartDmaTxBuffer *uartdma, UART_HandleTypeDef *huart, uint8_t *buffer, uint16_t bufferSize) {
+    uartdma->data = buffer;             // Data buffer to be sent
+    uartdma->length = 0;                // Data length
+    uartdma->isSending = false;         // Whether it is sending
+    uartdma->huart = huart;             // UART handle
+    uartdma->bufferSize = bufferSize;   // Buffer size
 }
 
 /**
- * @brief               写入数据到DMA缓冲区
+ * @brief Write data to the DMA send buffer
  *
- * @param uartdma       dma发送结构体指针
- * @param data          要写入的数据
- * @param length        数据长度
- * @return bool         写入成功返回 true，失败返回 false
+ * @param uartdma DMA send buffer structure pointer
+ * @param data  Data to be written
+ * @param length Data length
+ * @return bool  Write success returns true, failure returns false
  */
-bool bsp_uartdma_tx_write(UartDmaTxBuffer *uartdma, uint8_t *data, uint16_t length) {
-    // 检查数据长度是否大于缓冲区长度
+bool uartdma_tx_write(UartDmaTxBuffer *uartdma, uint8_t *data, uint16_t length) {
+    // Check if the data length to be written is greater than the buffer length
     if (length > uartdma->bufferSize) {
-        return false; // 待写入的数据长度大于缓冲区长度，写入失败
+        return false; // Write failed
     }
 
-    // 检查是否正在发送
+    // Check if the data is being sent
     if (uartdma->isSending) {
-        return false; // 正在发送中，写入失败
+        return false; // Write failed
     }
 
-    // 复制数据到缓冲区
+    // Copy the data to the buffer
     memcpy(uartdma->data, data, length);
     uartdma->length = length;
 
-    // 启动 DMA 发送
+    // Start DMA transmission
     if (HAL_UART_Transmit_DMA(uartdma->huart, uartdma->data, uartdma->length) != HAL_OK) {
-        return false; // DMA 启动失败
+        return false; // Write failed
     }
 
-    // 设定正在发送中
+    // Set the sending flag
     uartdma->isSending = true;
-    return true; // 写入成功
+    return true; // Write successful
 }
 
 /**
- * @brief DMA 发送完成回调函数
- *
- * @param uartdma       dma发送结构体指针
- */
-void bsp_uartdma_tx_callback(UartDmaTxBuffer *uartdma) {
+* @brief DMA send completion callback function
+* @param uartdma DMA send buffer structure pointer
+*/
+void uartdma_tx_callback(UartDmaTxBuffer *uartdma) {
     uartdma->isSending = false;
-    // 发送完成后对优先级进行切换，保证高优先级任务能及时执行
-    //BaseType_t xHigherPriorityTaskWoken = pdTRUE;
-    //portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 /**
- * @brief               查询DMA是否发送清空
- *
- * @param uartdma       dma发送结构体指针
+ * @brief Check if the DMA send buffer is empty
+ * @param uartdma DMA send buffer structure pointer
+ * @return bool  If it is empty, return true, if it is not empty, return false
  */
-bool bsp_uartdma_tx_isEmpty(UartDmaTxBuffer *uartdma) {
-    return !uartdma->isSending; // 如果正在发送中（True），说明发送尚未清空（False）
+bool uartdma_tx_isEmpty(UartDmaTxBuffer *uartdma) {
+    return !uartdma->isSending; // If it is not sending, it is empty
 }
 
-
-
 /**
- * @brief               初始化DMA接收缓冲区
- *
- * @param uartdma       接收所使用的DMA接收缓冲区结构体指针
- * @param huart         接收所使用的UART句柄
- * @param bufferSize    接收缓冲区大小
- * @param dmaSize       DMA每次接收的数据大小
- * @param useSemaphore  是否使用信号量
- *
- * @return bool         初始化成功返回 true，失败返回 false
+ * @brief Initialize the DMA receive buffer
+ * @param uartdma DMA receive buffer structure pointer
+ * @param huart  UART handle used for receiving
+ * @param bufferSize  Buffer size
+ * @param dmaSize  DMA buffer size
+ * @param useSemaphore  Whether to use a semaphore
+ * @return bool  Initialization success returns true, failure returns false
  */
-bool bsp_uartdma_rx_init(UartDmaRxBuffer *uartdma, UART_HandleTypeDef *huart, uint16_t bufferSize, uint16_t dmaSize, bool useSemaphore) {
-    uartdma->ringBuffer = bsp_createRingBuffer(bufferSize, useSemaphore);
+bool uartdma_rx_init(UartDmaRxBuffer *uartdma, UART_HandleTypeDef *huart, uint16_t bufferSize, uint16_t dmaSize, bool useSemaphore) {
+    uartdma->ringBuffer = createRingBuffer(bufferSize, useSemaphore);
     if (uartdma->ringBuffer == NULL) {
-        return false;  // 创建环形缓冲区失败
+        return false;  // Initialization failed
     }
     uartdma->huart = huart;
     uartdma->dmaSize = dmaSize;
     //DEBUG_PRINTF(LEVEL_DEBUG, "dmaSize: %d\r\n", dmaSize);
-    uint8_t *writePointer = bsp_getRingBufferWritePointer(uartdma->ringBuffer); // 获取环形缓冲区写指针
+    uint8_t *writePointer = getRingBufferWritePointer(uartdma->ringBuffer); // Get the write pointer of the ring buffer
     if (writePointer == NULL) {
-        return false; // 若没有足够的空间或缓冲区为空，返回失败
+        return false; // Initialization failed
     }
-    HAL_UART_Receive_DMA(huart, writePointer, dmaSize); // 启动DMA接收
+    HAL_UART_Receive_DMA(huart, writePointer, dmaSize); // Start DMA reception
     return true;
 }
 
 /**
- * @brief               DMA接收完成回调函数， 只能在中断中调用。
- *
- * @param uartdma       DMA接收缓冲区结构体指针
+ * @brief DMA receive completion callback function
+ * @param uartdma DMA receive buffer structure pointer
  */
-void bsp_uartdma_rx_callback(UartDmaRxBuffer *uartdma) {
-    // 通知有数据可读
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE; // xHigherPriorityTaskWoken 是一个标志位，用于指示是否需要进行任务切换
-    bsp_incWritePtrFromISR(uartdma->ringBuffer, uartdma->dmaSize, &xHigherPriorityTaskWoken);
-
-    // 重新启动DMA接收
-    uint8_t *writePointer = bsp_getRingBufferWritePointer(uartdma->ringBuffer);
+void uartdma_rx_callback(UartDmaRxBuffer *uartdma) {
+    // Notify that there is data to read, wake up a higher priority task
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE; // Whether to wake up a higher priority task
+    incWritePtrFromISR(uartdma->ringBuffer, uartdma->dmaSize, &xHigherPriorityTaskWoken);
+    // Get the write pointer of the ring buffer, used for DMA reception
+    uint8_t *writePointer = getRingBufferWritePointer(uartdma->ringBuffer);
     if (writePointer != NULL) {
         // DEBUG_PRINTF(LEVEL_DEBUG, "DMA RX Start!\r\n");
         // HAL_UART_DMAStop(uartdma->huart);
@@ -123,7 +113,6 @@ void bsp_uartdma_rx_callback(UartDmaRxBuffer *uartdma) {
     }else{
         //DEBUG_PRINTF(LEVEL_ERROR, "DMA RX Buffer is full!\r\n");
     }
-    // 切换上下文
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
@@ -131,15 +120,15 @@ void bsp_uartdma_rx_callback(UartDmaRxBuffer *uartdma) {
 RingBuffer *g_UART1_RxRingBuffer;
 uint8_t g_rxBuffer1[1];
 UartDmaRxBuffer g_UART2_RxDmaBuffer;
+
 /**
- * @brief           串口接收中断回调函数
- *
- * @param huart     串口句柄
+ * @brief Initialize the UART1 and UART2 DMA receive buffer
+ * @param huart1 UART1 handle
  */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   if (huart->Instance == USART1){
-    if (bsp_writeRingBufferFromISR(g_UART1_RxRingBuffer, g_rxBuffer1, 1, &xHigherPriorityTaskWoken) != pdPASS){
+    if (writeRingBufferFromISR(g_UART1_RxRingBuffer, g_rxBuffer1, 1, &xHigherPriorityTaskWoken) != pdPASS){
       //DEBUG_PRINTF(LEVEL_ERROR, "Write UART1 Rx RingBuffer failed!\r\n");
     }
     HAL_UART_Receive_IT(&huart1, g_rxBuffer1, 1);
@@ -147,18 +136,19 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
   }
 
   if (huart->Instance == USART2){
-    bsp_uartdma_rx_callback(&g_UART2_RxDmaBuffer);          // DMA接收完成回调
+    uartdma_rx_callback(&g_UART2_RxDmaBuffer);
   }
 }
 
 
 UartDmaTxBuffer  g_UART2_TxDmaBuffer;
+
 /**
- * @brief           串口发送完成回调函数
- *
+ * @brief UART2 DMA send completion callback function\
+ * @param huart UART handle
  */
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
     if (huart->Instance == USART2){
-        bsp_uartdma_tx_callback(&g_UART2_TxDmaBuffer);
+        uartdma_tx_callback(&g_UART2_TxDmaBuffer);
     }
 }

@@ -177,9 +177,9 @@ typedef struct __MPU9250_Value{
 } MPU_Value;
 
 typedef struct __MPU9250_CFG {
-    SPI_HandleTypeDef hspix;    // 初始化 SPI 句柄
-    GPIO_TypeDef* CS_Port;      // 定义 GPIO 端口号
-    uint16_t CS_Pin;            // 定义 GPIO 引脚
+    SPI_HandleTypeDef hspix;
+    GPIO_TypeDef* CS_Port;
+    uint16_t CS_Pin;
 } MPU9250_CFG;
 
 typedef struct __MPU9250 {
