@@ -12,7 +12,7 @@
  * @param buffer  Data buffer
  * @param bufferSize Buffer size
  */
-
+#define arrest
 void uartdma_tx_init(UartDmaTxBuffer *uartdma, UART_HandleTypeDef *huart, uint8_t *buffer, uint16_t bufferSize) {
     uartdma->data = buffer;             // Data buffer to be sent
     uartdma->length = 0;                // Data length
@@ -46,6 +46,7 @@ bool uartdma_tx_write(UartDmaTxBuffer *uartdma, uint8_t *data, uint16_t length) 
 
     // Start DMA transmission
     if (HAL_UART_Transmit_DMA(uartdma->huart, uartdma->data, uartdma->length) != HAL_OK) {
+      arrest(false);
         return false; // Write failed
     }
 
