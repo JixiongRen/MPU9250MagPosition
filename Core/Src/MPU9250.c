@@ -6,6 +6,7 @@
 #include "MPU9250.h"
 #include <sys/types.h>
 #include "stm32f4xx_hal.h"  // Modify according to your specific STM32 series
+ #include "mag_calibration.h"
 
 #define DATABUF_SIZE    64
 
@@ -196,6 +197,7 @@ void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_
 void SensorGroup_StructInit(SPI_SensorsGroup* spi_sensorsgroup, uint8_t sensornum, SPI_HandleTypeDef ghspix[], GPIO_TypeDef *gcs_port[], uint16_t gcs_pin[]) {
     // 记录传感器数量
     spi_sensorsgroup->mpuSensorNum = sensornum;
+    spi_sensorsgroup->base_sensor_id = 0;
     // 遍历每个传感器进行初始化
     for (uint8_t i = 0; i < sensornum; i++) {
         MPU9250 *mpu;
@@ -398,6 +400,15 @@ void SensorGroup_ReadMag(SPI_SensorsGroup* spi_sensorsgroup) {
                     continue;
         }
         MPU9250_ReadMag(mpu);
+
+        uint8_t sensor_id = (uint8_t)(spi_sensorsgroup->base_sensor_id + i);
+        if (sensor_id < 12) {
+            float mag_cal[3];
+            apply_mag_calibration(sensor_id, mpu->mpu_value.Mag, mag_cal);
+            mpu->mpu_value.Mag[0] = mag_cal[0];
+            mpu->mpu_value.Mag[1] = mag_cal[1];
+            mpu->mpu_value.Mag[2] = mag_cal[2];
+        }
     }
 }
 

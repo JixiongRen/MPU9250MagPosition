@@ -8,11 +8,13 @@
 #include "cmsis_os.h"
 #include "FreeRTOSVariables.h"
 #include "usart.h"
+#include "frame_protocol.h"
 #include <stdio.h>
 
 float MagData[36] = {0.0};
 char buffer[256] = {0};
 uint8_t g_txBuffer[2048] = {0};
+uint8_t g_frameBuffer[256] = {0};
 
 // Define the structure of the sensor data summary
 typedef struct {
@@ -117,7 +119,10 @@ void StartUsartTransTask(void *argument) {
        memcpy(&MagData[30], group3->mpuSensor3.mpu_value.Mag, 3 * sizeof(float));
        memcpy(&MagData[33], group3->mpuSensor4.mpu_value.Mag, 3 * sizeof(float));
 
+       // Build frame with header and CRC
+       uint16_t frame_len = build_frame((uint8_t*)MagData, sizeof(MagData), g_frameBuffer);
+       
        // Send data via UART with DMA
-       uartdma_tx_write(&g_UART2_TxDmaBuffer, (uint8_t*)MagData, sizeof(MagData));
+       uartdma_tx_write(&g_UART2_TxDmaBuffer, g_frameBuffer, frame_len);
    }
 }

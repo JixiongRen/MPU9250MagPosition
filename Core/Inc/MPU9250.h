@@ -189,6 +189,7 @@ typedef struct __MPU9250 {
 
 typedef struct __SPI_SensorsGroup {
     uint8_t mpuSensorNum;
+    uint8_t base_sensor_id;
     MPU9250 mpuSensor1;
     MPU9250 mpuSensor2;
     MPU9250 mpuSensor3;

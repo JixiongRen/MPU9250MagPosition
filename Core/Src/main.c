@@ -217,6 +217,11 @@ int main(void)
   SensorGroup_StructInit(spi_sensorsgroup_1, sensorsnum, ghspix_1, gcs_port_1, gcs_pin_1);
   SensorGroup_StructInit(spi_sensorsgroup_2, sensorsnum, ghspix_2, gcs_port_2, gcs_pin_2);
   SensorGroup_StructInit(spi_sensorsgroup_3, sensorsnum, ghspix_3, gcs_port_3, gcs_pin_3);
+
+  spi_sensorsgroup_1->base_sensor_id = 0;
+  spi_sensorsgroup_2->base_sensor_id = 4;
+  spi_sensorsgroup_3->base_sensor_id = 8;
+
   SensorGroup_Init(spi_sensorsgroup_1);
   SensorGroup_Init(spi_sensorsgroup_2);
   SensorGroup_Init(spi_sensorsgroup_3);

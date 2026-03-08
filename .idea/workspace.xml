@@ -21,7 +21,9 @@
     <option name="reloaded" value="true" />
   </component>
   <component name="CMakeRunConfigurationManager">
-    <generated />
+    <generated>
+      <config projectName="STM32F407ZGT6_TEMPLATE" targetName="STM32F407ZGT6_TEMPLATE.elf" />
+    </generated>
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -29,33 +31,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="完善代码文档">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="Increase the MPU9250 magnetic signal sampling rate to 83Hz">
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/f4_mpu9250.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/f4_mpu9250.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/uartDMA.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/uartDMA.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODOList.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeASMCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/MPU9250.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/MPU9250.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/MPU9250.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/MPU9250.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/freertosTasks.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/freertosTasks.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.elf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.hex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.elf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.hex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.map" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1594,11 +1596,20 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;assignee&quot;: &quot;JixiongRen&quot;
+    }
+  ],
   &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;JixiongRen&quot;
   }
 }</component>
@@ -1630,7 +1641,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/JixiongRen/MPU9250MagPosition.git&quot;,
-    &quot;accountId&quot;: &quot;0146fc93-8bc6-4c5a-938f-eafecb46ecd9&quot;
+    &quot;accountId&quot;: &quot;e4591484-a2c6-49ae-8ead-8037e0580e20&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -1651,6 +1662,9 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="83k8MhYq" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2024" />
@@ -1661,40 +1675,48 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2sO1qjoRspNp66KFGDy50h6JTi1" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "CMake 应用程序.STM32F407ZGT6_TEMPLATE.elf.executor": "Run",
-    "CMake 应用程序.f4_MPU9250.elf.executor": "Run",
-    "OpenOCD 下载并运行.OCD STM32F407ZGT6_TEMPLATE.executor": "Run",
-    "OpenOCD 下载并运行.OCD f4_MPU9250.executor": "Run",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.advertisement.text.has.clang-format": "true",
-    "cf.advertisement.text.overridden": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/renji/CLionProjects/f4_mpu9250",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CPPToolchains",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;CMake 应用程序.STM32F407ZGT6_TEMPLATE.elf.executor&quot;: &quot;Run&quot;,
+    &quot;CMake 应用程序.f4_MPU9250.elf.executor&quot;: &quot;Run&quot;,
+    &quot;OpenOCD 下载并运行.OCD STM32F407ZGT6_TEMPLATE.executor&quot;: &quot;Run&quot;,
+    &quot;OpenOCD 下载并运行.OCD f4_MPU9250.executor&quot;: &quot;Run&quot;,
+    &quot;OpenOCD 下载并运行.STM32F407ZGT6_TEMPLATE.elf.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Data/MPU9250MagPosition/Core/Inc&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CLionExternalConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Data\MPU9250MagPosition\Core\Inc" />
+      <recent name="C:\Data\MPU9250MagPosition\matlab_parse" />
       <recent name="C:\Users\renji\CLionProjects\f4_mpu9250\Core\Inc" />
     </key>
   </component>
@@ -1703,15 +1725,17 @@
       <command value="find" />
     </option>
   </component>
-  <component name="RunManager" selected="OpenOCD 下载并运行.OCD f4_MPU9250">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+  <component name="RunManager" selected="OpenOCD 下载并运行.STM32F407ZGT6_TEMPLATE.elf">
+    <configuration name="f4" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="STM32F407ZGT6_TEMPLATE" TARGET_NAME="STM32F407ZGT6_TEMPLATE.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="STM32F407ZGT6_TEMPLATE" RUN_TARGET_NAME="STM32F407ZGT6_TEMPLATE.elf">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="OpenOCD 下载并运行.OCD f4_MPU9250" />
+      <item itemvalue="CMake 应用程序.f4" />
       <item itemvalue="OpenOCD 下载并运行.OCD STM32F407ZGT6_TEMPLATE" />
+      <item itemvalue="OpenOCD 下载并运行.OCD f4_MPU9250" />
+      <item itemvalue="OpenOCD 下载并运行.STM32F407ZGT6_TEMPLATE.elf" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -1775,6 +1799,17 @@
       <workItem from="1741582942643" duration="2566000" />
       <workItem from="1744783103722" duration="1174000" />
       <workItem from="1749791350634" duration="494000" />
+      <workItem from="1770301998932" duration="278000" />
+      <workItem from="1770302514804" duration="1269000" />
+      <workItem from="1770386354854" duration="413000" />
+      <workItem from="1770438551935" duration="1784000" />
+      <workItem from="1771504996731" duration="653000" />
+      <workItem from="1772020537015" duration="156000" />
+      <workItem from="1772020760916" duration="11800000" />
+      <workItem from="1772109641520" duration="1184000" />
+      <workItem from="1772158409996" duration="3212000" />
+      <workItem from="1772584919160" duration="15056000" />
+      <workItem from="1772966313434" duration="3026000" />
     </task>
     <task id="LOCAL-00001" summary="基于模板创建使用MPU9250进行多模永磁体定位的工程项目">
       <option name="closed" value="true" />
@@ -1912,7 +1947,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741489429815</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: Add UART frame packaging with strict protocol alignment&#10;&#10;- Implement fixed-format data frame with synchronized header (0xAA55AA55)&#10;- Add payload length field (2 bytes, little-endian) for frame boundary detection&#10;- Include sequence number (4 bytes, little-endian) for packet ordering and loss detection&#10;- Append CRC16-CCITT checksum (2 bytes, little-endian) for data integrity verification&#10;- Ensure strict frame structure: [Header(4B) | Length(2B) | Sequence(4B) | Payload(48B) | CRC(2B)]&#10;&#10;Frame format guarantees symmetric parsing: receiver can validate frame boundaries&#10;via length field and detect corruption via CRC, enabling robust bidirectional&#10;communication protocol.">
+      <option name="closed" value="true" />
+      <created>1772158684993</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1772158684993</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1940,7 +1983,8 @@
     <MESSAGE value="RTOS任务优先级调整" />
     <MESSAGE value="实现40Hz串口发送，代码未整理" />
     <MESSAGE value="完善代码文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善代码文档" />
+    <MESSAGE value="feat: Add UART frame packaging with strict protocol alignment&#10;&#10;- Implement fixed-format data frame with synchronized header (0xAA55AA55)&#10;- Add payload length field (2 bytes, little-endian) for frame boundary detection&#10;- Include sequence number (4 bytes, little-endian) for packet ordering and loss detection&#10;- Append CRC16-CCITT checksum (2 bytes, little-endian) for data integrity verification&#10;- Ensure strict frame structure: [Header(4B) | Length(2B) | Sequence(4B) | Payload(48B) | CRC(2B)]&#10;&#10;Frame format guarantees symmetric parsing: receiver can validate frame boundaries&#10;via length field and detect corruption via CRC, enabling robust bidirectional&#10;communication protocol." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add UART frame packaging with strict protocol alignment&#10;&#10;- Implement fixed-format data frame with synchronized header (0xAA55AA55)&#10;- Add payload length field (2 bytes, little-endian) for frame boundary detection&#10;- Include sequence number (4 bytes, little-endian) for packet ordering and loss detection&#10;- Append CRC16-CCITT checksum (2 bytes, little-endian) for data integrity verification&#10;- Ensure strict frame structure: [Header(4B) | Length(2B) | Sequence(4B) | Payload(48B) | CRC(2B)]&#10;&#10;Frame format guarantees symmetric parsing: receiver can validate frame boundaries&#10;via length field and detect corruption via CRC, enabling robust bidirectional&#10;communication protocol." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
