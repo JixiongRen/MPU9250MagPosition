@@ -1,6 +1,6 @@
-#include "mag_calibration.h"
+#include "magCalibration.h"
 
-const float mag_hard_iron[12][3] = {
+const float magHardIron[12][3] = {
     {7.979056, -4.044053, 0.245749},
     {14.383155, -3.323994, -4.728165},
     {5.282448, -5.525889, -0.384394},
@@ -15,7 +15,7 @@ const float mag_hard_iron[12][3] = {
     {14.254358, -4.936443, -16.641705}
 };
 
-const float mag_soft_iron[12][3][3] = {
+const float magSoftIron[12][3][3] = {
     {
         {0.874010, 0.044039, 0.142338},
         {0.044039, 1.080686, 0.016606},

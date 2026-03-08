@@ -6,7 +6,7 @@
 #include "MPU9250.h"
 #include <sys/types.h>
 #include "stm32f4xx_hal.h"  // Modify according to your specific STM32 series
- #include "mag_calibration.h"
+ #include "magCalibration.h"
 
 #define DATABUF_SIZE    64
 
@@ -404,7 +404,7 @@ void SensorGroup_ReadMag(SPI_SensorsGroup* spi_sensorsgroup) {
         uint8_t sensor_id = (uint8_t)(spi_sensorsgroup->base_sensor_id + i);
         if (sensor_id < 12) {
             float mag_cal[3];
-            apply_mag_calibration(sensor_id, mpu->mpu_value.Mag, mag_cal);
+            applyMagCalibration(sensor_id, mpu->mpu_value.Mag, mag_cal);
             mpu->mpu_value.Mag[0] = mag_cal[0];
             mpu->mpu_value.Mag[1] = mag_cal[1];
             mpu->mpu_value.Mag[2] = mag_cal[2];

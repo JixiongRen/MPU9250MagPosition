@@ -1,9 +1,9 @@
-#include "frame_protocol.h"
+#include "frameProtocol.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include <string.h>
 
-uint16_t crc16_ccitt_false(const uint8_t *data, uint16_t length) {
+uint16_t crc16CcittFalse(const uint8_t *data, uint16_t length) {
     uint16_t crc = 0xFFFF;
     const uint16_t poly = 0x1021;
     
@@ -20,7 +20,7 @@ uint16_t crc16_ccitt_false(const uint8_t *data, uint16_t length) {
     return crc;
 }
 
-uint16_t build_frame(const uint8_t *payload, uint16_t payload_len, uint8_t *frame_out) {
+uint16_t buildFrame(const uint8_t *payload, uint16_t payload_len, uint8_t *frame_out) {
     uint16_t idx = 0;
     
     // Frame header: AA 55 AA 55
@@ -45,7 +45,7 @@ uint16_t build_frame(const uint8_t *payload, uint16_t payload_len, uint8_t *fram
     idx += payload_len;
     
     // CRC16 (2 bytes, little-endian)
-    uint16_t crc = crc16_ccitt_false(frame_out, idx);
+    uint16_t crc = crc16CcittFalse(frame_out, idx);
     frame_out[idx++] = (uint8_t)(crc & 0xFF);
     frame_out[idx++] = (uint8_t)((crc >> 8) & 0xFF);
     

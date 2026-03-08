@@ -31,33 +31,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="Increase the MPU9250 magnetic signal sampling rate to 83Hz">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/f4_mpu9250.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/f4_mpu9250.iml" afterDir="false" />
+    <list default="true" id="8b7a36b1-3680-4c85-aa22-797a94a44a8b" name="更改" comment="Add sensor calibration procedures, introduce frame headers and frame tails &amp; CRC checks for transmission frames.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/MPU9250.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/MPU9250.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/frame_protocol.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/frameProtocol.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/mag_calibration.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/magCalibration.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/MPU9250.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/MPU9250.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/frame_protocol.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/frameProtocol.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/freertosTasks.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/freertosTasks.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.elf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.hex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32F407ZGT6_TEMPLATE.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.elf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.hex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/f4_MPU9250.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/mag_calibration.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/magCalibration.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1726,6 +1707,11 @@
     </option>
   </component>
   <component name="RunManager" selected="OpenOCD 下载并运行.STM32F407ZGT6_TEMPLATE.elf">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="f4" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="STM32F407ZGT6_TEMPLATE" TARGET_NAME="STM32F407ZGT6_TEMPLATE.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="STM32F407ZGT6_TEMPLATE" RUN_TARGET_NAME="STM32F407ZGT6_TEMPLATE.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -1809,7 +1795,7 @@
       <workItem from="1772109641520" duration="1184000" />
       <workItem from="1772158409996" duration="3212000" />
       <workItem from="1772584919160" duration="15056000" />
-      <workItem from="1772966313434" duration="3026000" />
+      <workItem from="1772966313434" duration="4829000" />
     </task>
     <task id="LOCAL-00001" summary="基于模板创建使用MPU9250进行多模永磁体定位的工程项目">
       <option name="closed" value="true" />
@@ -1955,7 +1941,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772158684993</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Add sensor calibration procedures, introduce frame headers and frame tails &amp; CRC checks for transmission frames.">
+      <option name="closed" value="true" />
+      <created>1772975583979</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1772975583979</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Add sensor calibration procedures, introduce frame headers and frame tails &amp; CRC checks for transmission frames.">
+      <option name="closed" value="true" />
+      <created>1772975606790</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1772975606790</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1984,7 +1986,8 @@
     <MESSAGE value="实现40Hz串口发送，代码未整理" />
     <MESSAGE value="完善代码文档" />
     <MESSAGE value="feat: Add UART frame packaging with strict protocol alignment&#10;&#10;- Implement fixed-format data frame with synchronized header (0xAA55AA55)&#10;- Add payload length field (2 bytes, little-endian) for frame boundary detection&#10;- Include sequence number (4 bytes, little-endian) for packet ordering and loss detection&#10;- Append CRC16-CCITT checksum (2 bytes, little-endian) for data integrity verification&#10;- Ensure strict frame structure: [Header(4B) | Length(2B) | Sequence(4B) | Payload(48B) | CRC(2B)]&#10;&#10;Frame format guarantees symmetric parsing: receiver can validate frame boundaries&#10;via length field and detect corruption via CRC, enabling robust bidirectional&#10;communication protocol." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add UART frame packaging with strict protocol alignment&#10;&#10;- Implement fixed-format data frame with synchronized header (0xAA55AA55)&#10;- Add payload length field (2 bytes, little-endian) for frame boundary detection&#10;- Include sequence number (4 bytes, little-endian) for packet ordering and loss detection&#10;- Append CRC16-CCITT checksum (2 bytes, little-endian) for data integrity verification&#10;- Ensure strict frame structure: [Header(4B) | Length(2B) | Sequence(4B) | Payload(48B) | CRC(2B)]&#10;&#10;Frame format guarantees symmetric parsing: receiver can validate frame boundaries&#10;via length field and detect corruption via CRC, enabling robust bidirectional&#10;communication protocol." />
+    <MESSAGE value="Add sensor calibration procedures, introduce frame headers and frame tails &amp; CRC checks for transmission frames." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add sensor calibration procedures, introduce frame headers and frame tails &amp; CRC checks for transmission frames." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
