@@ -204,11 +204,11 @@ void delay_10us(void);
 // 以下7个均为static函数
 uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte);
 void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num);
-void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num);
+void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *buffer, uint8_t num);
 void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
-void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
+void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer);
 void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
-void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu);
+void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer);
 uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu);
 uint8_t mpu_r_WhoAmI(MPU9250 *mpu);
 void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin);

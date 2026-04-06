@@ -6,14 +6,7 @@
 #include "MPU9250.h"
 #include <sys/types.h>
 #include "stm32f4xx_hal.h"  // Modify according to your specific STM32 series
- #include "magCalibration.h"
-
-#define DATABUF_SIZE    64
-
-static uint8_t dataBuf[DATABUF_SIZE] = { 0 };  // Buffer that stores data which has been read
-static uint16_t i = 0; // loop control
-static uint16_t I = 0;
-
+#include "magCalibration.h"
 
 /**
  * @brief Enable MPU9250
@@ -60,8 +53,8 @@ void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
     MPU9250_ENABLE(mpu);
     SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
     spi_w_byte(hspix, reg);
-    for (i=0; i<num; i++) {
-        spi_w_byte(hspix, bytes[i]);
+    for (uint16_t index = 0; index < num; index++) {
+        spi_w_byte(hspix, bytes[index]);
     }
     MPU9250_DISENABLE(mpu);
 }
@@ -71,17 +64,18 @@ void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num)
  * @brief Read multiple bytes using SPI
  * @param reg Target register address to read
  * @param mpu Pointer to MPU9250 structure
+ * @param buffer Buffer to store the read data
  * @param num Number of bytes to read using SPI
  */
-void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t num)
+void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *buffer, uint8_t num)
 {
     SPI_HandleTypeDef hspix = mpu->mpu9250_cfg.hspix;
     reg |= 0x80;  // The highest bit is 1 when reading the register
     MPU9250_ENABLE(mpu);
 
     HAL_SPI_Transmit(&hspix, &reg, 1, 0x01f4);
-    // The returned data is stored in dataBuf
-    HAL_SPI_Receive(&hspix, dataBuf, num, 0x01f4);
+    // The returned data is stored in buffer
+    HAL_SPI_Receive(&hspix, buffer, num, 0x01f4);
 
     MPU9250_DISENABLE(mpu);
 }
@@ -103,9 +97,10 @@ void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
  * @param reg Target register address
  * @param num Number of bytes to read
  * @param mpu Pointer to MPU9250 structure
+ * @param buffer Buffer to store the read data
  */
-void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
-    spi_r_bytes(reg, mpu, num);
+void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer) {
+    spi_r_bytes(reg, mpu, buffer, num);
 }
 
 
@@ -129,8 +124,9 @@ void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu) {
  * @param reg Register address
  * @param num Number of bytes to read
  * @param mpu Pointer to MPU9250 structure
+ * @param buffer Buffer to store the read data
  */
-void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
+void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer) {
     mpu_w_reg(I2C_SLV0_ADDR, AK8963_I2C_ADDR | 0x80, mpu);
     mpu_w_reg(I2C_SLV0_REG, reg, mpu);
     mpu_w_reg(I2C_SLV0_DO, num | 0x80, mpu);
@@ -138,7 +134,7 @@ void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
     HAL_Delay(1);
     //vTaskDelay(pdMS_TO_TICKS(1));
     //vTaskDelay(pdMS_TO_TICKS(1));
-    mpu_r_reg(EXT_SENS_DATA_00, num, mpu);
+    mpu_r_reg(EXT_SENS_DATA_00, num, mpu, buffer);
 }
 
 /**
@@ -147,8 +143,9 @@ void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu) {
  * @return uint8_t Returns the value of the WHO_AM_I register of MPU9250
  */
 uint8_t mpu_r_WhoAmI(MPU9250 *mpu) {
-    mpu_r_reg(WHO_AM_I, 1, mpu);
-    return dataBuf[0];
+    uint8_t buffer[1] = { 0 };
+    mpu_r_reg(WHO_AM_I, 1, mpu, buffer);
+    return buffer[0];
 }
 
 
@@ -158,10 +155,10 @@ uint8_t mpu_r_WhoAmI(MPU9250 *mpu) {
  * @return uint8_t Returns the value of the WHO_AM_I register of AK8963
  */
 uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu) {
-    ak8963_r_reg(AK8963_WHOAMI_REG, 1, mpu);
-    return dataBuf[0];
+    uint8_t buffer[1] = { 0 };
+    ak8963_r_reg(AK8963_WHOAMI_REG, 1, mpu, buffer);
+    return buffer[0];
 }
-
 
 /**
  * @brief Initialize MPU9250 structure
@@ -229,6 +226,7 @@ void SensorGroup_StructInit(SPI_SensorsGroup* spi_sensorsgroup, uint8_t sensornu
  */
 uint8_t MPU9250_Init(MPU9250 *mpu) {
     // MPU9250_Value_StructInit(mpu);
+    uint8_t buffer[1] = { 0 };
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x80, mpu); // reset MPU9250, reg107
     HAL_Delay(10);
     mpu_w_reg(USER_CTRL, (uint8_t) 0x20, mpu); // enable I2C master mode, reg106
@@ -257,9 +255,9 @@ uint8_t MPU9250_Init(MPU9250 *mpu) {
     ak8963_w_reg(AK8963_CNTL1_REG, (uint8_t) 0x16, mpu); // AK8963 working on Continuous measurement mode 2 & 16-bit output
     HAL_Delay(100);
     mpu_w_reg(PWR_MGMT_1, (uint8_t) 0x01, mpu); // select clock source
-    ak8963_r_reg(MAG_XOUT_L, 1, mpu);
-    ak8963_r_reg(AK8963_ST2_REG, 1, mpu);
-    if (dataBuf[0] & AK8963_ST2_HOFL) { }
+    ak8963_r_reg(MAG_XOUT_L, 1, mpu, buffer);
+    ak8963_r_reg(AK8963_ST2_REG, 1, mpu, buffer);
+    if (buffer[0] & AK8963_ST2_HOFL) { }
     return 0x00;
 }
 
@@ -300,18 +298,19 @@ uint8_t SensorGroup_Init(SPI_SensorsGroup* spi_sensorsgroup) {
  * @param mpu Pointer to MPU9250 structure
  */
 void MPU9250_ReadAccel(MPU9250 *mpu) {
+    uint8_t buffer[6] = { 0 };
     // m/s
-    mpu_r_reg(ACCEL_XOUT_H, 6, mpu);
+    mpu_r_reg(ACCEL_XOUT_H, 6, mpu, buffer);
     // calculate x axis
-    mpu->mpu_value.Accel_row[0] = ((int16_t)dataBuf[0] << 8) | dataBuf[1];
+    mpu->mpu_value.Accel_row[0] = ((int16_t)buffer[0] << 8) | buffer[1];
     mpu->mpu_value.Accel[0] = (float) mpu->mpu_value.Accel_row[0] / 208.980;
 
     // calculate y axis
-    mpu->mpu_value.Accel_row[1] = ((int16_t)dataBuf[2] << 8) | dataBuf[3];
+    mpu->mpu_value.Accel_row[1] = ((int16_t)buffer[2] << 8) | buffer[3];
     mpu->mpu_value.Accel[1] = (float) mpu->mpu_value.Accel_row[1] / 208.980;
 
     // calculate z axis
-    mpu->mpu_value.Accel_row[2] = ((int16_t)dataBuf[4] << 8) | dataBuf[5];
+    mpu->mpu_value.Accel_row[2] = ((int16_t)buffer[4] << 8) | buffer[5];
     mpu->mpu_value.Accel[2] = (float) mpu->mpu_value.Accel_row[2] / 208.980;
 }
 
@@ -321,18 +320,19 @@ void MPU9250_ReadAccel(MPU9250 *mpu) {
  * @param mpu Pointer to MPU9250 structure
  */
 void MPU9250_ReadGyro(MPU9250 *mpu) {
+    uint8_t buffer[6] = { 0 };
     // d/s
-    mpu_r_reg(GYRO_XOUT_H, 6, mpu);
+    mpu_r_reg(GYRO_XOUT_H, 6, mpu, buffer);
     // calculate x axis
-    mpu->mpu_value.Gyro_row[0] = ((int16_t)dataBuf[0] << 8) | dataBuf[1];
+    mpu->mpu_value.Gyro_row[0] = ((int16_t)buffer[0] << 8) | buffer[1];
     mpu->mpu_value.Gyro[0] = mpu->mpu_value.Gyro_row[0] / 16.384;
 
     // calculate y axis
-    mpu->mpu_value.Gyro_row[1] = ((int16_t)dataBuf[2] << 8) | dataBuf[3];
+    mpu->mpu_value.Gyro_row[1] = ((int16_t)buffer[2] << 8) | buffer[3];
     mpu->mpu_value.Gyro[1] = mpu->mpu_value.Gyro_row[1] / 16.384;
 
     // calculate z axis
-    mpu->mpu_value.Gyro_row[2] = ((int16_t)dataBuf[4] << 8) | dataBuf[5];
+    mpu->mpu_value.Gyro_row[2] = ((int16_t)buffer[4] << 8) | buffer[5];
     mpu->mpu_value.Gyro[2] = mpu->mpu_value.Gyro_row[2] / 16.384;
 }
 
@@ -342,20 +342,14 @@ void MPU9250_ReadGyro(MPU9250 *mpu) {
  */
 void MPU9250_ReadMag(MPU9250 *mpu) {
     uint8_t mag_adjust[3] = { 0 };
-    uint8_t mag_buffer[6] = { 0 };
+    uint8_t mag_buffer[7] = { 0 };
 
-    ak8963_r_reg(AK8963_ASAX, 3, mpu);
-    mag_adjust[0] = dataBuf[0];
-    mag_adjust[1] = dataBuf[1];
-    mag_adjust[2] = dataBuf[2];
+    ak8963_r_reg(AK8963_ASAX, 3, mpu, mag_adjust);
 
     // Read data from MAG_XOUT_L to MAG_ZOUT_H and ST2 register at once
-    ak8963_r_reg(MAG_XOUT_L, 7, mpu);  // Read 6 bytes: MAG_XOUT_L, MAG_XOUT_H, MAG_YOUT_L, MAG_YOUT_H, MAG_ZOUT_L, MAG_ZOUT_H
-    for (int i = 0; i < 6; i++) {
-        mag_buffer[i] = dataBuf[i];
-    }
+    ak8963_r_reg(MAG_XOUT_L, 7, mpu, mag_buffer);
 
-    if (dataBuf[6] & AK8963_ST2_HOFL) { }
+    if (mag_buffer[6] & AK8963_ST2_HOFL) { }
 
     mpu->mpu_value.Mag_row[0] = ((int16_t)mag_buffer[1] << 8) | mag_buffer[0];
     mpu->mpu_value.Mag_row[1] = ((int16_t)mag_buffer[3] << 8) | mag_buffer[2];
@@ -444,7 +438,7 @@ void SensorGroup_ReadAccel(SPI_SensorsGroup* spi_sensorsgroup) {
  * @brief Read gyroscope data from all MPU9250 sensors in the SPI_SensorsGroup
  * @param spi_sensorsgroup
  */
-void SenorGroup_ReadGyro(SPI_SensorsGroup* spi_sensorsgroup) {
+void SensorGroup_ReadGyro(SPI_SensorsGroup* spi_sensorsgroup) {
     uint8_t sensorNum = spi_sensorsgroup->mpuSensorNum;
     for (uint8_t i = 0; i < sensorNum; i++) {
         MPU9250 *mpu;

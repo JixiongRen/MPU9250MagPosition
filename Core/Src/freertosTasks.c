@@ -123,6 +123,8 @@ void StartUsartTransTask(void *argument) {
        uint16_t frame_len = buildFrame((uint8_t*)MagData, sizeof(MagData), g_frameBuffer);
        
        // Send data via UART with DMA
-       uartdma_tx_write(&g_UART2_TxDmaBuffer, g_frameBuffer, frame_len);
+       while (!uartdma_tx_write(&g_UART2_TxDmaBuffer, g_frameBuffer, frame_len)) {
+           osDelay(1);
+       }
    }
 }
