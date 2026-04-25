@@ -159,13 +159,13 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the semaphores(s) */
   /* creation of samplingStartTask01 */
-  samplingStartTask01Handle = osSemaphoreNew(1, 1, &samplingStartTask01_attributes);
+  samplingStartTask01Handle = osSemaphoreNew(1, 0, &samplingStartTask01_attributes);
 
   /* creation of samplingStartTask02 */
-  samplingStartTask02Handle = osSemaphoreNew(1, 1, &samplingStartTask02_attributes);
+  samplingStartTask02Handle = osSemaphoreNew(1, 0, &samplingStartTask02_attributes);
 
   /* creation of samplingStartTask03 */
-  samplingStartTask03Handle = osSemaphoreNew(1, 1, &samplingStartTask03_attributes);
+  samplingStartTask03Handle = osSemaphoreNew(1, 0, &samplingStartTask03_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */

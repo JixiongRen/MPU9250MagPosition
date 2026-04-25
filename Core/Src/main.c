@@ -45,7 +45,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define APP_LED_BLINK_INTERVAL_MS 125U
 
 /* USER CODE END PD */
 
@@ -80,29 +80,34 @@ SPI_SensorsGroup *spi_sensorsgroup_3 = &spi_sensorsgroup_instance_3;
 
 uint8_t sensorsnum = 4;
 
-SPI_HandleTypeDef ghspix_arr_1[4];
+SPI_HandleTypeDef *ghspix_arr_1[4];
 GPIO_TypeDef *gcs_port_arr_1[4];
 uint16_t gcs_pin_arr_1[4];
 
-SPI_HandleTypeDef ghspix_arr_2[4];
+SPI_HandleTypeDef *ghspix_arr_2[4];
 GPIO_TypeDef *gcs_port_arr_2[4];
 uint16_t gcs_pin_arr_2[4];
 
-SPI_HandleTypeDef ghspix_arr_3[4];
+SPI_HandleTypeDef *ghspix_arr_3[4];
 GPIO_TypeDef *gcs_port_arr_3[4];
 uint16_t gcs_pin_arr_3[4];
 
-SPI_HandleTypeDef *ghspix_1 = ghspix_arr_1;
+SPI_HandleTypeDef **ghspix_1 = ghspix_arr_1;
 GPIO_TypeDef **gcs_port_1 = gcs_port_arr_1;
 uint16_t *gcs_pin_1 = gcs_pin_arr_1;
 
-SPI_HandleTypeDef *ghspix_2 = ghspix_arr_2;
+SPI_HandleTypeDef **ghspix_2 = ghspix_arr_2;
 GPIO_TypeDef **gcs_port_2 = gcs_port_arr_2;
 uint16_t *gcs_pin_2 = gcs_pin_arr_2;
 
-SPI_HandleTypeDef *ghspix_3 = ghspix_arr_3;
+SPI_HandleTypeDef **ghspix_3 = ghspix_arr_3;
 GPIO_TypeDef **gcs_port_3 = gcs_port_arr_3;
 uint16_t *gcs_pin_3 = gcs_pin_arr_3;
+
+static volatile AppLedState g_appLedState = APP_LED_STATE_INIT_BLINK;
+static volatile uint8_t g_appLedInitialized = 0U;
+static volatile uint8_t g_appLedBlinkOn = 0U;
+static volatile uint32_t g_appLedLastToggleTick = 0U;
 
 /* USER CODE END PV */
 
@@ -115,6 +120,74 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+static void AppLed_Apply(uint8_t led0_on, uint8_t led1_on) {
+  if (g_appLedInitialized == 0U) {
+    return;
+  }
+
+  HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, led0_on != 0U ? GPIO_PIN_RESET : GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, led1_on != 0U ? GPIO_PIN_RESET : GPIO_PIN_SET);
+}
+
+static void AppLed_ApplyState(void) {
+  switch (g_appLedState) {
+    case APP_LED_STATE_INIT_BLINK:
+      AppLed_Apply(g_appLedBlinkOn, 0U);
+      break;
+    case APP_LED_STATE_AUTO_ZERO_BLINK:
+      AppLed_Apply(g_appLedBlinkOn, g_appLedBlinkOn);
+      break;
+    case APP_LED_STATE_READY_ON:
+    default:
+      AppLed_Apply(1U, 1U);
+      break;
+  }
+}
+
+void AppLed_Init(void) {
+  g_appLedInitialized = 1U;
+  g_appLedBlinkOn = 1U;
+  g_appLedLastToggleTick = HAL_GetTick();
+  AppLed_SetState(APP_LED_STATE_INIT_BLINK);
+}
+
+void AppLed_SetState(AppLedState state) {
+  if (g_appLedState == state) {
+    AppLed_ApplyState();
+    return;
+  }
+
+  g_appLedState = state;
+  if (state == APP_LED_STATE_READY_ON) {
+    AppLed_ApplyState();
+    return;
+  }
+
+  g_appLedBlinkOn = 1U;
+  g_appLedLastToggleTick = HAL_GetTick();
+  AppLed_ApplyState();
+}
+
+void AppLed_UpdateFromTick(void) {
+  uint32_t tick = HAL_GetTick();
+
+  if (g_appLedInitialized == 0U) {
+    return;
+  }
+
+  if (g_appLedState == APP_LED_STATE_READY_ON) {
+    AppLed_ApplyState();
+    return;
+  }
+
+  if ((tick - g_appLedLastToggleTick) < APP_LED_BLINK_INTERVAL_MS) {
+    return;
+  }
+
+  g_appLedLastToggleTick = tick;
+  g_appLedBlinkOn = (g_appLedBlinkOn == 0U) ? 1U : 0U;
+  AppLed_ApplyState();
+}
 
 /* USER CODE END 0 */
 
@@ -147,6 +220,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  AppLed_Init();
   MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
@@ -160,54 +234,54 @@ int main(void)
   for (uint8_t index=0;index<sensorsnum;index++) {
     switch (index) {
       case 0:
-        ghspix_arr_1[index] = hspi1;
+        ghspix_arr_1[index] = &hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S1_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S1_Pin;
 
-        ghspix_arr_2[index] = hspi2;
+        ghspix_arr_2[index] = &hspi2;
         gcs_port_arr_2[index] = MPU9250_CHIP_G2S1_GPIO_Port;
         gcs_pin_arr_2[index] = MPU9250_CHIP_G2S1_Pin;
 
-        ghspix_arr_3[index] = hspi3;
+        ghspix_arr_3[index] = &hspi3;
         gcs_port_arr_3[index] = MPU9250_CHIP_G3S1_GPIO_Port;
         gcs_pin_arr_3[index] = MPU9250_CHIP_G3S1_Pin;
         break;
       case 1:
-        ghspix_arr_1[index] = hspi1;
+        ghspix_arr_1[index] = &hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S2_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S2_Pin;
 
-        ghspix_arr_2[index] = hspi2;
+        ghspix_arr_2[index] = &hspi2;
         gcs_port_arr_2[index] = MPU9250_CHIP_G2S2_GPIO_Port;
         gcs_pin_arr_2[index] = MPU9250_CHIP_G2S2_Pin;
 
-        ghspix_arr_3[index] = hspi3;
+        ghspix_arr_3[index] = &hspi3;
         gcs_port_arr_3[index] = MPU9250_CHIP_G3S2_GPIO_Port;
         gcs_pin_arr_3[index] = MPU9250_CHIP_G3S2_Pin;
         break;
       case 2:
-        ghspix_arr_1[index] = hspi1;
+        ghspix_arr_1[index] = &hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S3_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S3_Pin;
 
-        ghspix_arr_2[index] = hspi2;
+        ghspix_arr_2[index] = &hspi2;
         gcs_port_arr_2[index] = MPU9250_CHIP_G2S3_GPIO_Port;
         gcs_pin_arr_2[index] = MPU9250_CHIP_G2S3_Pin;
 
-        ghspix_arr_3[index] = hspi3;
+        ghspix_arr_3[index] = &hspi3;
         gcs_port_arr_3[index] = MPU9250_CHIP_G3S3_GPIO_Port;
         gcs_pin_arr_3[index] = MPU9250_CHIP_G3S3_Pin;
         break;
       case 3:
-        ghspix_arr_1[index] = hspi1;
+        ghspix_arr_1[index] = &hspi1;
         gcs_port_arr_1[index] = MPU9250_CHIP_G1S4_GPIO_Port;
         gcs_pin_arr_1[index] = MPU9250_CHIP_G1S4_Pin;
 
-        ghspix_arr_2[index] = hspi2;
+        ghspix_arr_2[index] = &hspi2;
         gcs_port_arr_2[index] = MPU9250_CHIP_G2S4_GPIO_Port;
         gcs_pin_arr_2[index] = MPU9250_CHIP_G2S4_Pin;
 
-        ghspix_arr_3[index] = hspi3;
+        ghspix_arr_3[index] = &hspi3;
         gcs_port_arr_3[index] = MPU9250_CHIP_G3S4_GPIO_Port;
         gcs_pin_arr_3[index] = MPU9250_CHIP_G3S4_Pin;
         break;
@@ -222,11 +296,19 @@ int main(void)
   spi_sensorsgroup_2->base_sensor_id = 4;
   spi_sensorsgroup_3->base_sensor_id = 8;
 
-  SensorGroup_Init(spi_sensorsgroup_1);
-  SensorGroup_Init(spi_sensorsgroup_2);
-  SensorGroup_Init(spi_sensorsgroup_3);
+  HAL_Delay(500);
 
-  HAL_TIM_Base_Start_IT(&htim1);
+  for (uint8_t init_retry = 0; init_retry < 3; init_retry++) {
+    uint8_t init_status = 0;
+    init_status |= SensorGroup_Init(spi_sensorsgroup_1);
+    init_status |= SensorGroup_Init(spi_sensorsgroup_2);
+    init_status |= SensorGroup_Init(spi_sensorsgroup_3);
+    if (init_status == 0) {
+      break;
+    }
+    HAL_Delay(20);
+  }
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -320,23 +402,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {
     HAL_IncTick();
+    AppLed_UpdateFromTick();
   }
   /* USER CODE BEGIN Callback 1 */
   if (htim->Instance == TIM1) {
     BaseType_t highTaskWoken = pdFALSE;
     if (samplingStartTask01Handle != NULL) {
       xSemaphoreGiveFromISR(samplingStartTask01Handle, &highTaskWoken);
-      portYIELD_FROM_ISR(highTaskWoken);
     }
     if (samplingStartTask02Handle != NULL) {
       xSemaphoreGiveFromISR(samplingStartTask02Handle, &highTaskWoken);
-      portYIELD_FROM_ISR(highTaskWoken);
     }
     if (samplingStartTask03Handle != NULL) {
       xSemaphoreGiveFromISR(samplingStartTask03Handle, &highTaskWoken);
-      portYIELD_FROM_ISR(highTaskWoken);
     }
-    //portYIELD_FROM_ISR(highTaskWoken);
+    portYIELD_FROM_ISR(highTaskWoken);
   }
   /* USER CODE END Callback 1 */
 }

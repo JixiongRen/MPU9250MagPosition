@@ -41,14 +41,18 @@ extern "C" {
 #include "freertos_os2.h"
 #include "FreeRTOSVariables.h"
 
-
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
   extern uint8_t ak8963_WhoAmI;
   extern uint8_t mpu9250_WhoAmI;
+
+  typedef enum {
+     APP_LED_STATE_INIT_BLINK = 0U,
+     APP_LED_STATE_AUTO_ZERO_BLINK = 1U,
+     APP_LED_STATE_READY_ON = 2U,
+   } AppLedState;
 
   extern MPU9250 mpu_instance_1;
   extern MPU9250 *mpu_1;
@@ -67,15 +71,15 @@ extern "C" {
 
   extern uint8_t sensorsnum;
 
-  extern SPI_HandleTypeDef *ghspix_1;
+  extern SPI_HandleTypeDef **ghspix_1;
   extern GPIO_TypeDef **gcs_port_1;
   extern uint16_t *gcs_pin_1;
 
-  extern SPI_HandleTypeDef *ghspix_2;
+  extern SPI_HandleTypeDef **ghspix_2;
   extern GPIO_TypeDef **gcs_port_2;
   extern uint16_t *gcs_pin_2;
 
-  extern SPI_HandleTypeDef *ghspix_3;
+  extern SPI_HandleTypeDef **ghspix_3;
   extern GPIO_TypeDef **gcs_port_3;
   extern uint16_t *gcs_pin_3;
 
@@ -95,6 +99,9 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void AppLed_Init(void);
+void AppLed_SetState(AppLedState state);
+void AppLed_UpdateFromTick(void);
 
 /* USER CODE END EFP */
 
@@ -129,6 +136,10 @@ void Error_Handler(void);
 #define LCD_RES_GPIO_Port GPIOG
 #define LCD_DC_Pin GPIO_PIN_14
 #define LCD_DC_GPIO_Port GPIOG
+#define LED0_Pin GPIO_PIN_9
+#define LED0_GPIO_Port GPIOF
+#define LED1_Pin GPIO_PIN_10
+#define LED1_GPIO_Port GPIOF
 #define MPU9250_CHIP_G1S4_Pin GPIO_PIN_3
 #define MPU9250_CHIP_G1S4_GPIO_Port GPIOB
 #define MPU9250_CHIP_G2S1_Pin GPIO_PIN_4

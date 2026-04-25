@@ -21,15 +21,37 @@
 #define INT_ENABLE           0x38   // Register: Interrupt Enable
 #define INT_PIN_CFG          0x37
 #define INT_STATUS           0x3A
+#define I2C_MST_STATUS       0x36
 #define USER_CTRL            0x6a
 #define I2C_MST_CTRL         0x24
 #define I2C_MST_DELAY_CTRL   0x67
+#define USER_CTRL_I2C_MST_EN 0x20
+#define USER_CTRL_I2C_IF_DIS 0x10
+#define USER_CTRL_I2C_MST_RST 0x02
+
+#define I2C_MST_STATUS_SLV0_NACK 0x01
+#define I2C_MST_STATUS_SLV4_NACK 0x10
+#define I2C_MST_STATUS_SLV4_DONE 0x40
+
+#define MPU9250_PWR1_DEVICE_RESET 0x80
+#define MPU9250_PWR1_CLKSEL_PLL   0x01
+#define MPU9250_I2C_MST_CLK_400KHZ 0x0D
+#define I2C_MST_DELAY_CTRL_DELAY_ES_SHADOW 0x80
 
 //--------------------------i2c slv0---------------------------------//
 #define I2C_SLV0_ADDR        0x25   // I2C slave 0 address
 #define I2C_SLV0_REG         0x26   // I2C slave 0 register
 #define I2C_SLV0_CTRL        0x27   // I2C slave 0 control
 #define I2C_SLV0_DO          0x63   // I2C slave 0 data out register
+#define I2C_SLV0_EN          0x80   // Enable I2C slave 0 transaction
+
+//--------------------------i2c slv4---------------------------------//
+#define I2C_SLV4_ADDR        0x31   // I2C slave 4 address
+#define I2C_SLV4_REG         0x32   // I2C slave 4 register
+#define I2C_SLV4_DO          0x33   // I2C slave 4 data out
+#define I2C_SLV4_CTRL        0x34   // I2C slave 4 control
+#define I2C_SLV4_DI          0x35   // I2C slave 4 data in
+#define I2C_SLV4_EN          0x80   // Enable I2C slave 4 transaction
 
 //-----------------------AK8963 reg addr-----------------------------//
 #define AK8963_I2C_ADDR      0x0C  //AKM addr
@@ -44,6 +66,9 @@
 #define AK8963_CNTL1_REG     0x0A
 #define AK8963_CNTL2_REG     0x0B
 #define AK8963_CNTL2_SRST    0x01  //soft Reset
+#define AK8963_CNTL1_POWER_DOWN      0x00
+#define AK8963_CNTL1_FUSE_ROM_ACCESS 0x0F
+#define AK8963_CNTL1_CONT_MEAS_2_16B 0x16
 #define AK8963_ASAX          0x10  //X-axis sensitivity adjustment value
 #define AK8963_ASAY          0x11  //Y-axis sensitivity adjustment value
 #define AK8963_ASAZ          0x12  //Z-axis sensitivity adjustment value
@@ -79,11 +104,13 @@
 
 #define WHO_AM_I             0x75   // Device ID, Should return 0x71
 #define WHO_AM_I_ANS         0x71   // Device ID answer
+#define WHO_AM_I_ANS_ALT     0x73   // Some compatible variants / clones report 0x73
 
 #define EXT_SENS_DATA_00     0x49   // External sensor data 00
 #define EXT_SENS_DATA_01     0x4A   // External sensor data 01
 #define EXT_SENS_DATA_02     0x4B   // External sensor data 02
 #define EXT_SENS_DATA_03     0x4C   // External sensor data 03
+#define EXT_SENS_DATA_07     0x50   // External sensor data 07
 
 //------------------------SPI CS-------------------------------//
 // #define MPU_9250_DISENABLE() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET)
@@ -177,7 +204,7 @@ typedef struct __MPU9250_Value{
 } MPU_Value;
 
 typedef struct __MPU9250_CFG {
-    SPI_HandleTypeDef hspix;
+    SPI_HandleTypeDef *hspix;
     GPIO_TypeDef* CS_Port;
     uint16_t CS_Pin;
 } MPU9250_CFG;
@@ -185,6 +212,24 @@ typedef struct __MPU9250_CFG {
 typedef struct __MPU9250 {
     MPU9250_CFG mpu9250_cfg;
     MPU_Value mpu_value;
+    uint8_t mag_adjust[3];
+    float mag_despike_history[2][3];
+    uint8_t mag_despike_count;
+    uint8_t diag_mpu_whoami;
+    uint8_t diag_ak8963_whoami;
+    uint8_t diag_init_error;
+    uint8_t diag_last_mag_status;
+    uint8_t diag_last_i2c_mst_status;
+    uint8_t diag_last_aux_data;
+    uint8_t diag_user_ctrl;
+    uint8_t diag_i2c_mst_ctrl;
+    uint8_t diag_last_aux_op;
+    uint8_t diag_last_slv4_ctrl;
+    uint8_t diag_last_slv4_addr;
+    uint8_t diag_last_slv4_reg;
+    uint8_t diag_last_slv4_do;
+    uint32_t diag_mag_read_attempts;
+    uint32_t diag_mag_read_success;
 } MPU9250;
 
 typedef struct __SPI_SensorsGroup {
@@ -202,25 +247,26 @@ void MPU9250_ENABLE(MPU9250 *mpu);
 void MPU9250_DISENABLE(MPU9250 *mpu);
 void delay_10us(void);
 // 以下7个均为static函数
-uint8_t spi_w_byte(SPI_HandleTypeDef hspix, uint8_t byte);
+uint8_t spi_w_byte(SPI_HandleTypeDef *hspix, uint8_t byte);
 void spi_w_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *bytes, uint16_t num);
 void spi_r_bytes(uint8_t reg, MPU9250 *mpu, uint8_t *buffer, uint8_t num);
 void mpu_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
 void mpu_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer);
-void ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
-void ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer);
+uint8_t ak8963_w_reg(uint8_t reg, uint8_t byte, MPU9250 *mpu);
+uint8_t ak8963_r_reg(uint8_t reg, uint8_t num, MPU9250 *mpu, uint8_t *buffer);
 uint8_t mpu_r_ak8963_WhoAmI(MPU9250 *mpu);
 uint8_t mpu_r_WhoAmI(MPU9250 *mpu);
-void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin);
-void SensorGroup_StructInit(SPI_SensorsGroup* spi_sensorsgroup, uint8_t sensornum, SPI_HandleTypeDef ghspix[], GPIO_TypeDef *gcs_port[], uint16_t gcs_pin[]);
+void MPU9250_StructInit(MPU9250 *mpu, SPI_HandleTypeDef *hspix, GPIO_TypeDef *cs_port, uint16_t cs_pin);
+void SensorGroup_StructInit(SPI_SensorsGroup* spi_sensorsgroup, uint8_t sensornum, SPI_HandleTypeDef *ghspix[], GPIO_TypeDef *gcs_port[], uint16_t gcs_pin[]);
 uint8_t MPU9250_Init(MPU9250 *mpu);
 uint8_t SensorGroup_Init(SPI_SensorsGroup* spi_sensorsgroup);
 void MPU9250_ReadAccel(MPU9250 *mpu);
 void MPU9250_ReadGyro(MPU9250 *mpu);
-void MPU9250_ReadMag(MPU9250 *mpu);
+uint8_t MPU9250_ReadMag(MPU9250 *mpu);
 void SensorGroup_ReadMag(SPI_SensorsGroup* spi_sensorsgroup);
 void SensorGroup_ReadAccel(SPI_SensorsGroup* spi_sensorsgroup);
 void SensorGroup_ReadGyro(SPI_SensorsGroup* spi_sensorsgroup);
 void MPU9250_ReadData(MPU9250 *mpu);
+void SensorGroup_DebugPrint(const char *tag, SPI_SensorsGroup* spi_sensorsgroup);
 
 #endif //MPU9250_H
