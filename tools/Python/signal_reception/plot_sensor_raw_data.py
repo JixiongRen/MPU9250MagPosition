@@ -209,7 +209,7 @@ def read_mpu9250_uart_data(serial_port, baud_rate, max_samples=1000, tick_hz=100
 
 
 def main(
-    serial_port: str = "COM3",
+    serial_port: str = "COM5",
     baud_rate: int = 1024000,
     max_samples: int = 1000,
     tick_hz: int = 1000,
@@ -459,7 +459,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Plot MPU9250 raw UART data")
     parser.add_argument("--selftest", action="store_true", help="Run protocol/decoder self-test and exit")
-    parser.add_argument("--port", default="COM3", help="Serial port (e.g. COM5)")
+    parser.add_argument("--port", default="COM5", help="Serial port (e.g. COM5)")
     parser.add_argument("--baud", type=int, default=1024000, help="Baud rate")
     parser.add_argument("--max-samples", type=int, default=1000, help="Max samples to acquire")
     parser.add_argument("--tick-hz", type=int, default=1000, help="FreeRTOS tick rate (Hz)")

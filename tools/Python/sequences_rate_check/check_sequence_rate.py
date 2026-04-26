@@ -59,7 +59,7 @@ def main(
     serial_port: str = "COM5",
     baud_rate: int = 1024000,
     test_duration: int = 10,
-    expected_frame_rate: float = 38.0,
+    expected_frame_rate: float = 100.0,
     frame_rate_tol_hz: float = 1.0,
     max_wait_s: float = 30.0,
     no_plot: bool = False,
@@ -446,7 +446,7 @@ if __name__ == "__main__":
     parser.add_argument("--port", default="COM5", help="Serial port (e.g. COM5)")
     parser.add_argument("--baud", type=int, default=1024000, help="Baud rate")
     parser.add_argument("--duration", type=int, default=10, help="Test duration (seconds)")
-    parser.add_argument("--expected-frame-rate", type=float, default=38.0, help="Expected UART frame rate (Hz)")
+    parser.add_argument("--expected-frame-rate", type=float, default=100.0, help="Expected UART frame rate (Hz)")
     parser.add_argument("--frame-rate-tol", type=float, default=1.0, help="Allowed frame rate error (Hz)")
     parser.add_argument("--max-wait", type=float, default=30.0, help="Max seconds to wait for first valid frame")
     parser.add_argument("--no-plot", action="store_true", help="Skip visualization/GUI")
