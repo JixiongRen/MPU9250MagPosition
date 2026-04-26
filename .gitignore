@@ -1,0 +1,10 @@
+build/
+cmake-build-debug/
+.vscode/
+.settings/
+.idea/
+**/__pycache__/
+*.pyc
+*.json
+*.xm
+mx.scratch

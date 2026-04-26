@@ -72,7 +72,7 @@ Edit the `main()` function to customize:
 serial_port = "COM7"              # Serial port name
 baud_rate = 1024000               # UART baud rate
 test_duration = 10                # Test duration in seconds
-expected_frame_rate = 38          # Expected frame rate in Hz
+expected_frame_rate = 100         # Expected frame rate in Hz
 frame_rate_tol_hz = 1.0           # Allowed frame rate error in Hz
 ```
 
@@ -84,7 +84,7 @@ frame_rate_tol_hz = 1.0           # Allowed frame rate error in Hz
 
 ```
 === UART Sequence Increment Rate Check ===
-Target UART frame rate: 38.0 Hz (period: 26.316 ms)
+Target UART frame rate: 100.0 Hz (period: 10.000 ms)
 Test duration: 10 seconds
 
 Serial port COM7 connected successfully
@@ -100,14 +100,14 @@ CRC failures: 0
 Length mismatches: 0
 Header resync count: 0
 
-Actual UART frame rate: 38.000 Hz (expected: 38.0 Hz)
+Actual UART frame rate: 100.000 Hz (expected: 100.0 Hz)
 Frame rate error: 0.00%
 
-Dominant sequence increment: 26
-This means the sequence counter advances by about 26 counts per UART frame.
+Dominant sequence increment: 10
+This means the sequence counter advances by about 10 counts per UART frame.
 
 Sequence increment consistency analysis:
-  Normal increments (=26): 378
+  Normal increments (=10): 378
   Drop events (integer multiples > 1): 0
   Estimated lost UART frames: 0
   Irregular increments: 1
@@ -143,7 +143,7 @@ Test completed
 - **Irregular increments:** Frames with non-integer multiple increments (anomalies)
 
 **Interpretation:**
-- Dominant increment is typically 26 for 38 Hz frame rate
+- Dominant increment is typically 10 for 100 Hz frame rate
   - Formula: `dominant_increment ≈ tick_rate / frame_rate = 1000 / 38 ≈ 26`
 - Drop events > 0: Some UART frames were lost
 - Irregular increments > 0: Potential transmission errors or timing anomalies
@@ -156,7 +156,7 @@ Test completed
 
 **Interpretation:**
 - Expected period: `1000 / frame_rate` ms
-- For 38 Hz: ~26.3 ms
+- For 100 Hz: ~10.0 ms
 - Std < 1 ms: Excellent timing stability
 - Std > 5 ms: Timing jitter, potential issues
 
@@ -241,7 +241,7 @@ The script automatically detects the dominant sequence increment using mode stat
 **Why this is needed:**
 - Sequence counter may not increment by 1 per frame
 - Depends on FreeRTOS tick rate and frame rate
-- Typical value: 26 for 1000 Hz tick rate and 38 Hz frame rate
+- Typical value: 10 for 1000 Hz tick rate and 100 Hz frame rate
 
 ### Frame Loss Detection
 
@@ -255,9 +255,9 @@ For each frame-to-frame increment:
 ```
 
 **Example:**
-- Dominant increment: 26
-- Observed increment: 52
-- Ratio: 52 / 26 = 2
+- Dominant increment: 10
+- Observed increment: 20
+- Ratio: 20 / 10 = 2
 - Interpretation: 1 frame was lost (2 - 1 = 1)
 
 ### Timing Analysis
@@ -458,11 +458,15 @@ import numpy as np
 ### Typical Performance
 
 - **Test duration:** 10 seconds
-- **Frames acquired:** 380-400 frames
+- **Frames acquired:** ~1000 frames
 - **Processing time:** < 1 second
 - **Timing accuracy:** ±0.1 ms
 
-### Expected Values for 38 Hz Frame Rate
+### Expected Values for 100 Hz Frame Rate
+
+Note: With `configTICK_RATE_HZ = 1000` and a 100 Hz frame rate, typical values are:
+- Dominant increment: 10
+- Mean interval: 10.0 ms
 
 | Metric | Expected | Tolerance |
 |--------|----------|-----------|
